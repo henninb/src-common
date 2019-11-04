@@ -1,0 +1,8 @@
+[package]
+name = "date_utc"
+version = "0.1.0"
+authors = ["Brian.Henning <henninb@msn.com>"]
+
+[dependencies]
+#datetime = "0.4.7"
+chrono = "0.4.0"

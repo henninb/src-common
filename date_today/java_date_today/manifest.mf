@@ -1,0 +1,2 @@
+Main-Class: DateToday
+Class-Path: DateToday.jar

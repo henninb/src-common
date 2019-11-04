@@ -1,0 +1,2 @@
+Main-Class: Prime
+Class-Path: Prime.jar

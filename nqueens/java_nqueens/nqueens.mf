@@ -1,0 +1,2 @@
+Main-Class: nqueens
+Class-Path: nqueens.jar

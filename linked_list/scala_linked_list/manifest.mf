@@ -1,0 +1,2 @@
+Main-Class: linked_list
+Class-Path: linked_list.jar

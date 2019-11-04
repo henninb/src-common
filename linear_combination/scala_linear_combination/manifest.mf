@@ -1,0 +1,2 @@
+Main-Class: linear_combination
+Class-Path: linear_combination.jar

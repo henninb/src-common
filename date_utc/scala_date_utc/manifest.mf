@@ -1,0 +1,2 @@
+Main-Class: date_utc
+Class-Path: date_utc.jar

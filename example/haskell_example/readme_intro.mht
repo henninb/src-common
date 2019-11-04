@@ -1,0 +1,624 @@
+From: <Saved by UnMHT>
+Subject: =?iso-2022-jp?B?SGFza2VsbCBmb3IgQyBQcm9ncmFtbWVycw==?=
+Date: Wed, Nov 25 2009 06:17:03 GMT-0600
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_1C7B9DD1.00624379";
+	type="text/html"
+
+------=_NextPart_000_0000_1C7B9DD1.00624379
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.haskell.org/~pairwise/intro/intro.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<html><head>
+
+
+<title>Haskell for C Programmers</title>
+<meta content=3D"text/html; charset=3Diso-8859-1" http-equiv=3D"Content-Typ=
+e">
+<base href=3D"http://www.haskell.org/~pairwise/intro/"></base></head><body>
+
+<center><table width=3D"92%" border=3D"0"><tbody><tr><td>
+<h1>Haskell Tutorial for C Programmers - Introduction</h1>
+<p>Written by Eric Etheridge<br>
+  version 2.0<br>
+  last updated May 18, 2009<br>
+  year of original release: 2005</p>
+<h2>Table of Contents</h2>
+Each major section has its own page.
+<ol start=3D"0">
+  <li><font size=3D"+2"><a href=3D"intro.html">Introduction</a></font>=
+=20
+    <ol>
+      <li><a href=3D"intro.html#abstract">Abstract</a></li>
+      <li><a href=3D"intro.html#downloads">Downloads</a></li>
+      <li><a href=3D"intro.html#purpose">Purpose and Other Online Reference=
+s</a></li>
+      <li><a href=3D"intro.html#othertutorials">Relationship to Our Other T=
+utorials</a></li>
+      <li><a href=3D"intro.html#preface">Preface and Style Notes</a> </li>
+    </ol>
+  </li>
+  <br>
+  <li><font size=3D"+2"><a href=3D"section1.html">Section I: What the Heck =
+is Going=
+=20
+    On?</a></font>=
+=20
+    <ol>
+      <li><a href=3D"section1.html#part1">Part I: Haskell&#x27;s Oddity</a>=
+</li>
+      <li><a href=3D"section1.html#part2">Part II: Input and Output</a></li=
+>
+      <li><a href=3D"section1.html#part3">Part III: Very Basic Intro to Typ=
+es</a></li>
+      <li><a href=3D"section1.html#part4">Part IV: Haskell&#x27;s Lists and=
+ List Comprehensions</a></li>
+      <li><a href=3D"section1.html#part5">Part V: Making Sense of &#x27;fib=
+s&#x27;, and Why Lazy Evaluation is Important</a></li>
+    </ol>
+  </li>
+  <br>
+  <li><a href=3D"section2.html"><font size=3D"+2">Section II: Towards Funct=
+ions</font></a><font size=3D"+2">=
+=20
+    </font>=
+=20
+    <ol>
+      <li><a href=3D"section2.html#part1">Part I: The Order of Operations a=
+s a Programmer</a></li>
+      <li><a href=3D"section2.html#part2">Part II: Functions, But Really a =
+Sidetrack to Types</a></li>
+      <li><a href=3D"section2.html#part3">Part III: More Types, Because Has=
+kell Is &#x27;Polymorphic&#x27;</a></li>
+      <li><a href=3D"section2.html#part4">Part IV: Functions Already</a></l=
+i>
+    </ol>
+  </li>
+  <br>
+  <li><font size=3D"+2"><a href=3D"section3.html">Section III: Now Let&#x27=
+;s Really Write Functions</a> </font>=
+=20
+    <ol>
+      <li><a href=3D"section3.html#part1">Part I: Did You Take That Break? =
+Here Are Patterns</a></li>
+      <li><a href=3D"section3.html#part2">Part II: After Patterns, Guards</=
+a></li>
+      <li><a href=3D"section3.html#part3">Part III: &#x27;If&#x27;</a></li>
+      <li><a href=3D"section3.html#part4">Part IV: Indention Syntax</a></li=
+>
+      <li><a href=3D"section3.html#part5">Part V: And Lambda Functions</a><=
+/li>
+      <li><a href=3D"section3.html#part6">Part VI: Polymorphic Types and Ty=
+pe Constructors</a></li>
+      <li><a href=3D"section3.html#part7">Part VII: The IO Monad</a></li>
+      <li><a href=3D"section3.html#part8">Part VIII: Dissecting the IO Exam=
+ple</a></li>
+    </ol>
+  </li>
+  <br>
+  <li><font size=3D"+2"><a href=3D"section4.html">Section IV: Haskell and Y=
+ou</a>=
+=20
+    </font>=
+=20
+    <ol>
+      <li><a href=3D"section4.html#part1">Part I: Where Are the &#x27;For&#=
+x27; Loops?</a></li>
+      <li><a href=3D"section4.html#part2">Part II: Remember Lazy Evaluation=
+? It&#x27;s Still There</a></li>
+      <li><a href=3D"section4.html#part3">Part III: The Point(s)</a></li>
+    </ol>
+  </li>
+  <br>
+  <li><font size=3D"+2"><a href=3D"section5.html">Section V: Final Commenta=
+ry</a>=
+=20
+    </font>=
+=20
+    <ol>
+      <li><a href=3D"section5.html#part1">Part I: Why is &#x27;Referential =
+Transparency&#x27; Worth Anything?</a></li>
+      <li><a href=3D"section5.html#part2">Part II: Feedback and Notes</a></=
+li>
+      <li><a href=3D"section5.html#part3">Part III: Ranting</a></li>
+    </ol>
+  </li>
+  <br>
+  <li><font size=3D"+2"><a href=3D"section6.html">Section VI: Extended Exam=
+ples</a>=
+=20
+    </font>=
+=20
+    <ol>
+      <li><a href=3D"section6.html#part1">Part I: Intro to Examples</a></li=
+>
+      <li><a href=3D"section6.html#part2">Part II: Calculating Pi</a></li>
+      <li><a href=3D"section6.html#part3">Part III: MergeSort Variations</a=
+></li>
+      <li><a href=3D"section6.html#part4">Part IV: Regular Expressions and =
+Finite Automata: Overview</a></li>
+      <li><a href=3D"section6.html#part5">Part V: Regular Expressions and F=
+inite Automata: Types</a></li>
+      <li><a href=3D"section6.html#part6">Part VI: Regular Expressions and =
+Finite Automata: String to RE, and Monads</a></li>
+      <li><a href=3D"section6.html#part7">Part VII: Regular Expressions and=
+ Finite Automata: Conversion and Execution</a></li>
+      <li><a href=3D"section6.html#part8">Part VIII: Solving 2CNFs in Linea=
+r Time</a></li>
+      <li><a href=3D"section6.html#part9">Part IX: In Closing</a></li>
+    </ol>
+  </li>
+</ol>
+<p><a href=3D"../index.html">Back to our main page.</a></p>
+
+<h1>Introduction</h1>
+
+<h2><a name=3D"abstract"></a>Abstract</h2>
+<p><br>
+  Many people are accustomed to imperative languagues, which include C, C++=
+,
+  Java, Python, and Pascal. For computer science students, Haskell is weird
+  and obtuse. This tutorial assumes that the reader is familiar with C/C++,
+  Python, Java, or Pascal. I am writing for you because it seems that no ot=
+her
+  tutorial was written to help students overcome the difficulty of moving f=
+rom
+  C/C++, Java, and the like to Haskell.
+</p>
+<p>I write this assuming that you have checked out the Gentle Introduction =
+to Haskell,
+  but still don&#x27;t understand what&#x27;s going on.
+</p>
+<p>Haskell is not &#x27;a little different,&#x27; and will not &#x27;take a=
+ little time.&#x27; It is very
+  different and you cannot simply pick it up, although I hope that this tut=
+orial will
+  help.
+</p>
+<p>I am going to put many pauses in this tutorial because learning Haskell =
+hurt a lot,
+  at least for me. I needed breaks, and my brain hurt while I was trying to=
+ understand.
+</p>
+<p>Haskell has both more flexibility and more control than most languages. =
+Nothing that I
+  know of beats C&#x27;s control, but Haskell has everything C does unless =
+you need to control
+  specific bytes in memory. So I call Haskell powerful, rather than just &#=
+x27;good.&#x27;
+</p>
+<p>I wrote this tutorial because Haskell was very hard for me to learn, but=
+ now I love it.
+  &quot;Haskell is hard!&quot; &quot;You can&#x27;t write code the way I kn=
+ow how!&quot;
+  &quot;My brain hurts!&quot; &quot;There aren&#x27;t any good references!&=
+quot; That&#x27;s what
+  I said when I was in college. There were good references, but they didn&#=
+x27;t cover the
+  real problem: coders know C.
+</p>
+<p>This abstract was pieced together by Mark Evans,
+  <a href=3D"http://lambda-the-ultimate.org/node/view/724">here</a>, from m=
+y own work.
+  I have had no contact with Mark Evans, but since he did&#x27;t contact me=
+ when he
+  editted together this abstract from my work and posted it on lambda-the-u=
+ltimate,
+  I doubt he&#x27;ll care that I&#x27;ve taken that edit and used it as my =
+abstract here.
+  If he wishes, he may contact me regarding the legal status of this work. =
+For now,
+  I assume I still hold the copyright on all of it, including the abstract =
+(but see the
+  creative commons license below).
+</p>
+
+<p>&nbsp;</p>
+<h2><a name=3D"downloads"></a>Downloads</h2>
+<p><br>
+  Here is the html of this tutorial, zipped using bzip2:
+  <a href=3D"introSections.tar.bz2">bzip2 of html, 34K</a>, and zipped as a=
+ zip:=
+=20
+  <a href=3D"introSections.zip">zip of html, 51K</a>.
+</p>
+<p>Here are the source files and text for all examples for this tutorial, i=
+ncluding all=
+=20
+  those in the sections and the large examples at the end, zipped using bzi=
+p2:
+  <a href=3D"introExamples.tar.bz2">bzip2 of sources, 28K</a>, and zipped a=
+s a zip:=
+=20
+  <a href=3D"introExamples.zip">zip of sources, 43K</a>.
+</p>
+<p>If you don&#x27;t have bzip2, you can get the latest version at <a href=
+=3D"http://www.bzip.org/">www.bzip.org</a>.
+</p>
+<p>Sources for the in-text examples in the coming sections are given in the=
+ following files:
+</p>
+<p>
+  </p><ol>
+    <li>ExampleSectionsCode.hs</li>
+    <li>ExampleSectionsTry.txt</li>
+  </ol>
+<p></p>
+
+<p>&nbsp;</p>
+<h2><a name=3D"license"></a>License</h2>
+<p><br>
+  I&#x27;ve decided that I should be specific about the license for this tu=
+torial. To sum up,
+  you can do whatever you want with this tutorial as long as my name is sti=
+ll on it,
+  including modifying it, redistributing it, or selling derivative works.
+  <b>Specifically, you can use it to educate people in a commercial setting=
+,
+  such as in-house training or consulting.</b> I would love to hear that a =
+company
+  considering Haskell used this tutorial to train its workforce. So feel fr=
+ee. Any
+  derivative works also carry this license, by the way. &quot;Share alike&q=
+uot;. Thank you,
+  Creative Commons. The link leads to the legal wording. This license has b=
+een updated=
+=20
+  to a newer version, but it is basically identical to the original.
+</p>
+<p>
+<a href=3D"http://creativecommons.org/licenses/by-sa/3.0/us/" rel=3D"licens=
+e"><img src=3D"http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" style=
+=3D"border-width: 0pt;" alt=3D"Creative Commons License"></a><br><span rel=
+=3D"dc:type" property=3D"dc:title" href=3D"http://purl.org/dc/dcmitype/Text=
+" xmlns:dc=3D"http://purl.org/dc/elements/1.1/">Haskell Tutorial for C Prog=
+rammers</span> by <span property=3D"cc:attributionName" xmlns:cc=3D"http://=
+creativecommons.org/ns#">Eric Etherige</span> is licensed under a <a href=
+=3D"http://creativecommons.org/licenses/by-sa/3.0/us/" rel=3D"license">Crea=
+tive Commons Attribution-Share Alike 3.0 United States License</a>.
+</p>
+
+<p>&nbsp;</p>
+<h2><a name=3D"purpose"></a>This Tutorial&#x27;s Purpose and Other Online R=
+eferences</h2>
+<p><br>
+  Many people are accustomed to imperative languagues, which include C, C++=
+, Java,=
+=20
+  Python, and Pascal. In fact, most languages in common usage are imperativ=
+e, other=
+=20
+  than LISP, Scheme, ML, and OCaml. For computer science students in high s=
+chool or early college, it is virtually=
+=20
+  guaranteed that Haskell is weird and obtuse. I first encountered Haskell =
+in=
+=20
+  the classroom when I was a freshman at UT Austin, and then in another cla=
+ss at UT
+  two years later. I was only familiar with C/C++, Pascal, and QBASIC, and =
+all=
+=20
+  of the Haskell tutorials and books seemed to assume more of my education.=
+ This=
+=20
+  tutorial assumes that the reader is familiar with C/C++, Python, Java, or=
+ Pascal.=
+=20
+  This tutorial is specifically for <b>students</b> of computer science, pe=
+ople in=
+=20
+  their first few years of college, or even in high school. I am writing fo=
+r you=
+=20
+  because it seems that no other tutorial was written to help students over=
+come=
+=20
+  the difficulty of moving from C/C++, Java, and the like to Haskell.
+</p>
+<p>New:
+To learn and use Haskell, you should install GHC, and perhaps Hugs.
+  GHC is the &quot;de facto standard&quot; compiler for Haskell, and almost=
+ all projects in Haskell use it.
+  The Hugs interpreter is a simpler tool that will let you play around and =
+learn.
+  Start with Hugs if you are having trouble using GHC.
+  GHC also ships with GHCi, &quot;GHC interactive&quot;, which is a command=
+ line interpreter much like Hugs,
+  but no GUI.
+  Getting these programs is easy. If you use Debian, GHC and Hugs are packa=
+ges.
+  For everyone else, the homepages are here:
+</p>
+<p><a href=3D"http://www.haskell.org/ghc/">http://www.haskell.org/ghc/</a>
+</p>
+<p><a href=3D"http://www.haskell.org/hugs/">http://www.haskell.org/hugs/</a=
+>
+</p>
+<p>
+I write this assuming that you have checked out the following tutorial, the=
+=
+=20
+  Gentle Introduction to Haskell, but found that you still don&#x27;t under=
+stand what&#x27;s=
+=20
+  going on:
+</p>
+<p><a href=3D"http://www.haskell.org/tutorial/">http://www.haskell.org/tuto=
+rial/</a>
+</p>
+<p>
+The Gentle Introduction to Haskell is a good reference for basic syntax. In=
+ this tutorial we will=
+=20
+  skip most syntax details until later. First we will cover defining functi=
+ons=
+=20
+  in Haskell and why it is central to the language. For more syntax details=
+,
+  here is another tutorial, the Tour of the Haskell Syntax,=
+=20
+  which has much more specific information:
+</p>
+<p><a href=3D"http://cs.anu.edu.au/Student/comp1100/haskell/tourofsyntax.ht=
+ml">http://cs.anu.edu.au/Student/comp1100/haskell/tourofsyntax.html</a>
+</p>
+<p>
+You should look through the Tour, since it describes the appropriate syntax=
+ for most of the things I discuss.
+  The Tour is useful because you can understand it without knowing everythi=
+ng about Haskell.
+  Reading these can help you before, after, or during this tutorial.
+</p>
+<p>
+One of the best references is the source code for the Prelude, which is the=
+ file &quot;Prelude.hs&quot;.
+  This file holds the code for all of the general-purpose functions in the =
+Prelude module.
+  If any function shows up that you don&#x27;t understand,=
+=20
+  you can look up its definition in source code and figure out what it&#x27=
+;s really doing. This is=
+=20
+  a very good practice for those unfamiliar with general Haskell use.
+</p>
+<p>
+There are (at least) three ways to get a copy of the Prelude.hs file.
+  If you download and install Hugs, Prelude.hs will be in the libraries dir=
+ectory.
+  I do not think that GHC ships with the uncompiled library sources.=
+=20
+  You can download a source version of GHC from its download page.
+  You may be able to find a gzipped copy in the ghc &quot;libsrc&quot; Debi=
+an package.
+</p>
+<p>
+Another important resource is the GHC Hierarchical Libraries documentation.=
+=
+=20
+  The data types and functions of every module are defined here, including =
+the Prelude.
+  Whenever you use a library function, you&#x27;ll want to refer to these t=
+o find the module and specific usage.
+  All the standard modules are well documented.
+  If your GHC installation includes the docs, these webpages are also on yo=
+ur local machine.
+</p>
+<p><a href=3D"http://www.haskell.org/ghc/docs/latest/html/libraries/index.h=
+tml">http://www.haskell.org/ghc/docs/latest/html/libraries/index.html</a>
+</p>
+
+
+<p>&nbsp;</p>
+<h2><a name=3D"othertutorials"></a>Relationship to Our Other Tutorials</h2>
+<p><br>
+  You may be here because you&#x27;re trying to use HOpenGL. The tutorial y=
+ou&#x27;re reading=
+=20
+  was written along with our other tutorial on rendering and texture exampl=
+es=
+=20
+  in HOpenGL, and if you are familiar with Haskell you can go directly ther=
+e:
+</p>
+<p><a href=3D"../HOpenGL/HOpenGL.html">Dave Morra&#x27;s HOpenGL tutorial</=
+a>
+</p>
+<p>Otherwise, read this tutorial and those mentioned above first, then chec=
+k out=
+=20
+  our HOpenGL tutorial if you like. If we&#x27;ve written well enough you s=
+hould be=
+=20
+  able to not only use Haskell but HOpenGL as well. On with the tutorial.
+</p>
+<p>This tutorial was originally published in 2005.  There are added example=
+s=
+=20
+  and corrections of links and example code.
+</p>
+
+<p>&nbsp;</p>
+<h2><a name=3D"preface"></a>Preface and Style Notes</h2>
+<p><br>
+  I am not writing a Haskell reference. This is a tutorial designed to take=
+ someone=
+=20
+  having trouble understanding Haskell and help them. This tutorial is for =
+people=
+=20
+  who, like me, needed to learn enough concepts to understand the code cove=
+red=
+=20
+  in a classroom. Haskell allows things to be done easily and clearly, but =
+it=
+=20
+  is not easy or clear, and it can be extremely challenging for a novice. Y=
+ou=
+=20
+  cannot pick up Haskell code and understand it. What I have attempted to w=
+rite=
+=20
+  is a tutorial that covers the common aspects of Haskell that are the most=
+ obtuse.=
+=20
+</p>
+<p>As the tutorial progresses, one thing should become clear about Haskell:=
+ its=
+=20
+  real power comes into play when you attack difficult problems. Because of=
+ this,=
+=20
+  I use some difficult problems in this tutorial. Don&#x27;t worry if you d=
+on&#x27;t understand=
+=20
+  the solutions after reading the tutorial once. Haskell is not a toy langu=
+age,=
+=20
+  and even a moderately sized set of functions will include several of Hask=
+ell&#x27;s=
+=20
+  complicated tools all working together. This has left educators with a di=
+lemma:=
+=20
+  do I use ridiculously simple code in order to cover a single topic at onc=
+e,=
+=20
+  or do I use something actually useful and try to explain all the pieces a=
+nd=
+=20
+  how they all fit together? Many tutorials and lessons have chosen the for=
+mer,=
+=20
+  but I prefer the latter. That means that each example requires a lot of e=
+xplaining.=
+=20
+  Often concepts must be explained once in extremely simplistic terms, and =
+then=
+=20
+  explained again later after other related topics have also been briefly d=
+iscussed.=
+=20
+  As you read this tutorial, remember this: Haskell&#x27;s real power is th=
+e fact that=
+=20
+  all of its pieces fit so well together, not just that they are good piece=
+s.
+</p>
+<p>The syntax and variable name conventions I use in this tutorial are thos=
+e used
+  in the Haskell source code and libraries, and what I learned in college. =
+Haskell
+  programs tend to be short, but wide. I recommend using descriptive variab=
+le
+  names, even for indices and so forth.
+</p>
+
+<p>&nbsp;</p>
+<h2><a href=3D"section1.html">Continue to I: What the Heck is Going On?</a>=
+</h2>
+<p>&nbsp;</p>
+
+</td></tr></tbody></table></center>
+
+</body></html>
+------=_NextPart_000_0000_1C7B9DD1.00624379
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png
+
+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
+AABJRU5ErkJggg==
+
+------=_NextPart_000_0000_1C7B9DD1.00624379--

@@ -1,0 +1,2 @@
+Main-Class: EntryPoint
+Class-Path: EntryPoint.jar

@@ -1,0 +1,161 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+// This and other scripts available at http://www.netacc.net/~poulsen
+
+// determine browser version
+var newBrowser = false;
+if(parseInt(navigator.appVersion) >= 4) newBrowser = true;
+
+// some code to take care of browsers that don't support automatic UT date calculations
+var junkDate = new Date();
+var utoff = 0;
+if(newBrowser)
+  {
+  // calculate offset from UTC using more reliable method than built-in functions
+  if(junkDate.getUTCHours() - junkDate.getHours()    > 0)
+    {
+    utoff = junkDate.getUTCHours() - junkDate.getHours();
+    }
+  else
+    {
+    utoff = (junkDate.getUTCHours()+24) - junkDate.getHours();
+    }
+  }
+else
+  {
+  // using pre-JS1.2-compatible browser, use custom method to get UT offset
+  utoff = prompt("What is your offset from UT\n\(positive numbers west of Greenwich - i.e. in USA\)", "0");
+  if(utoff != "" || utoff!= null)
+    {
+    utoff = parseInt(utoff);
+    }
+  else
+    {
+    alert("You entered an inappropriate value for the UT offset, assuming zero.
+     If you require a different value, reload the page and try again.");
+    utoff = 0;
+    }
+  }
+
+// calculate the four-digit year
+function calcYear(d)
+  {
+  if(newBrowser)
+    {
+    var y = d.getFullYear();
+    return y;
+    }
+  else
+    {
+    // must be an old browser, use custom full year method
+    // getYear() returns positive numbers for 1900 and greater
+    // (more than 100 for year 2000 dates) and negative for
+    // 1800's and earlier
+    var y = d.getYear();
+    y += 1900;
+    return y;
+    }
+  }
+
+function dayInYear(currDate)
+  {
+  // calculate day number of year
+  var msPerDay = 1000 * 60 * 60 * 24;
+  var yr = currDate.getYear();
+  var Jan1 = new Date(yr, 0, 1);
+  var diff = currDate - Jan1;
+  return Math.floor(diff / msPerDay) + 1;
+  }
+
+function myUThours(now)
+  {
+  // calculates the UT hours for any browser
+  if(newBrowser)
+    {
+    // using JS1.2-compatible browser, use built-in method
+    var Uhour = now.getUTCHours();
+    return Uhour;
+    }
+  else
+    {
+    var Uhour = now.getHours() + utoff;
+    ((Uhour >=24) ? Uhour -= 24 : Uhour);
+    return Uhour;
+    }
+  }
+
+function dUTdec(now)
+  {
+  // calculates the UT time in 00.00 decimal format using
+  // built-in function if support or custom function if not
+  if(newBrowser)
+    {
+    var Uhour = now.getUTCHours();
+    var Umin = now.getUTCMinutes();
+    var Usec = now.getUTCSeconds();
+    var ut = Uhour/24
+    ut += Umin/60/24;
+    ut += Usec/60/60/24;
+    return ut;
+    }
+  else
+    {
+    var Uhour = now.getHours() + utoff;
+    (Uhour >=24) ? Uhour -= 24 : Uhour;
+    var Umin = now.getMinutes();
+    var Usec = now.getSeconds();
+    var ut = Uhour/24
+    ut += Umin/60/24;
+    ut += Usec/60/60/24;
+    return ut;
+    }
+  }
+
+function rnd(val, prec)
+  {
+  // general function for rounding to specified precision
+  val = val * Math.pow(10,prec);
+  val = Math.round(val);
+  val = val / Math.pow(10,prec);
+  return val;
+  }
+
+function Julian(y, m, d, ut)
+  {
+  var jd = 367* y
+  jd -= Math.floor(7 * ( y + Math.floor((m + 9) / 12) ) / 4);
+  jd += Math.floor(275 * m / 9);
+  jd += d;
+  jd += 1721013.5;
+  jd += ut/24;
+  return jd;
+  }
+
+// declare and create variables
+var jd = 0;                      // will be our julian date
+var today = new Date();          // create date object
+var y = calcYear(today);         // calc full year
+var m = today.getMonth() + 1;    // add one to match 1-12 format
+var d = today.getDate();         // day number of month
+var hour = today.getHours();
+var Umin = today.getMinutes();
+var min = Umin;
+var Usec = today.getSeconds();
+var sec = Usec;
+var dayOfYear = dayInYear(today);
+
+// calculate UT hours with browser-independent function
+var Uhour = myUThours(today);
+
+// calculate UT in 00.0000 format
+var ut = dUTdec(today);
+
+// calculate Julian date
+var jd = Julian(y, m, d, ut)
+
+// output section
+document.write("<P>Today is " + today.toLocaleString() + "<BR>");
+document.write("in Julian date notation: " + rnd(jd,8) + "</P>");
+
+// -->
+</SCRIPT>

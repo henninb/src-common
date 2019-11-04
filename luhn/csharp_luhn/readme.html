@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Credit Card Check Digit Validation</TITLE>
+
+<META name="author" content="Harrell W. Stiles">
+</HEAD>
+<BODY>
+<H1>Credit Card Validation - Check Digits </H1>
+<P>
+This document outlines procedures and algorithms for Verifying
+the accuracy and validity of credit card numbers. Most credit
+card numbers are encoded with a &quot;Check Digit&quot;. A check
+digit is a digit added to a number (either at the end or the beginning)
+that validates the authenticity of the number. A simple algorithm
+is applied to the other digits of the number which yields the
+check digit. By running the algorithm, and comparing the check
+digit you get from the algorithm with the check digit encoded
+with the credit card number, you can verify that you have correctly
+read all of the digits and that they make a valid combination.
+<P>
+Possible uses for this information:
+<UL>
+<LI>When a user has keyed in a credit card number (or scanned
+it) and you want to validate it before sending it our for debit
+authorization.
+<LI>When issuing cards, say an affinity card, you might want to
+add a check digit using the MOD 10 method.
+</UL>
+<H2>1.Prefix, Length, and Check Digit Criteria </H2>
+<P>
+Here is a table outlining the major credit cards that you might
+want to validate.
+<P>
+<TABLE BORDER="2" BORDERCOLOR="#ff0000">
+<TR><TD VALIGN="BOTTOM" WIDTH=148><B><FONT SIZE=2 FACE="Arial">CARD TYPE</FONT></B>
+</TD><TD VALIGN="BOTTOM" WIDTH=86><B><FONT FACE="Arial">Prefix</FONT></B>
+</TD><TD VALIGN="BOTTOM" WIDTH=78><B><FONT FACE="Arial">Length</FONT></B>
+</TD><TD VALIGN="BOTTOM" WIDTH=120><B><FONT FACE="Arial">Check digit algorithm</FONT></B>
+</TD></TR>
+<TR><TD WIDTH=148>MASTERCARD</TD><TD WIDTH=86>51-55</TD><TD WIDTH=78>16
+</TD><TD WIDTH=120>mod 10</TD></TR>
+<TR><TD WIDTH=148>VISA</TD><TD WIDTH=86>4</TD><TD WIDTH=78>13, 16
+</TD><TD WIDTH=120>mod 10</TD></TR>
+<TR><TD WIDTH=148>AMEX</TD><TD WIDTH=86>34
+<BR>
+37</TD><TD WIDTH=78>15
+</TD><TD WIDTH=120>mod 10</TD></TR>
+<TR><TD WIDTH=148>Diners Club/<BR>
+Carte Blanche</TD><TD WIDTH=86>300-305<BR>
+36<BR>
+38
+</TD><TD WIDTH=78>14</TD><TD WIDTH=120>mod 10</TD></TR>
+<TR><TD WIDTH=148>Discover</TD><TD WIDTH=86>6011</TD><TD WIDTH=78>16
+</TD><TD WIDTH=120>mod 10</TD></TR>
+<TR><TD WIDTH=148>enRoute</TD><TD WIDTH=86>2014<BR>
+2149</TD>
+<TD WIDTH=78>15</TD><TD WIDTH=120>any</TD></TR>
+<TR><TD WIDTH=148>JCB</TD><TD WIDTH=86>3</TD><TD WIDTH=78>16</TD>
+<TD WIDTH=120>mod 10</TD></TR>
+<TR><TD WIDTH=148>JCB</TD><TD WIDTH=86>2131<BR>
+1800</TD><TD WIDTH=78>15
+</TD><TD WIDTH=120>mod 10</TD></TR>
+</TABLE>
+<H2>2. LUHN Formula (Mod 10) for Validation of Primary Account
+Number </H2>
+<P>
+The following steps are required to validate the primary account
+number:<BR>
+<P>
+<B>Step 1:</B> Double the value of alternate digits of the primary
+account number beginning with the second digit from the right
+(the first right--hand digit is the check digit.)
+<P>
+<B>Step 2:</B> Add the individual digits comprising the products
+obtained in Step 1 to each of the unaffected digits in the original
+number.
+<P>
+<B>Step 3:</B> The total obtained in Step 2 must be a number ending
+in zero (30, 40, 50, etc.) for the account number to be validated.
+<P>
+<B>For example</B>, to validate the primary account number <I>49927398716:</I>
+<P>
+<B>Step 1:</B>
+<PRE>
+<FONT SIZE=2>        4 9 9 2 7 3 9 8 7 1 6
+         x2  x2  x2  x2  x2
+------------------------------
+         18   4   6  16   2
+
+
+
+</FONT>
+</PRE>
+<P>
+<B>Step 2:</B> 4 +(1+8)+ 9 + (4) + 7 + (6) + 9 +(1+6) + 7 + (2)
++ 6
+<P>
+<B>Step 3:</B> Sum = 70 : Card number is validated
+<P>
+<B>Note:</B> Card is valid because the 70/10 yields no remainder.
+<P>
+The great folks at <A HREF="http://www.icverify.com">IC<I>VERIFY</I></A>
+are the original source of this data, I only formatted it in HTML.
+<P>
+If you are in the market, I wrote a set of <I><B>FoxPro</B></I>
+modules for Windows/Dos that interface nicely with IC<I>VERIFY</I>
+in a multi-user LAN setup. You just set up <A HREF="http://www.icverify.com">IC<I>VERIFY</I></A>
+on a single station, and all stations on the LAN can authorize
+credit cards with a single FOXBASE function call. Of course, you
+have to license IC<I>VERIFY </I>by the node, but it is very reasonable.
+I also wrote a couple of simple functions to perform pre-authorization,
+card screening, etc.
+<P>
+Here is <A HREF="http://www.beachnet.com/~hstiles/bin/luhn.zip" >a Microsoft Excel worksheet</A>
+that will validate a number for you (useful for understanding
+the algorithm, it is in a .ZIP compressed format)
+<P>
+Horace Vallas made a NeoWebScript (Tcl really) procedure that
+implements it.<BR>
+Check it out at <A HREF="https://enterprise.neosoft.com/secureforms/hav/">https://enterprise.neosoft.com/secureforms/hav/ </A>
+<P>
+Because I get at least a letter a week regarding this routine,
+here are some additional helpful notes:
+<P>
+Make sure that you:
+<OL>
+<LI>have started with the rightmost digit (including the check
+digit) (figure odd and even based upon the rightmost digit being
+odd, regardless of the length of the Credit Card.) ALWAYS work
+right to left.
+<LI>the check digit counts as digit #1 (assuming that the rightmost
+digit is the check digit) and is not doubled
+<LI>double every second digit (starting with digit # 2 from the
+right)
+<LI>remember that when you double a number over 4, (6 for example)
+you don't add the result to your total, but rather the sum of
+the digits of the result (in the above example 6*2=12 so you would
+add 1+2 to your total (not 12).
+<LI>always include the Visa or M/C/ prefix.
+</OL>
+<P>
+<CENTER>E-Mail me at: <A HREF="MAILTO:hstiles@beachnet.com">hstiles@beachnet.com </A>
+<BR>
+Also, visit my <A HREF="http://www.beachnet.com/~hstiles/index.html">home page </A>or
+my <A HREF="http:/www.beachnet.com/~hstiles/posl2.html">POS page</A>.</CENTER>
+<P>
+<CENTER>Last revised: <B>2/25/97</B></CENTER>
+<P>
+<FONT SIZE=1> </FONT>
+</BODY>
+</HTML>

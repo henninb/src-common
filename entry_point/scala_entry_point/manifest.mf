@@ -1,0 +1,2 @@
+Main-Class: entry_point
+Class-Path: entry_point.jar

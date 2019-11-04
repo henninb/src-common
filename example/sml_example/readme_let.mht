@@ -1,0 +1,298 @@
+From: <Saved by UnMHT>
+Subject: =?iso-2022-jp?B?UmVjaXRhdGlvbiAyMTogTGV0IEV4cHJlc3Npb25zICYgVGhlIEVudmlyb25tZW50IE1vZGVs?=
+Date: Thu, May 21 2009 13:30:53 GMT-0500
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_A5B98913.3658CDC6";
+	type="text/html"
+
+------=_NextPart_000_0000_A5B98913.3658CDC6
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/rec21.html
+
+<html><head>
+
+
+<meta content=3D"en-us" http-equiv=3D"Content-Language">
+<meta content=3D"text/html; charset=3Dwindows-1252" http-equiv=3D"Content-T=
+ype">
+<title>Recitation 21: Let Expressions &amp; The Environment Model</title>
+<link href=3D"../style.css" type=3D"text/css" rel=3D"stylesheet"></link>
+<base href=3D"http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/"></b=
+ase></head><body>
+
+<h1>CS 312 Recitation 21<br>
+Let Expressions &amp; the Environment Model</h1>
+<h3>CS312: November 10, 2004</h3>
+<h3>Harlan Crystal &lt;hpc4@cornell.edu&gt;</h3>
+<h2>Let-Expressions</h2>
+When any single SML let-expression has multiple declarations in it, the dec=
+larations are evaluated and bound sequentially.  This means that the follow=
+ing pairs of code are essentially equivalent:
+<center>
+<table cellpadding=3D"10" border=3D"1">
+<tbody><tr valign=3D"top"><td></td><td>Example Expression</td><td>Equivalen=
+t Expression</td><td>Diagram</td></tr>
+<tr valign=3D"top">
+<td>Example #1</td>
+<td>
+<pre>let
+   val a =3D 1
+   val b =3D 2
+in
+   a + b
+end
+</pre>
+</td>
+<td>
+<pre>let
+   val a =3D 1
+in
+   let=
+=20
+      val b =3D 2
+   in
+      a + b
+   end
+end
+</pre>
+</td>
+<td>
+<img src=3D"ex1.png">
+</td>
+</tr>
+<tr valign=3D"top">
+<td>Example #2</td>
+<td>
+<pre>let
+   val x =3D 1
+   val x =3D x + 1
+in
+   x + x
+end
+</pre>
+</td>
+<td>
+<pre>let
+   val x =3D 1
+in
+   let
+      val x =3D x + 1
+   in
+      x + x
+   end
+end
+</pre>
+</td>
+<td><img src=3D"ex2.png"></td>
+</tr>
+<tr valign=3D"top">
+<td>Example #3</td>
+<td>
+<pre>let
+   val x =3D 1
+in
+   let
+      val x =3D x + 1
+      val y =3D x + 2
+   in
+      x + y
+   end
+end
+</pre>
+</td>
+<td>
+<pre>let
+   val x =3D 1
+in
+   let
+      val x =3D x + 1
+   in
+      let
+         val y =3D x + 2
+      in
+         x + y
+      end
+   end
+end
+</pre>
+</td>
+<td><img src=3D"ex3.png"></td>=
+=20
+</tr>
+</tbody></table>
+</center>
+<h2>Parallel Let-Expressions</h2>
+<p>One can image another language in which the multiple declarations in a l=
+et-expression are not bound sequentially, but instead in parallel.  In this=
+ case, declarations can not refer to other (previous) bindings in the same =
+let-block, but only identifiers which were bound before entering the let-bl=
+ock.  With these semantics, the bindings may be evaluated in parallel.</p>
+
+<p>Notice that this means that example 2 is an invalid expressions in this =
+model, because <tt>x</tt> is unbound in the second declaration.</p>
+
+<p>This means that in the last example, the line which states <tt>val y =3D=
+ x + 2</tt> does not refer to the binding of <tt>x</tt> from the previous l=
+ine, but instead the binding of <tt>x</tt> which existed before entering th=
+e let block.  With the regular SML-semantics, the last example evaluates to=
+ 6, while with the other semantics this block evaluates to 5.</p>
+
+<p>Below is the the environment model which results from evaluating the las=
+t example in this modified language.</p>
+
+<center><img src=3D"ex3-para.png"></center>
+
+<p>Contrast this environment diagram with the environment diagram presented=
+ under regular SML rules.</p>
+</body></html>
+------=_NextPart_000_0000_A5B98913.3658CDC6
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.cornell.edu/courses/cs312/2004fa/style.css
+
+a            { text-decoration: none }
+a:link       { color: #339966; background-color: transparent; font-weight: =
+bold }
+a:visited    { color: #009999; background-color: transparent }
+a:hover      { color: #0000FF; background-color: transparent }
+body, table, p, ul, li  { font-family: Arial, helvetica, sans-serif; font-s=
+ize: 12pt;  color: #000000; text-align: left }
+
+body { background-color: #FFFFF0 }
+table { background-color: #FFFFF0 }
+
+p, ul, li {background-color: transparent}
+
+h1, h2, h3   { font-family: Arial, helvetica, sans-serif; color: #006699; b=
+ackground-color: transparent; text-align: left }
+
+/* Use this style to highlite changes to problem sets */
+.change      { color: #000000; background-color: #99CCFF }
+
+/* Use this style to highlight HW items appearing in the schedule */
+.hw { color: #800000; font-weight:bold }
+
+/* The following are used to highlite SML code */
+.comment     { color: #CC0000; background-color: transparent; font-weight: =
+bold }
+.string      { color: #339966; background-color: transparent}
+.keyword     { color: #0000CC; background-color: transparent; font-weight: =
+bold }
+.codeback    { color: #000000; background-color: #dddddd; line-height: 14px=
+ }
+.ampm        {font-variant: small-caps}
+
+/* used for mathematics */
+.math        { color: black; font-family: Times New Roman, serif; font-size=
+: 12pt; background-color: transparent }
+.symbol      { font-family: Symbol, symbol }
+
+h1  { font-size: 20pt; }
+h2  { font-size: 16pt; }
+h3  { font-size: 12pt; }
+pre, xmp { font-family: Courier New, Courier, sans-serif; margin-left: 1em;=
+ font-size: 11pt; }
+kbd, tt, code { font-family: Courier New, Courier, sans-serif }
+td { font-family: Arial, helvetica, sans-serif; font-size: 10pt; }
+
+th { background-color: #CCFFFF; font-weight: bold }
+td.recitation { background-color: #FFF0d0 }
+------=_NextPart_000_0000_A5B98913.3658CDC6
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/ex1.png
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAACdCAIAAABn3oxuAAAAA3NCSVQICAjb4U/gAAADKElEQVR4
+nO2cv2vbQBTHpeJBo0cZHKiyKXiwAv0D4q0O7V5Dp9DJZDCaSrZWyRBEh+K0QzGFgPofyJ2cMdmc
+pcRDwEsLzlBwIIOGBK6DElfxD1k661585vuZjCXeffT8fNadHlYYY4psPHtqAR5yo1eypFxVVSkz
+LaV0bvItVVXpPeYSrd5VyXTI8nwvJz95KTMNaSogTQWkqYA0FZCmAtJUQJoKSFMBaSogTQWkqZBS
+euZmzXJujoWsSqYz3BBTVVXE9pqUmV6ijcbkSJlpITV3H/ph/sl8CCkzDekIQn+bxGY6rObMLwDl
+8UCYWnHzEjI9DRFlnb206NpQJC2PmYuABZFpno5xzfAyhN8wYRFwD6SpgDQVUkoDKkQtmMWBDkhC
+IE0FpKmANBWQpoJI+vrvdYbRSKTvFNMyM4wnXHr/4/6GtXH15yr70CwW79gznht6UdeLuvvJjT95
+jO559/TsdO4QyUkqbZUt74fHGBv8Hig5nuGzlU5UHt3zrrFmtL61nANHuXt06OjrkfqY9s92dhUw
+nUSLgO3X20bRqL6qmqa5bqzHnzx9mOyeN//fXov/RDRNGwwGjDG/7Y+d3PzSHAvqt33R5ZFI2j10
+dV03S+be+z2rbNXe1jhG4pWcEgprRCogTQWkqYA0FZCmAtITCHpui0yDVQMdkFRAmgqxbZsMHZAj
+IE2F8F5TEWWNTFMhqgNSEdkEKapBNvn7PEOIvmESEV/KmoY0FZCmAtJkSPSIaISUmcYfV1IBaSog
+TQWkqYA0FZCmIp30ItsAre+twlqhUChsvtjs/epxx1GUyH2S0P6p/mU/n8/3L/uMMe/YM0smX5zQ
+IbV0fbcedo5d9C6Sj9Q56dgNO3wdBAFfG+XIIbV083OTMeYcOJWtCs+Yt8xu2LU3qZvkog6ppYOb
+gDE2HA41TYseStJV6Ld9s2TuvNsJguAJpIObYEx6LvXdemWrkqqoZjlwlod76FZfVqOH4jPdOelY
+ZYvdLijMK2037PCLGE4FCXE+OJOzFh9KuGtK8O8FGYI1IiGQpgLSVECaCkhTAWkqIE2FlNLS3EZH
+kTLT/wCjtQnoadvVxQAAAABJRU5ErkJggg==
+
+------=_NextPart_000_0000_A5B98913.3658CDC6
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/ex2.png
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAACdCAIAAABn3oxuAAAAA3NCSVQICAjb4U/gAAAC3UlEQVR4
+nO2cvWrbUBiGzykZNPQiIuji0A4JFGpDF0EuojFkL6ZT6Ba6hCxFeEraJfQCAh7jXkDBHQrqEMgV
+FKyh4EAHLYWTwT8o+jlWLX1vdcz7TEEinx+9OlbOOfqIMsYo13jyvwU2YWf1kyuRa62dTNpJ6Z38
+Ia013mMt6dG7LUnPac/3Mn/nnUya0igojYLSKCiNgtIoKI2C0igojYLSKCiNgtIonJQu3axp5+bY
+nG1JusENMa21xPaak0m3aKOxOk4mLTLmFqWXz5/GP8LJpCmdQvRvk2zS89Hc+AVweCyZRyv3XGLS
+RUgM6+alpceGcnR4lC4CauLSc9ri2uBliE+YuAhYQGkUlEbhpDRBIbVgloMdkEAojYLSKCiNgtIo
+KJ3i/ve9UGUlJf1XdfY7IpWVUhLS52fne/t78a+48cpZzGNG16Puq64xZjab+c/8u9s7U5noZzT5
+PsnXbAplmU/3j/sHLw6i26j3sjd4N/jXFITe1ar0TlX+gpI/ib/rB4dB5vjFp4tMlZvxTWEeAikv
+KpcmHcdxr9vznnrRj8jzvA3yyNdsBNvKpX/cDz+Gwevg9MNp+vjl50v9mPHXsYTcejK3IByGR2+O
+zHKQTL5NNriJTYyF4spc2KKgNApKo6A0CkqjkJUWem/LpMm2wQ5IFJRGIdu2adgBuYLSKMR7TSWG
+NZNGIdUBqSSbIKUaZKsf3+QjpCdMEvWdHNOURkFpFJSG4dDblhVOJs1/XImC0igojYLSKCiNgtIo
+KC1AYc9qu6VLelbbK23rWV1No/PNZHU6TqtXuPpyVfi7ZT2rar4tZtm/qtlxWqWCvVcyf1ZrbUva
+1O44tVRIJ1d2qvDswtUiPZ1O/V2/87yTJImltIWyCuEwzFx2OAybkQ4Og9H1aPB2cPL+JH28etJl
+FSxataTrd5xWqbCB9JovYgvhahwIpVFQGgWlUVAaBaVROCntzOQujZNJPwAhej5PEncYswAAAABJ
+RU5ErkJggg==
+
+------=_NextPart_000_0000_A5B98913.3658CDC6
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/ex3.png
+
+iVBORw0KGgoAAAANSUhEUgAAAD0AAADbCAIAAABRHQ4hAAAAA3NCSVQICAjb4U/gAAAEiklEQVR4
+nO2dv2sTYRjH76TDDQ43dMkgGHBJqWCKggl1MNB/QHDolRYkdJDgIMFNHNQucnSQVkFahUKWQpbC
+xaldhDoIcaikQyGTkIBCCh1uqPA6JMb8eO9HL3me3Fu+n6lc7t773HNvcve+902qCSE0BbkyaYGI
+THX/UqXwuq5r6tZbVe+p4UXtExE3BrrxJap3m/i8TaXnX9V6w5sXePMCb17gzQu8eYE3L/DmBd68
+wJsXePMCb15U9fac94nnbFuXS1TvMc6w6bpONF+nar1jNH95IVStN1X/03o+kSh2oWq94d0P9WWL
+tt7tnk1xDOgnPbQLTHplQL09IOri4/dm6CSauv3Ec9wwIop9fvvojvdIyO+rMG7oA968wJsXVb0B
+L4RDbiKQ15wE8OYF3rzAmxd48wJvXmi9T3+fErVM6f1HS6VTRG1Tea+9WptJzzR/Nona7yBklHfL
+mbsZIUSr1UreSNaOatLVpFS/Vw+/Hnq1PApt4YBxw9LK0tzNuepRNXsnW3hSuGg5KJ5z983XeR2c
+e+YmrydzC7mB5RvvNgaacyqOtDZjrXWnTS2w3s1mM5vJGleN6reqYRgRauPVcmRCjdOWVpbsN3bu
+Xu75i+e9yzffb+r9VD5XxusXCukZsddta9ES/3rL4ZfDCOd0tE4hb1PDeJ4bePMCb17gzQu8ZdA9
+NUa9wWUGeU1e4M0Lbc5UIK85ALx5Ic/HEnVx1JsXqrymRhzZpMr1hl8ecS/U91VE7avav+HNC7x5
+gTczCj0h6UXVeuN3QXmBNy/w5gXevMCbF3jzAu+xEhhQjaV3iIBq7LzDBlS7t93DybHIOdMwG259
+3JJuGxhQbdvqQgifCbHIOdPADf0jkT6vduYZfeotRsiZem3YWzavl/xf1bq6Pt6NRiN5PZmaTbmu
+67Ob8Bva6/bAAdvr9vi9cwu58m658LhQfFbsXR5Yb68Nw5iN6h05ZxpmwxG9A96XMQTj+UkAb17g
+zQu8eYE3L/DmhdybKs2hym3gAKr2E8L8SWcHND81zPE9AeQ1/wNvXuA9BGmUGvXmBd79UEepUW9e
+CHPUmnLfY2SIUtPex9LNUKvav+HNC7x5UdVb6324phCq1rvvOq9K4XVdV7Xe8OYF3rzAmxd48wJv
+XuDNSxy9tz9tJ64lEonE3J254x/H8pV6xw0h44Gk1E/qpmnWT+pCiNJOKTWbGl4n2Du/mu/mQPOP
+8tJMqJTIkeT9g/3i007E03VdbUpiFeztVJzMfEYIIc6FaZqNRiOktxDCWrbsN7a1bG283ZCuEHCG
+z0XxabGd+7ywd1u39avl7DkD4WLSSLJTcVKzqfxqXponDtW/rWVr68OWtWiVdkpeu5ESOZJceFLI
+3c/Vjj1j8qG8nT0nM58xp033rG/3RJHk/YP99K20OPdyDu3tuq5x1Xjw8IFfS0NEjiS/fvla+ol3
+YW8hRPp22tmT/GzzpAj1vqwd18xp0//EMRPsXd4tG4bh9d2PSaF1nzcoF12P4/1JGODNC7x5gTcv
+8OZFVe++5zvU/3R4jKha779S+Wtn6oxXAAAAAABJRU5ErkJggg==
+
+------=_NextPart_000_0000_A5B98913.3658CDC6
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-Location: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/ex3-para.png
+
+iVBORw0KGgoAAAANSUhEUgAAADwAAACdCAIAAABn3oxuAAAAA3NCSVQICAjb4U/gAAAD7UlEQVR4
+nO2cMWvbQBSApeJBQwYNWTwUYuiikEJtGqhMOlSQPxDoEBkHislQTIZguoUObbIEkaE4LRSnhYCX
+gJeA3MlZCu5QcIcUewh4KtjQggMZNKRwHeS4jn3SKbLuxRfeNwVJd/r0dJbfnZ4jEUIk0bh32wJh
+iA3+EiXksiwLGWkhpWPjm2RZhvdgMjx670qkXabnczl+54WMNEpDgdJQoDQUKA0FSkOB0lCgNBQo
+DQVKQ4HSUKA0FEJKey7WTOfimMtdiXSEC2KyLPNYXhMy0lO00BgcISPNZcz1u756/kR+CiEjjdJD
+cP1u4htpdzRHfgE4PK5wQ8vvuYSRpsFjWEcvzXtsSIIOD89JwISI9Jz2cY3wMrgnTDgJ6IPSUKA0
+FEJKI1DwmjDzAysgAUFpKFAaCpSGAqWhQGko+Eqf/znn0S1P6b+SltR4dMxLeuftznxyvvury6l/
+SZIkQqNyVNGf6ISQXq+XeJBonjaph1Fp/GjUv9W9ep4EiTkJyKxlUg9TjdNGejGd38jfNBY8XjP/
+X17zuiznwknMJYxlY2R78X1xpC+7alOjEmmU+30yIt3tdtN6WplRGt8biqKEiIpXz6FhT7cyaxlr
+1zKeGluvt4a373/Yl69T/VKNVo4N9UZYe5a5apKrQVL/Wg9xKycbC/Q+cTYOBUpDgdJQoDQUKD0G
+p/e2GGnkroEVkFCgNBR8yzYJVkAOQGkouNea8hjWGGkoeFVASjyLIHkVyAbfHuYUvBMmHv0LOaZR
+GgqUhgKlwRDoxcUAISON/7gSCpSGAqUjxaeUaFqlfUuJplGaXUo0eDxTX/mHrggK0rD0qURt619K
+JLnTLf95UeiKIGZD/xIWr72yLDMiTSaoCPJqOBwzr10+e/uu/tKdTicxl9AWNMdxfM4RvKG1Z41c
+rbVnRSxtLBuVo0r+Zb7wqjC8nRlpr4ZMrUmlQ1cEBWkYWpr9QZw2MMsDBKWhQGkoUDoiDj4fxO/H
+4/F4ajHV+tmiHOH/jQhP+6ytqmr7rE0IKR+WtQVt5AC2dG49N8hmci9y1MyGSuh8unZSK2z2cxXH
+caTYqBhb2q7a+pJOCCGXRFXVTqcTUJoQYmZNa9cys2bxXZF6AOP2XpLCZsFNYG4m7br2fvfsY3sk
+M+aaT9tVW1vQcuu58Xw40Jg2s2bpY8lcNcuHZa9jqITOp/MbeeOZ0WzRp3aBpO1jW1/S1VnVubh2
+bk75dO2klnyUJJdeOsGkHcdRZpSV5yue3dAInU9vv9kef77dWJoQknyctI8pvwi5FQJ9EJutpjqr
++twvYNjSlaOKoiheCxS3goTTLTiElBZmVAwjZKT/AYBrLvsjVo1wAAAAAElFTkSuQmCC
+
+------=_NextPart_000_0000_A5B98913.3658CDC6--

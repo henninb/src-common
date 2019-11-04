@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<project name="FileReadMain" default="deploy" >
+  <target name="init">
+  </target>
+
+  <target name="compile" depends="init" description="Compile source code">
+    <javac srcdir="." />
+  </target>
+
+  <target name="archive" depends="compile" description="Creates JAR file">
+
+  <jar jarfile="FileReadMain.jar">
+    <fileset dir="." >
+      <include name="*.class"/>
+    </fileset>
+  </jar>
+  </target>
+
+  <target name="deploy" depends="archive" description="Deploys JAR file">
+    <delete>
+      <fileset dir="." includes="*.class" />
+    </delete>
+  </target>
+
+</project>

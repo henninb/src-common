@@ -1,0 +1,36 @@
+ifeq ($(OS),Windows_NT)
+  OS := Windows_NT
+else
+  OS := $(shell uname -s)
+endif
+
+all: unix
+Windows_NT:
+	@gcc -c bubble_sort.adb
+	@gcc -c bubble_sort_module.adb
+	@gnatbind -x bubble_sort.ali
+	@gnatlink bubble_sort.ali
+	@del bubble_sort.o
+	@del bubble_sort.ali
+unix:
+	@gcc -c bubble_sort.adb
+	@gcc -c bubble_sort_module.adb
+	@gnatbind -x bubble_sort.ali
+	@gnatlink bubble_sort.ali
+	@mv bubble_sort bubble_sort.exe
+	@rm bubble_sort.o
+	@rm bubble_sort.ali
+ubuntu:
+	@gnat make bubble_sort.adb
+	@mv bubble_sort bubble_sort.exe
+	@rm bubble_sort.o
+	@rm bubble_sort.ali
+freebsd:
+	@/usr/local/gcc6-aux/bin/gnat make bubble_sort.adb
+	@/usr/local/gcc6-aux/bin/gnatbind -x bubble_sort.ali
+	@/usr/local/gcc6-aux/bin/gnatlink bubble_sort.ali
+	@mv bubble_sort bubble_sort.exe
+	@rm bubble_sort.o
+	@rm bubble_sort.ali
+clean:
+	@rm bubble_sort.exe

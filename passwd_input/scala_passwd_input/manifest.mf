@@ -1,0 +1,2 @@
+Main-Class: passwd_input
+Class-Path: passwd_input.jar

@@ -1,0 +1,2 @@
+Main-Class: postgresql_connect
+Class-Path: postgresql_connect.jar

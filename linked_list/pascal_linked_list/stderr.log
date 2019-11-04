@@ -1,0 +1,2 @@
+linked_list.pas:6: warning: missing string capacity -- assuming 255
+linked_list.pas:14: warning: missing string capacity -- assuming 255

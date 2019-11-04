@@ -1,0 +1,68 @@
+#if defined(_WIN32)
+  #define OS_WINDOWS 1 // Windows
+#elif defined(_WIN64)
+  #define OS_WINDOWS 1 // Windows
+#else
+  //error Unsupported operating system
+#endif
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <apr.h>
+
+EXEC SQL include sqlca;
+EXEC SQL include oraca;
+
+int main( int argc, char *argv[] ) {
+  VARCHAR hostname[100];
+  VARCHAR username[30];
+  VARCHAR passwd[30];
+  VARCHAR dbName[30];
+
+  if( argc != 1 ) {
+    fprintf( stderr, "Usage: %s <noargs>\n", argv[0]);
+    exit( 1 );
+  }
+  memset((char *)hostname.arr, '\0', sizeof(hostname.arr));
+  memset((char *)username.arr, '\0', sizeof(username.arr));
+  memset((char *)passwd.arr, '\0', sizeof(passwd.arr));
+  memset((char *)dbName.arr, '\0', sizeof(dbName.arr));
+
+  strcpy((char *)username.arr, "dist");
+  strcpy((char *)passwd.arr, "dist");
+  strcpy((char *)dbName.arr, "dddstg13");
+  dbName.len = strlen((char *) dbName.arr);
+  username.len = strlen((char *) username.arr);
+  passwd.len = strlen((char *) passwd.arr);
+
+  //EXEC SQL CONNECT :username IDENTIFIED BY :passwd AT :dbName;
+  EXEC SQL CONNECT :username IDENTIFIED BY :passwd AT :dbName USING :dbName; 
+  if(sqlca.sqlcode != 0) {
+    printf("not success %d\n", sqlca.sqlcode);
+  } else {
+    printf("connected\n");
+  }
+
+  EXEC SQL ALTER SESSION SET SQL_TRACE = TRUE;
+  if(sqlca.sqlcode != 0) {
+    printf("not success %d\n", sqlca.sqlcode);
+  } else {
+  }
+ 
+
+  EXEC SQL SELECT host_name INTO :hostname FROM v$instance;
+  if(sqlca.sqlcode != 0) {
+    printf("not success %d\n", sqlca.sqlcode);
+  }
+
+  EXEC SQL ROLLBACK WORK RELEASE;
+  if(sqlca.sqlcode != 0) {
+    printf("not success %d\n", sqlca.sqlcode);
+  }
+
+  printf("hostname: <%s>\n", hostname.arr);
+  return 0;
+}

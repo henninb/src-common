@@ -1,0 +1,2 @@
+Main-Class: date_dow
+Class-Path: date_dow.jar

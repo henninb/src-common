@@ -1,0 +1,2 @@
+Main-Class: easter_calculator
+Class-Path: easter_calculator.jar

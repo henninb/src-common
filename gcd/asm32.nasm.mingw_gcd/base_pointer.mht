@@ -1,0 +1,295 @@
+From: <Saved by UnMHT>
+Subject: =?iso-2022-jp?B?QmFzZSBQb2ludGVy?=
+Date: Thu, Apr 09 2009 21:16:03 GMT-0500
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_8E6874C4.D6CC1375";
+	type="text/html"
+
+------=_NextPart_000_0000_8E6874C4.D6CC1375
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.cs.miami.edu/~burt/journal/NT/basepointer.html
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3Diso-8859-1">
+
+<title>
+Base Pointer
+</title>
+<base href=3D"http://www.cs.miami.edu/~burt/journal/NT/"></base></head><bod=
+y>
+
+
+<center>
+<p></p><hr><p>
+</p><h2>
+Base Pointer
+</h2>
+<p></p><hr><p>
+</p></center>
+
+<p>
+</p><h3>Overview</h3>
+
+The details of procedure calling in i386 creates=
+=20
+linked list of stack frames threaded through the
+Base Pointer register ebp.
+In fact, three invairants hold simultaneously
+thanks to this linked list:
+<ol>
+<li>ebp currently points to the last closed stack
+frame, with the previous edp appended: hence a linked
+list of stack frames;
+</li><li>ebp points to the base of the currently open stack frame,
+where the first element of the open stack frame is
+the base of the most recently closed stack frame;
+</li><li>thinking of ebp as a pointer to the base of the last
+close stack frame, since the bottom item of a closed
+stack frame is the previous eip, the previous eip is
+recoverable.
+</li></ol>
+
+
+<p>
+</p><h3>Manifest</h3>
+<p>
+</p><ul>
+<li><a href=3D"#basepointer_c">basepointer.c</a>
+</li><li><a href=3D"#basepointer_asm">basepointer.asm</a>  (cl /Fa basepoin=
+ter.c)
+</li></ul>
+
+<p>
+</p><h3>The Details</h3>
+<p>
+
+As a linked list of stack frames, the structure could be thought
+of as:
+</p><pre>   struct _STACK_FRAME {
+        void * prev ; // a double word for i386
+        char frame[] ; // indeterminate length
+   } ;
+</pre>
+We could be a bit more specific and write into the specification
+that the base of the frame contains the return address,
+<pre>  struct _CLOSED_STACK_FRAME {
+        void * prev ;
+        void * return_address ;
+        char frame [] ;
+  }
+</pre>
+An open stack frame, that is the current, has esp pointing
+to its current base, and ebp is the root of the list of
+closed stack frames.
+
+<p>
+This does not capture it all, however, because ebp has a
+currently living value as the base of the current stack,
+or perhaps better, the current heap of local variables.
+I find this dual role confusing unless it is cleanly described.
+
+</p><p>
+Hence a more accurate description is a linked list of stack-heap
+pairs, with the thread running physically through the center:
+</p><pre>  struct _STACK_HEAP_PAIR {
+        char current_heap ;
+        void * prev_stack_heap_pair ;
+        char prev_frame [] ;
+ } ;
+</pre>
+where we note that the first item of previous_is the return address
+and implicitly the value of the previous stack pointer.
+
+<p>
+As a picture:
+</p><pre>
+       +-------+    +-------+
+       |  esp  |    |  ebp  +
+       +-------     +-------+
+           |           |
+           +---+       |
+               |       |
+               v       |
+    +-------------     |
+    | stack frame D .. |
+    +-------------     |
+                       |
+                       v
+    +---------------+------+-------------+ =
+=20
+    | stack frame C | prev |    heap D   |
+    +---------------+------+-------------+
+                       |
+                       v
+    +---------------+------+-------------+ =
+=20
+    | stack frame B | prev |    heap C   |
+    +---------------+------+-------------+
+                       |
+                       v
+    +---------------+------+-------------+ =
+=20
+    | stack frame A | prev |    heap B   |
+    +---------------+------+-------------+
+   =
+=20
+   =
+=20
+</pre>
+The labels applied to the heaps and stack frames associate
+them logically, whereas the drawing suggests their physical
+association. For instance, stack from D and heap D are
+currently active. The most recently closed frame and head
+are those labeled C.
+
+<p>
+It is also true that these pairs are arranged descending and
+contiguous in memory. For instance, the left edge of stack frame
+B goes right up against the right edge of heap B. This fact
+is surprisingly useless.  Neither the depth of the frame
+nor the height of the heap are ever recorded - they
+are &quot;compiled in&quot; as either the size of the parameter list
+of the call or the size of the local variable block.
+
+</p><p>
+In other words, the boundary between a stack and
+its heap is not visible in register
+settings or standard global variables, nor need it be.
+
+</p><p>
+</p><h3>
+Author
+</h3>
+<p>
+Burton Rosenberg
+<br>
+11 September 1998
+        =
+=20
+</p><p></p><hr><p>
+</p><h3>
+Supporting Documents
+</h3>
+
+<ul>
+
+<p><a name=3D"basepointer_c">
+</a></p><li>
+<h3>
+<a _moz-rs-heading=3D"" name=3D"basepointer_c">basepointer.c
+</a></h3>
+<pre><a name=3D"basepointer_c">void f(int i)
+{
+    int j, k ;
+    j=3Di ;
+    return ;
+}
+
+void g(int i)
+{
+    int j, k ;
+    f(j) ;
+    k=3Di ;
+    return ;
+}
+
+
+int main(int argc, char * argv[]) {
+   g(2) ;
+}
+</a></pre>
+
+<p><a name=3D"basepointer_asm">
+</a></p></li><li>
+<h3>
+<a _moz-rs-heading=3D"" name=3D"basepointer_asm">basepointer.asm
+</a></h3>
+<pre>
+<a name=3D"basepointer_asm">	TITLE	basepointer.c
+	.386P
+include listing.inc
+if @Version gt 510
+.model FLAT
+else
+_TEXT	SEGMENT PARA USE32 PUBLIC &#x27;CODE&#x27;
+_TEXT	ENDS
+_DATA	SEGMENT DWORD USE32 PUBLIC &#x27;DATA&#x27;
+_DATA	ENDS
+CONST	SEGMENT DWORD USE32 PUBLIC &#x27;CONST&#x27;
+CONST	ENDS
+_BSS	SEGMENT DWORD USE32 PUBLIC &#x27;BSS&#x27;
+_BSS	ENDS
+_TLS	SEGMENT DWORD USE32 PUBLIC &#x27;TLS&#x27;
+_TLS	ENDS
+FLAT	GROUP _DATA, CONST, _BSS
+	ASSUME	CS: FLAT, DS: FLAT, SS: FLAT
+endif
+PUBLIC	_f
+_TEXT	SEGMENT
+_i$ =3D 8
+_j$ =3D -4
+_f	PROC NEAR
+; File basepointer.c
+; Line 4
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 8
+; Line 6
+	mov	eax, DWORD PTR _i$[ebp]
+	mov	DWORD PTR _j$[ebp], eax
+; Line 8
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+_f	ENDP
+_TEXT	ENDS
+PUBLIC	_g
+_TEXT	SEGMENT
+_i$ =3D 8
+_j$ =3D -4
+_k$ =3D -8
+_g	PROC NEAR
+; Line 11
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 8
+; Line 13
+	mov	eax, DWORD PTR _j$[ebp]
+	push	eax
+	call	_f
+	add	esp, 4
+; Line 14
+	mov	ecx, DWORD PTR _i$[ebp]
+	mov	DWORD PTR _k$[ebp], ecx
+; Line 16
+	mov	esp, ebp
+	pop	ebp
+	ret	0
+_g	ENDP
+_TEXT	ENDS
+PUBLIC	_main
+_TEXT	SEGMENT
+_main	PROC NEAR
+; Line 19
+	push	ebp
+	mov	ebp, esp
+; Line 20
+	push	2
+	call	_g
+	add	esp, 4
+; Line 21
+	pop	ebp
+	ret	0
+_main	ENDP
+_TEXT	ENDS
+END
+</a></pre>
+
+</li></ul>
+
+<p></p><hr><p>
+
+</p></body></html>
+------=_NextPart_000_0000_8E6874C4.D6CC1375--

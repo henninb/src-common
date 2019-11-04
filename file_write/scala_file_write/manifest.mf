@@ -1,0 +1,2 @@
+Main-Class: file_write
+Class-Path: file_write.jar

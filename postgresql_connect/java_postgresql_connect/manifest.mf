@@ -1,0 +1,2 @@
+Main-Class: PostgresqlConnect
+Class-Path: PostgresqlConnect.jar

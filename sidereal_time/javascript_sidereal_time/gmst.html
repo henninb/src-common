@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>Sidereal Clock</title>
+
+<SCRIPT language=JavaScript SRC=feedback.js></SCRIPT>
+<script language=JavaScript SRC=commjnc1.js></script>
+
+<script language=JavaScript>
+<!-- hide
+
+function getTime()
+{
+    var now = new Date();                                   // from computer clock
+
+    var hour   = now.getUTCHours();
+    var minute = now.getUTCMinutes();
+    var second = now.getUTCSeconds();
+
+    var beg = new Date( now.getUTCFullYear() - 1, 11, 31 ); // last day of previous year
+    var day = Math.floor( ( now - beg ) / 86400000 );
+
+    document.calc.day.value = day;
+    document.calc.utc.value = d2( hour ) + " : " + d2( minute ) + " : " + d2( second );
+
+    var mst = getMST( now, 0.0 );                           // in degrees
+    var ras = mst;                                          // right ascension
+    mst  = mst / 15.0;                                      // time units
+
+    // right ascension of vernal equinox
+    var deg = Math.floor( ras );
+
+    ras = ras - deg;
+    ras = ras * 60;
+    var min = Math.floor( ras );
+
+    ras = ras - min;
+    ras = ras * 60;
+    var sec = Math.floor( ras );
+
+    // sidereal time
+    hour = Math.floor( mst );
+
+    mst  = mst - hour;
+    mst  = mst * 60;
+    minute = Math.floor( mst );
+
+    mst  = mst - minute;
+    mst  = mst * 60;
+    second = Math.floor( mst );
+
+    document.calc.deg.value = d2( deg ) + "° " + d2( min ) + "\' " + d2( sec ) + "\"";
+    document.calc.gst.value = d2( hour ) + " : " + d2( minute ) + " : " + d2( second );
+
+    newtime = window.setTimeout("getTime();", 1000);
+}
+
+function d2( n )
+{
+    if( n < 10 )
+        return "0" + n;
+
+    return n;
+}
+
+/*
+** "getMST" computes Mean Sidereal Time in units of degrees. Use lon = 0 to
+** get the Greenwich MST.
+**
+** returns: time in degrees
+*/
+function getMST( now, lon )
+{
+    var year   = now.getUTCFullYear();
+    var month  = now.getUTCMonth() + 1;
+    var day    = now.getUTCDate();
+    var hour   = now.getUTCHours();
+    var minute = now.getUTCMinutes();
+    var second = now.getUTCSeconds();
+
+    // 1994 June 16th at 18h UT
+    // days since J2000: -2024.75
+    // GMST: 174.77111347427126
+    //       11h 39m 5.0672s
+    // year   = 1994;
+    // month  = 6;
+    // day    = 16;
+    // hour   = 18;
+    // minute = 0;
+    // second = 0;
+
+    if( month == 1 || month == 2 )
+    {
+        year = year - 1;
+        month = month + 12;
+    }
+
+    var a = Math.floor( year/100 );
+    var b = 2 - a + Math.floor( a/4 );
+
+    var c = Math.floor(365.25 * year);
+    var d = Math.floor(30.6001 * (month + 1));
+
+    // days since J2000.0
+    var jd = b + c + d - 730550.5 + day + (hour + minute/60.0 + second/3600.0)/24.0;
+
+    var jt   = jd/36525.0;                   // julian centuries since J2000.0
+    var GMST = 280.46061837 + 360.98564736629*jd + 0.000387933*jt*jt - jt*jt*jt/38710000 + lon;
+    if( GMST > 0.0 )
+    {
+        while( GMST > 360.0 )
+            GMST -= 360.0;
+    }
+    else
+    {
+        while( GMST < 0.0 )
+            GMST += 360.0;
+    }
+
+    return GMST;
+}
+// unhide -->
+</script>
+</head>
+<body onLoad="getTime()" bgcolor="white" text="black">
+
+<h2>Sidereal Clock</h2>
+
+<form name="calc">
+<blockquote>
+<table border=0>
+<tr>
+<td colspan=2><b>Coordinated Universal Time (UTC)</b></td>
+</tr>
+<tr>
+<td>Day of Year</td>
+<td>Time</td>
+</tr>
+<tr>
+<!--DAY-->
+<td><input type="text" name="day" value="0" size=4>
+
+<!--Time-->
+<td><input type="text" name="utc" value="0" size=10>
+</tr>
+<tr>
+<td colspan=2><b>Greenwich Mean Sidereal Time (GMST)</b></td>
+</tr>
+<tr>
+<td>Hour Angle</td>
+<td>Time</td>
+</tr>
+<tr>
+<!--HOUR ANGLE-->
+<td><input type="text" name="deg" value="0" size=10>
+<!--Time-->
+
+<td><input type="text" name="gst" value="0" size=10>
+</tr>
+</table>
+</blockquote>
+</form>
+
+</body>
+</html>

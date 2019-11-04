@@ -1,0 +1,157 @@
+<HTML><HEAD><TITLE>title</TITLE>
+<SCRIPT language=JavaScript src="sidereal_clock.js">
+</SCRIPT>
+
+<SCRIPT language=JavaScript><!--
+function JSClock()
+{
+  calculate();
+  var id=setTimeout("JSClock()", 1000);
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+<BODY onload=getDateTime();calculate();JSClock();>
+
+<FORM name="myform" action="" method="post">
+<CENTER>
+<TABLE cellPadding=1 width=610 border=1>
+  <TBODY>
+  <TR>
+    <TD>
+      <CENTER>
+      <TABLE borderColor=#ffff00 cellSpacing=0 cellPadding=0 width=600
+      bgColor=#ffff99 border=1>
+        <TBODY>
+        <TR>
+          <TD>
+            <CENTER>&nbsp;Date:</FONT>
+            <SELECT onchange=theDateTime() name=Monat>
+              <OPTION value=Jan selected>Jan
+              <OPTION value=Feb>Feb
+              <OPTION value=Mar>Mar
+              <OPTION value=Apr>Apr
+              <OPTION value=May>May
+              <OPTION value=Jun>Jun
+              <OPTION value=Jul>Jul
+              <OPTION value=Aug>Aug
+              <OPTION value=Sep>Sep
+              <OPTION value=Oct>Oct
+              <OPTION value=Nov>Nov
+              <OPTION value=Dec>Dec</OPTION>
+            </SELECT>&nbsp;&nbsp;&nbsp;<SELECT
+            onchange=theDateTime() name=Tag>
+              <OPTION
+              selected>01<OPTION>02<OPTION>03<OPTION>04<OPTION>05<OPTION>06<OPTION>07<OPTION>08<OPTION>09<OPTION>10<OPTION>11<OPTION>12<OPTION>13<OPTION>14<OPTION>15<OPTION>16<OPTION>17<OPTION>18<OPTION>19<OPTION>20<OPTION>21<OPTION>22<OPTION>23<OPTION>24<OPTION>25<OPTION>26<OPTION>27<OPTION>28<OPTION>29<OPTION>30<OPTION>31</OPTION></SELECT>
+            &nbsp;&nbsp;&nbsp;<SELECT onchange=theDateTime() name=Jahr>
+              <OPTION value=1992 selected>1992<OPTION value=1993>1993<OPTION
+              value=1994>1994<OPTION value=1995>1995<OPTION
+              value=1996>1996<OPTION value=1997>1997<OPTION
+              value=1998>1998<OPTION value=1999>1999<OPTION
+              value=2000>2000<OPTION value=2001>2001<OPTION
+              value=2002>2002<OPTION value=2003>2003<OPTION
+              value=2004>2004<OPTION value=2005>2005<OPTION
+              value=2006>2006<OPTION value=2007>2007<OPTION
+              value=2008>2008<OPTION value=2009>2009<OPTION
+              value=2010>2010<OPTION value=2011>2011<OPTION
+              value=2012>2012<OPTION value=2013>2013<OPTION
+              value=2014>2014<OPTION
+            value=2015>2015</OPTION></SELECT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Local Time:</FONT><FONT
+            face="verdana, arial, helvetica, sans-serif" size=+1> </FONT><SELECT
+            onchange=theDateTime() name=Stunde> <OPTION
+              selected>00<OPTION>01<OPTION>02<OPTION>03<OPTION>04<OPTION>05<OPTION>06<OPTION>07<OPTION>08<OPTION>09<OPTION>10<OPTION>11<OPTION>12<OPTION>13<OPTION>14<OPTION>15<OPTION>16<OPTION>17<OPTION>18<OPTION>19<OPTION>20<OPTION>21<OPTION>22<OPTION>23</OPTION></SELECT>&nbsp;&nbsp;&nbsp;
+            <SELECT onchange=theDateTime() name=Minute> <OPTION
+              selected>00<OPTION>01<OPTION>02<OPTION>03<OPTION>04<OPTION>05<OPTION>06<OPTION>07<OPTION>08<OPTION>09<OPTION>10<OPTION>11<OPTION>12<OPTION>13<OPTION>14<OPTION>15<OPTION>16<OPTION>17<OPTION>18<OPTION>19<OPTION>20<OPTION>21<OPTION>22<OPTION>23<OPTION>24<OPTION>25<OPTION>26<OPTION>27<OPTION>28<OPTION>29<OPTION>30<OPTION>31<OPTION>32<OPTION>33<OPTION>34<OPTION>35<OPTION>36<OPTION>37<OPTION>38<OPTION>39<OPTION>40<OPTION>41<OPTION>42<OPTION>43<OPTION>44<OPTION>45<OPTION>46<OPTION>47<OPTION>48<OPTION>49<OPTION>50<OPTION>51<OPTION>52<OPTION>53<OPTION>54<OPTION>55<OPTION>56<OPTION>57<OPTION>58<OPTION>59</OPTION></SELECT>
+            &nbsp;&nbsp;&nbsp;&nbsp;<INPUT onclick=getDateTime();calculate(); type=button value=Now name=Absenden></CENTER></TD></TR></TBODY></TABLE>
+      <TABLE borderColor=#ffff00 cellSpacing=0 cellPadding=0 width=600
+      bgColor=#ffff99 border=1>
+        <TBODY>
+        <TR>
+          <TD rowSpan=2>
+            <CENTER>Location:</FONT>
+            <P>
+            <SELECT
+            onchange=getLocation(document.myform.location.options[document.myform.location.selectedIndex].value)
+            name=location>
+              <OPTION value="0.00/0.00/+0*User Input">User Input<OPTION>
+              <OPTION value="44.98/-93.26/-5*Minneapolis MN" "selected">Minneapolis MN
+            </SELECT>
+              </CENTER></P></TD>
+          <TD>
+            <CENTER>Longitude</FONT></CENTER></TD>
+          <TD>
+            <P><INPUT size=10 value=-93.26 name=longitude>deg
+          </P></TD>
+          <TD>
+            <CENTER><SELECT onchange=EW() name=EastWest> <OPTION value=E>E<OPTION value=W selected>W</OPTION></SELECT>&nbsp;</CENTER></TD>
+          <TD rowSpan=2>
+            <CENTER><FONT face="verdana, arial, helvetica, sans-serif">Time
+            Zone:</FONT>
+            <P><SELECT onchange=getTZone() name=timezone> <OPTION
+              value=0>0<OPTION value=1>+1<OPTION value=-1>-1<OPTION value=2>+2<OPTION value=-2>-2<OPTION value=3>+3<OPTION
+              value=-3>-3<OPTION value=4>+4<OPTION value=-4>-4<OPTION
+              value=5>+5<OPTION value=-5 selected>-5<OPTION value=6>+6<OPTION
+              value=-6>-6<OPTION value=7>+7<OPTION value=-7>-7<OPTION
+              value=8>+8<OPTION value=-8>-8<OPTION value=9>+9<OPTION
+              value=-9>-9<OPTION value=10>+10<OPTION value=-10>-10<OPTION
+              value=11>+11<OPTION value=-11>-11<OPTION value=12>+12<OPTION
+              value=-12>-12</OPTION></SELECT></CENTER></P></TD></TR>
+        <TR>
+          <TD colSpan=3>
+            <CENTER><INPUT onclick=getLongitude(); type=button value="Apply Long." name=Absenden></CENTER></TD></TR></TBODY></TABLE>&nbsp;
+      <TABLE borderColor=#ffffcc cellSpacing=0 cellPadding=0 width=600
+      bgColor=#ffffcc border=1>
+        <TBODY>
+        <TR>
+          <TD width=200>
+            <P align=right>Local Date and Time:
+            </FONT></P></TD>
+          <TD width=170>
+            <P><INPUT size=30 name=text1> </P></TD></TR>
+        <TR>
+          <TD width=200>
+            <P align=right>UT
+            is: </P></TD>
+          <TD width=170>
+            <P><INPUT size=30 name=UTime> </P></TD></TR>
+        <TR>
+          <TD width=200>
+            <P align=right>the Julian Day is:
+            </FONT></P></TD>
+          <TD width=170>
+            <P><INPUT size=18 name="JulDayText"> </P></TD></TR>
+        <TR>
+          <TD width=200>
+            <P align=right>the Local Sidereal Time
+            is: </FONT></P></TD>
+          <TD width=170>
+            <P><INPUT size=15 name=LMST> </P></TD></TR>
+        <TR>
+          <TD width=200>
+            <P align=right>the Declination of the
+            Sun is: </FONT></P></TD>
+          <TD width=170>
+            <P><INPUT size=10 name=declinText><FONT
+            face="verdana, arial, helvetica, sans-serif" size=-1>deg</FONT>
+          </P></TD></TR>
+        <TR>
+          <TD width=200>
+            <P align=right>the Equation of Time
+            is: </FONT></P></TD>
+          <TD width=170>
+            <P><INPUT size=12 name=eotText><FONT
+            face="verdana, arial, helvetica, sans-serif" size=-1>min</FONT>
+          </P></TD></TR></TBODY></TABLE></CENTER></TD></TR></TBODY></TABLE></CENTER>
+<P></FORM>
+
+Last Modified:
+<SCRIPT language=JavaScript>
+a=new Array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+dat=new Date(document.lastModified);
+year=dat.getYear(); if (year<1900) year=year+1900;
+document.write(year + " " + a[dat.getMonth()] + " " + dat.getDate())
+</SCRIPT>
+
+  </BODY>
+</HTML>

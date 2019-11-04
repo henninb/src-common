@@ -1,0 +1,2 @@
+Main-Class: Combinations
+Class-Path: Combinations.jar

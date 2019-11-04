@@ -1,0 +1,2 @@
+Main-Class: stream_processing
+Class-Path: stream_processing.jar

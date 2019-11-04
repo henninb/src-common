@@ -1,0 +1,9 @@
+this is the
+input file
+
+for read
+blah
+empty
+
+not empty
+end

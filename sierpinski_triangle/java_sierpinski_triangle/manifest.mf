@@ -1,0 +1,2 @@
+Main-Class: SierpinskiTriangle
+Class-Path: SierpinskiTriangle.jar

@@ -1,0 +1,31 @@
+;comment
+
+(define (date_today x)
+  (let (
+         (a 1)
+         (b 1)
+         (local (localtime (current-time)))
+       )
+       (display local) (newline)
+       (display (+ a b)) (newline)
+    ;(format #t "local=<~d>" a)
+    ;(format #t "local=<~A>~%" local)
+  )
+)
+
+(define (main)
+  (do ((idx_i 1 (+ idx_i 1)))
+    ((> idx_i 1))
+    (display (strftime "local=<%Y-%m-%d %H:%M:%S>" (localtime (current-time)))) (newline)
+    (display (strftime "utc=<%Y-%m-%d %H:%M:%S>" (gmtime (current-time)))) (newline)
+    ;(display 1 3 4 newline)
+    ;(format #t "~a~%" "foo")
+    ;(date_today 1)
+    (display (string-append "date_today(" (number->string 1) ")=<" (number->string (date_today 1)) ">\n"))
+  )
+  ;(printf "%s" (universal-time->local-time-string (get-universal-time)))
+   ;(string->universal-time "Fri, 23 Apr 1999 21:31:47 +0000")
+)
+
+(main)
+(exit)

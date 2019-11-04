@@ -1,0 +1,124 @@
+//git@github.com:dcreemer/gradle-java-clojure-skeleton.git
+//https://gist.github.com/pintowar/ec155089a8e3f89d260782004cc06601
+
+buildscript {
+  ext {
+    //springBootVersion = '1.5.8.RELEASE'
+    targetName = 'fibonacci'
+  }
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://clojars.org/repo" }
+    maven { url 'http://conjars.org/repo' }
+    maven { url "https://plugins.gradle.org/m2/" }
+  }
+  dependencies {
+    //classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath "io.github.gradle-clojure:gradle-clojure-plugin:0.3.0"
+    //classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.0'
+    //classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
+    classpath "clojuresque:clojuresque:1.7.0"
+    classpath 'clojuresque:clojuresque-base:1.7.0'
+    classpath 'clojuresque:clojuresque-extras:1.0.0'
+    classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.0'
+    //classpath 'com.netflix.nebula:nebula-clojure-plugin:2.2.0'
+    classpath "com.netflix.nebula:nebula-clojure-plugin:4.4.0"
+  }
+}
+
+plugins {
+  id "nebula.clojure" version "4.4.0"
+}
+
+// min needed for Clojure source
+//apply plugin: 'clojure-min'
+//apply plugin: 'clojure'
+
+// for "gradle deps" and "gradle uberjar":
+//apply plugin: 'clojure-extras'
+//apply plugin: 'gradle-clojure.clojure'
+apply plugin: 'application'
+//apply plugin: 'nebula-clojure'
+//apply plugin: 'clojure'
+//apply plugin: "com.github.johnrengelman.shadow"
+
+//aotCompile = true
+//aotCompile = true
+
+mainClassName = 'fibonacci'
+//group = 'fibonacci'
+version = '1.0'
+description = 'description'
+
+
+repositories {
+  maven { url "http://clojars.org/repo" }
+  maven { url 'http://conjars.org/repo' }
+  mavenLocal()
+  mavenCentral()
+  //clojarsRepo()
+  //clojarsRepo()
+}
+
+dependencies {
+  compile 'org.clojure:clojure:1.8.0'
+}
+
+sourceSets {
+  main.clojure.srcDirs = ['src']
+  //main.clojure.srcDirs = ['.']
+  //main.resouces.srcDirs = ['.']
+  //rootProject.libsDirName = '..'
+}
+
+task standalone(type: Jar) {
+
+  manifest {
+    attributes 'Main-Class': 'fibonacci'
+    //manifest.attributes("Main-Class": "fibonacci.core")
+  }
+  baseName = 'fibonacci'
+  //rootProject.libsDirName = '..'
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+  with jar
+}
+
+
+
+//jar {
+//  manifest.attributes("Main-Class": "fibonacci")
+//}
+
+uberjar.enabled = true
+
+uberjar {
+  manifest.attributes("Main-Class": "fibonacci")
+}
+
+sourceSets {
+  // Note the order here!
+  early {
+    compileClasspath = project.sourceSets.main.compileClasspath
+  }
+
+  main {
+    compileClasspath = project.files(project.sourceSets.early.output, compileClasspath)
+  }
+}
+
+compileClojure {
+  dependsOn project.compileJava
+
+}
+
+compileEarlyClojure {
+  aotCompile = true
+  //baseName = 'fibonacci'
+}
+
+jar {
+  //from project.sourceSets.early.output
+}

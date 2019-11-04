@@ -1,0 +1,2 @@
+Main-Class: bubble_sort
+Class-Path: bubble_sort.jar

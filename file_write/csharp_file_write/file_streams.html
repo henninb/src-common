@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML XMLNS:O><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=us-ascii">
+<META content="MSHTML 6.00.2900.2604" name=GENERATOR></HEAD>
+<BODY><B>To:</B> Henning, Brian<BR><!-- Converted from text/plain format -->
+<TABLE id=Table2
+style="BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; BORDER-COLLAPSE: collapse; mso-border-alt: solid black 1.5pt; mso-padding-alt: 0in 5.4pt 0in 5.4pt"
+cellSpacing=0 cellPadding=0 border=1>
+  <TBODY>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: black 1.5pt solid; PADDING-LEFT: 5.4pt; BACKGROUND: gray; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 1.5pt solid; mso-shading: white; mso-pattern: solid gray"
+    vAlign=top width=207>
+      <P><B><SPAN style="COLOR: white">Class<O:P></O:P></B></P></SPAN></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: black 1.5pt solid; PADDING-LEFT: 5.4pt; BACKGROUND: gray; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 1.5pt solid; mso-shading: white; mso-pattern: solid gray"
+    vAlign=top width=383>
+      <P><B><SPAN
+  style="COLOR: white">Description<O:P></O:P></B></P></SPAN></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>Stream </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>The abstract base class Stream supports reading and writing
+    bytes.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>FileStream </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>In addition to basic Stream behavior, this class supports random access
+      to files through its Seek method and supports both synchronous and
+      asynchronous operation.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>MemoryStream </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>A nonbuffered stream whose encapsulated data is directly accessible in
+      memory. This stream has no backing store and might be useful as a
+      temporary buffer.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>BufferedStream </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>A Stream that adds buffering to another Stream, such as a
+      NetworkStream. (FileStream already has buffering internally, and a
+      MemoryStream doesn't need buffering.) A BufferedStream object can be
+      composed around some types of streams to improve read and write
+      performance.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>TextReader </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>The abstract base class for StreamReader and StringReader objects.
+      While the implementations of the abstract Stream class are designed for
+      byte input and output, the implementations of TextReader are designed for
+      Unicode character output.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>StreamReader </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>Reads characters from a Stream, using Encoding to convert characters to
+      and from bytes.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>StringReader </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>Reads characters from a String. StringReader allows you to treat a
+      String with the same API; thus, your output can be either a Stream in any
+      encoding or a String.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>TextWriter </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>The abstract base class for StreamWriter and StringWriter objects.
+      While the implementations of the abstract Stream class are designed for
+      byte input and output, the implementations of TextWriter are designed for
+      Unicode character input.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>StreamWriter </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>Writes characters to a Stream, using Encoding to convert characters to
+      bytes.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>StringWriter </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>Writes characters to a String. StringWriter allows you to treat a
+      String with the same API; thus, your output can be either a Stream in any
+      encoding or a String.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>BinaryReader </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>Reads binary data from a stream.</P></TD></TR>
+  <TR>
+    <TD
+    style="BORDER-RIGHT: medium none; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: black 1.5pt solid; WIDTH: 155.45pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=207>
+      <P>BinaryWriter </P></TD>
+    <TD
+    style="BORDER-RIGHT: black 1.5pt solid; PADDING-RIGHT: 5.4pt; BORDER-TOP: medium none; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; BORDER-LEFT: medium none; WIDTH: 287.35pt; PADDING-TOP: 0in; BORDER-BOTTOM: black 0.75pt solid; mso-border-top-alt: solid black 1.5pt"
+    vAlign=top width=383>
+      <P>Writes binary data to a stream.</P></TD></TR></TBODY></TABLE></BODY></HTML>

@@ -1,0 +1,2 @@
+Main-Class: Base64Encode
+Class-Path: Base64Encode.jar

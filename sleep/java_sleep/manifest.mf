@@ -1,0 +1,2 @@
+Main-Class: Sleep
+Class-Path: Sleep.jar

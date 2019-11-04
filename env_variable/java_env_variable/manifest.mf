@@ -1,0 +1,2 @@
+Main-Class: EnvVariable
+Class-Path: EnvVariable.jar

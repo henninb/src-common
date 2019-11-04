@@ -1,0 +1,2 @@
+Main-Class: json_write
+Class-Path: json_write.jar

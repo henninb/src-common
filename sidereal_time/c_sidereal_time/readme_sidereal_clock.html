@@ -1,0 +1,293 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Clocks</title>
+</head>
+
+<body marginheight=0 marginwidth=0 onload="saveCookieLong()">
+
+<h2 align="center"><font face="Arial" color="#000080">Clocks</font></h2>
+<script language=javascript>
+
+function formatdigits(num)
+ {
+ if (num < 10) 
+    return "0" + num 
+  else  
+    return num; 
+ }
+
+function trunc(x) 
+  {
+  if (x >= 0)
+    return Math.floor(x);
+  else
+    return Math.ceil(x); 
+  }
+
+function getCookie(Name, Value)
+  {
+  var search = Name + "=";
+  var search2 = Value + "=";
+  if (document.cookie.length > 0)  // if there are any cookies
+    {
+    offset = document.cookie.indexOf(search); 
+    if (offset != -1)  // if cookie exists 
+      {
+      offset += search.length;   // set index of beginning of value
+      end = document.cookie.indexOf(";", offset);  // set index of end of cookie value
+      if (end == -1) 
+        end = document.cookie.length; 
+      var rawstring = unescape(document.cookie.substring(offset, end));
+      if (rawstring.length > 0)
+        {
+        offset = rawstring.indexOf(search2); 
+        if (offset != -1)  // if value exists 
+          {
+          offset += search2.length;   // set index of beginning of value
+          end = rawstring.indexOf("&", offset);  // set index of end of cookie value
+          if (end == -1) 
+            end = rawstring.length;
+          return rawstring.substring(offset, end);
+          } 
+        }
+      } 
+    }
+  }
+
+</script>
+
+<script language="JavaScript">
+
+<!--
+
+var tid = null;
+var global_long;
+
+function saveCookieLong()
+  {
+  global_long = getCookie("UserData", "Longitude");
+  updateClock();
+  }
+
+function updateClock()
+  {
+  var now = new Date();
+
+  var hrs = now.getHours();
+  var mins = now.getMinutes();
+  var secs = now.getSeconds();
+
+  var hrs_str = formatdigits(hrs);
+  var mins_str = formatdigits(mins);
+  var secs_str = formatdigits(secs);
+
+  var utcyear = now.getUTCFullYear();
+  var utcmonth = now.getUTCMonth();
+  var utcdate = now.getUTCDate();
+  var utchrs = now.getUTCHours();
+  var utcmins = now.getUTCMinutes();
+  var utcsecs = now.getUTCSeconds();
+
+  var utchrs_str = formatdigits(utchrs);
+  var utcmins_str = formatdigits(utcmins);
+  var utcsecs_str = formatdigits(utcsecs);
+
+  utc_dec = (((utcsecs / 60) + utcmins) / 60) + utchrs;
+
+  dj = (Date.UTC(utcyear, utcmonth, utcdate, 0, 0, 0) / (24*60*60*1000)) + 25567.5;
+  T = (dj / 36525.0) - 1.0;
+  R1 = 6.697374558 + (2400.0 * (T - ((utcyear - 2000) / 100)));
+  R0 = (0.0513366 * T) + (0.00002586222 * T * T) - (0.000000001722 * T * T * T);
+  t0 = R0 + R1;
+  
+  while (t0 < 0) 
+    t0 = t0 + 24.0;
+
+  while (t0 > 24.0)
+    t0 = t0 - 24.0;
+  
+  gst_dec = (utc_dec * 1.002737935) + t0;
+  
+  while (gst_dec < 0) 
+    gst_dec = gst_dec + 24.0;
+
+  while (gst_dec > 24.0)
+    gst_dec = gst_dec - 24.0;
+  
+  gsthrs = trunc(gst_dec);
+  gstmins = trunc(60 * (gst_dec - gsthrs));
+  gstsecs = trunc(60 * ((60 * (gst_dec - gsthrs)) - gstmins));
+
+  var gsthrs_str = formatdigits(gsthrs);
+  var gstmins_str = formatdigits(gstmins);
+  var gstsecs_str = formatdigits(gstsecs);
+
+  var lst_dec = gst_dec + (-81.8333 / 15.0);
+  
+  while (lst_dec < 0) 
+    lst_dec = lst_dec + 24.0;
+
+  while (lst_dec > 24.0)
+    lst_dec = lst_dec - 24.0;
+  
+  lsthrs = trunc(lst_dec);
+  lstmins = trunc(60 * (lst_dec - lsthrs));
+  lstsecs = trunc(60 * ((60 * (lst_dec - lsthrs)) - lstmins));
+
+  var lsthrs_str = formatdigits(lsthrs);
+  var lstmins_str = formatdigits(lstmins);
+  var lstsecs_str = formatdigits(lstsecs);
+
+  document.clocks.LocalTime.value = " " + hrs_str + ":" + mins_str + ":" + secs_str;
+  document.clocks.UTCTime.value = " " + utchrs_str + ":" + utcmins_str + ":" + utcsecs_str;
+  document.clocks.GSTTime.value = " " + gsthrs_str + ":" + gstmins_str + ":" + gstsecs_str;
+  document.clocks.LSTTime.value = " " + lsthrs_str + ":" + lstmins_str + ":" + lstsecs_str;
+
+  tid=setTimeout("updateClock()", 1000);
+  }
+// --></script>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+
+  <td valign='top'>
+
+    <table border="0" cellpadding="6" cellspacing="1" width="100%">
+      <tr>
+        <td valign=top width="100%">
+
+<form method="POST" name="clocks">
+<p>
+The clocks displayed on the main page are based on a combination of the clock setting on
+your computer and the cookie values set when you first registered with <b> AstronomyDaily.com.</b>
+<p>
+If the time, date, or time zone setting on your computer are wrong, then the clocks displayed
+on <b> AstronomyDaily.com</b> will be wrong as well.
+<p>
+&nbsp;
+<table border="0" cellpadding="4" cellspacing="4" width="100%">
+  <tr>
+    <td width="40%"><span class=yellow><b>Local Time</b></span></td>
+    <td width="60%" class=clocktext>
+    <input type="text" name="LocalTime" size="8"></td>
+  </tr>
+  <tr>  
+    <td colspan=2>
+      <p>Local time is read directly from the time setting on your computer.  It should
+      always be the same as your local computer clock, as long as the time zone 
+      setting on your computer is correct.</p>
+      <p>&nbsp;</p>
+     </td>
+  </tr>
+  <tr>
+    <td width="40%"><span class=yellow><b>Coordinated Universal Time (UTC)</b></span></td>
+    <td width="60%" class=clocktext><input type="text" name="UTCTime" size="8"></td>
+  </tr>
+  <tr>
+    <td colspan=2>
+      <p>Universal Time is obtained by using javascript functions to read the time from 
+      your computer clock and convert it to UTC based on your time zone setting.  Again, if your 
+      clock and time zone are correct, then this time will be correct.</p>
+      
+      <p>UTC is like Greenwich Mean Time (GMT), but not quite.  The term GMT is technically obsolete; 
+      as a standard, it was replaced by UTC in 1972. However, the abbreviation is still used in some 
+      places (e.g., the BBC, for obvious patriotic reasons), but whenever the term "GMT" is used it
+      now means UTC.  While most people believe that UTC is a hyper-accurate time standard obtained 
+      from an atomic clock; the actual details are bit more complicated...</p>
+      
+      <p>TAI (International Atomic Time) is defined in terms of a particular transition of the 
+      electrons of the cesium atom. The frequency or rate of TAI is computed by the International 
+      Bureau of Weights and Measures (BIPM) located near Paris, France, using a weighted average from
+      about 250 atomic clocks located in about 50 national laboratories. However, this standard is 
+      more precise than the actual rotation of the earth, so the Universal Time family of time 
+      scales was created.</p>
+      
+      <p>UTC is based on TAI, but "leap seconds" are inserted (or possibly deleted) on a semi-regular
+      basis (roughly every 18 months) to keep it within ± 0.9 seconds of UT1 (see below).  As of 
+      January 1, 1999, TAI was ahead of UTC by 32 seconds.</p>
+      
+      <p>UT (Universal Time) is the modern equivalent of "solar time". It is used by astronomers and
+      others who need to keep their equipment synchronized with the rotation of the earth. UT is
+      actually a family of time scales, with UT0 providing the basis as the precise solar time at
+      the zero meridian. A network of radio telescopes maintains UT0 by observing distant quasars.</p>
+      
+      <p>UT1 is UT0 corrected for a periodic effect known as Chandler wobble or "polar wandering", 
+      i.e., small changes in the longitude/latitude of all places on the Earth due to the fact that the
+      rotational axis of the Earth "wanders" in semi-regular patterns. It is available from most time
+      services in the form of an offset (± 0.9 seconds) from UTC, and as of July 2000 it was hovering
+      near +200 ms.</p>
+      
+      <p>UT2 is an even better-corrected version of UT0 that accounts for seasonal variations in the 
+      Earth's rotation rate and is sometimes used in astronomy.</p>
+      
+      <p>Another frequently seen time standard, GPS (Global Positioning System) system time, is a 
+      virtual time standard maintained as a composite of the atomic clocks in the GPS, both on the 
+      satellites and on the ground. It is similar to TAI in that it has no leap seconds, but it has 
+      a fixed offset of 19 seconds based on the fact that it was started on January 6, 1980, when 
+      this was the offset between TAI and UTC. However, most GPS receivers actually display UTC, since
+      they can get the current offset from GPS system time to UTC from the GPS navigation message.</p>
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%"><span class=yellow><b>Greenwich Sidereal Time (GST)</b></span></td>
+    <td width="60%" class=clocktext><input type="text" name="GSTTime" size="8"></td>
+  </tr>
+  <tr>
+     <td colspan=2>
+      <p>Greenwich Sidereal Time is computed from the time and the date setting on 
+      your computer.  If your time is set correctly, but the date is off, then this
+      clock will be wrong even if the previous two clocks are correct.</p>
+      
+      <p>GST is local sidereal time for Greenwich, England.  See the detailed discussion of
+      sidereal time below.</p>
+      
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%"><span class=yellow><b>Local Sidereal Time (LST)</b></span></td>
+    <td width="60%" class=clocktext><input type="text" name="LSTTime" size="8"></td>
+  </tr>
+  <tr>
+    <td colspan=2>
+      <p>Local Sidereal Time is computed from GST based on your longitude.  Your
+      longitude is stored in the cookie sent to you when you first registered with
+      AstronomyDaily.com and was initially set based on your selections on the
+      user registration maps.</p>
+      
+      <p>The UT family of time standards discussed above all have one thing in common: they measure
+      the rotation of the Earth relative to the position of the Sun.  Since the Earth orbits the
+      Sun, it's location in the sky appears to shift slightly less than 1&deg; each day (since one 
+      orbit is 360&deg;, and it covers this space in about 365 days, the daily shift is about
+      360/365 = 0.98&deg;).  Instead, if we measure the Earth's rotation relative to the stars, 
+      we get sidereal time.</p>
+      
+      <p>Sidereal time is defined as the length of time since the vernal equinox has crossed the
+      local meridian.  An equivalent definition of sidereal time is the right ascension of any
+      star presently located on the local celestial meridian.  For example, the star Sirius is located
+      at R.A. 6hr 45m and the LST when Sirius is on the meridian is 6:45.  Looked at another way,
+      the time indicated on the clock above is the right ascension of the point directly overhead
+      in the sky right now.</p>
+      
+      <p>Because our everyday clocks are based on solar time, sidereal time generally does not 
+      coincide with the clock time.  The exception is on the date of autumnal equinox (around
+      September 21) when the sidereal time agrees with the solar time.  Six months later at the 
+      date of vernal equinox (around March 21) they are exactly 12 hours apart.</p>  
+    </td>
+  </tr>
+</table>
+</form>
+<!-- Matt Oltersdorf 2003 10 10 06:40 UTC -->
+
+        </td>
+      </tr>
+    </table>      
+  </td>
+</table>
+</body>
+
+</html>

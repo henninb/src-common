@@ -1,0 +1,2 @@
+Main-Class: CelsiusConversion
+Class-Path: CelsiusConversion.jar

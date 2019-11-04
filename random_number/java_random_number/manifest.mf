@@ -1,0 +1,2 @@
+Main-Class: RandomNumber
+Class-Path: RandomNumber.jar

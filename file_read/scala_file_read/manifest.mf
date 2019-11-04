@@ -1,0 +1,2 @@
+Main-Class: file_read
+Class-Path: file_read.jar

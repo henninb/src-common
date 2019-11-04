@@ -1,0 +1,2 @@
+Main-Class: fibonacci
+Class-Path: fibonacci.jar

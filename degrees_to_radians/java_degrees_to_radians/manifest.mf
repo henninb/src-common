@@ -1,0 +1,2 @@
+Main-Class: DegreesToRadians
+Class-Path: DegreesToRadians.jar

@@ -1,0 +1,44 @@
+buildscript {
+  ext {
+    //springBootVersion = '1.5.9.RELEASE'
+    targetName = 'celsius_conversion'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    //classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.13'
+}
+
+sourceSets {
+  //main.groovy.srcDirs = ['src/groovy']
+  main.groovy.srcDirs = ['.']
+  //main.resouces.srcDirs = ['.']
+  //rootProject.libsDirName = '..'
+}
+
+mainClassName = 'celsius_conversion'
+
+task standalone(type: Jar) {
+  manifest {
+    attributes 'Main-Class': targetName
+  }
+  baseName = targetName
+  //rootProject.libsDirName = '..'
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+  with jar
+}

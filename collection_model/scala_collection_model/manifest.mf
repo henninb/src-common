@@ -1,0 +1,2 @@
+Main-Class: collection_model
+Class-Path: collection_model.jar

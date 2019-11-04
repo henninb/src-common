@@ -1,0 +1,43 @@
+buildscript {
+  ext {
+    //springBootVersion = '1.5.8.RELEASE'
+    targetName = 'JulianDate'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    //classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+//apply plugin: 'maven'
+
+repositories {
+  //maven { url "http://repo.maven.apache.org/maven2" }
+  mavenCentral()
+}
+
+dependencies {
+  compile 'javax.xml.bind:jaxb-api:2.3.0'
+}
+
+sourceSets {
+  //main.java.srcDirs = ['src/java']
+  main.java.srcDirs = ['.']
+  //main.resouces.srcDirs = ['.']
+}
+
+task standalone(type: Jar) {
+  manifest {
+    attributes 'Main-Class': targetName
+  }
+  baseName = targetName
+  rootProject.libsDirName = '..'
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+  with jar
+}

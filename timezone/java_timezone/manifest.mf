@@ -1,0 +1,2 @@
+Main-Class: Timezone
+Class-Path: Timezone.jar

@@ -1,0 +1,2 @@
+Main-Class: permute_print_integer
+Class-Path: permute_print_integer.jar

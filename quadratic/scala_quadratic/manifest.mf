@@ -1,0 +1,2 @@
+Main-Class: quadratic
+Class-Path: quadratic.jar

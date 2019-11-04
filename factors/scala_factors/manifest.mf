@@ -1,0 +1,2 @@
+Main-Class: factors
+Class-Path: factors.jar

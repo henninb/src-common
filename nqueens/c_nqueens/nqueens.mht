@@ -1,0 +1,1210 @@
+From: <Saved by UnMHT>
+Subject: =?iso-2022-jp?B?SmVmZiBTb21lcnMncyBOIFF1ZWVucyBTb2x1dGlvbnM=?=
+Date: Wed, Jan 27 2010 17:24:39 GMT-0600
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_66CD4011.E65C468A";
+	type="text/html"
+
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://jsomers.com/nqueen_demo/nqueens.html
+
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en" "">
+<html><head>
+
+
+   <meta content=3D"text/html; charset=3Diso-8859-1" http-equiv=3D"Content-=
+Type">
+   <meta content=3D"Elvis" name=3D"Author">
+   <meta content=3D"Mozilla/4.79 [en] (Win98; U) [Netscape]" name=3D"GENERA=
+TOR">
+   <title>Jeff Somers&#x27;s N Queens Solutions</title>
+<base href=3D"http://jsomers.com/nqueen_demo/"></base></head><body backgrou=
+nd=3D"../background.gif">
+<font face=3D"Verdana,Geneva,Arial,Helvetica,sans-serif">
+<a href=3D"../index.html">return to my programming
+demos page.</a>
+<br>&nbsp;
+<br>&nbsp;
+</font><center><table width=3D"70%" cols=3D"1">
+<tbody><tr>
+<td>
+<center><b>
+
+<font size=3D"+3">The N Queens Problem</font></b>
+<br><b><font size=3D"+1">a study in optimization</font></b>
+<br>&nbsp;
+<br>&nbsp;
+<p><img width=3D"539" height=3D"277" alt=3D"N Queens 4x4 board solution" sr=
+c=3D"4queensolution.gif"></p></center>
+
+<p>My command line program and source code can be downloaded <a href=3D"jms=
+nqueens.zip">here</a>.
+</p><p>My command line executable can be downloaded <a href=3D"nq.exe">here=
+</a>.
+</p><p>A version which prints out the board positions for each solution is
+<a href=3D"nqprint.exe">here</a>.&nbsp;
+Note that printing out the board positions slows down the program quite
+a bit, so you may want to pipe the output to a text file (<tt>nqprint 16
+&gt; output.txt</tt>) &amp; then examine the results after the program has
+been run.
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<br>
+</p><center>
+<p><b>The N Queens Problem</b></p></center>
+
+<p><br>
+</p><center><table cellspacing=3D"0" cellpadding=3D"0" border=3D"1">
+<tbody><tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" alt=3D"Green square" src=3D"green.g=
+if"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueenR.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueenR.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueen.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueen.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueen.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueen.gif"></center>
+</td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueenR.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"wQueenR.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"red.gif"></center>
+</td>
+
+<td width=3D"30" height=3D"30">
+<center><img width=3D"30" height=3D"30" src=3D"green.gif"></center>
+</td>
+</tr>
+</tbody></table></center>
+
+<center>
+<p><font size=3D"-2">(chess graphics from <a href=3D"http://www.schoolnet.c=
+a/vp-pv/amof/e_queeI.htm">this
+site</a>)</font></p></center>
+
+<p>How many ways are there to arrange N non-attacking queens on an N x N ch=
+essboard?
+</p><p>For a regular-sized board (8 x 8), there are 92 distinct solutions,
+one of which is shown above.
+</p><p>Note that for each solution, no two queens can occupy the same colum=
+n,
+row or diagonal.
+</p><p>For a 1 x 1 board, there is one trivial solution:
+<br>&nbsp;
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"1">
+<tbody><tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+n.gif"></td>
+</tr>
+</tbody></table>
+
+</p><p>For 2 x 2 and 3 x 3 boards, there are no solutions.&nbsp; For a 4 x
+4 board, there are two:
+<br>&nbsp;
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"1">
+<tbody><tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+nR.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+n.gif"></td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+n.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+nR.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+</tr>
+</tbody></table>
+
+<br>&nbsp;
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"1">
+<tbody><tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+n.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+nR.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+nR.gif"></td>
+</tr>
+
+<tr>
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"wQuee=
+n.gif"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"red.g=
+if"></td>
+
+<td width=3D"30" height=3D"30"><img width=3D"30" height=3D"30" src=3D"green=
+.gif"></td>
+</tr>
+</tbody></table>
+
+</p><p>These are considered distinct solutions, even though the solutions=
+ are
+mirror images of each other.
+</p><p><b>My program</b>
+</p><p>There is no quick and easy way to calculate the total number of N qu=
+een
+solutions for an N x N board.
+</p><p><a href=3D"http://www.research.att.com/cgi-bin/access.cgi/as/njas/se=
+quences/eisA.cgi?Anum=3D000170">The
+number of solutions is only known up to board sizes of 23 x 23</a>.
+</p><p>My program is a heavily-optimized C program, yet it still takes over
+a week for an 800 MHz PC to calculate the number of solutions for a 21
+x 21 board.&nbsp; (In case you&#x27;re curious, there are 314,666,222,712=
+ solutions.)
+</p><p><b>2x - 10x speedup over other solutions</b>
+</p><p>My program is almost twice as fast as the program used to calculate
+the &quot;world record&quot; N queens solution (the 23 x 23 board).&nbsp;=
+ Source
+for that program, written by Sylvain Pion and Joel-Yann Fourre, can be found
+<a href=3D"http://www-sop.inria.fr/prisme/personnel/pion/progs/reines.tgz">=
+here</a>.
+</p><p>It&#x27;s also up to 10 times as fast the <a href=3D"http://penguin.=
+ewu.edu/~trolfe/SCCS-95/Opts/index.html">N-queens
+program written by Dr. Timothy </a><a href=3D"http://penguin.ewu.edu/~trolf=
+e/SCCS-95/Code.html">Rolfe</a>.
+<a href=3D"http://penguin.ewu.edu/~trolfe/">Dr.
+Rolfe</a> is a computer science professor who has written <i>Algorithm
+Alley</i> columns for <a href=3D"http://www.ddj.com">Dr. Dobb&#x27;s Journa=
+l</a>.&nbsp;
+His paper on <i>Queens on a Chessboard: Making the Best of a Bad Situation<=
+/i>
+can be found <a href=3D"http://penguin.ewu.edu/~trolfe/SCCS-95/SCCS-95.html=
+">here</a>.
+<br>&nbsp;
+</p><blockquote><font size=3D"-1">To compile the <a href=3D"http://www-sop.=
+inria.fr/prisme/personnel/pion/progs/reines.tgz">&quot;world
+record&quot; program</a> in Visual C++, just add </font><tt>algo.c</tt><fon=
+t size=3D"-1">
+and </font><tt>apart.c</tt><font size=3D"-1"> to your project.&nbsp; The bo=
+ard
+size is hard-coded in </font><tt>algo.h</tt><font size=3D"-1">.</font>
+<p><font size=3D"-1">To compile <a href=3D"http://penguin.ewu.edu/~trolfe/S=
+CCS-95/Opts/index.html">Dr.
+Rolfe&#x27;s program</a> in Visual C++, just add </font><tt>seq.c</tt><font=
+ size=3D"-1">
+to your project.&nbsp; Then open </font><tt>timers.c</tt><font size=3D"-1">
+and replace the line:</font>
+</p><p><tt>#if defined(__TURBOC__)</tt>
+</p><p><font size=3D"-1">with</font>
+</p><p><tt>#if defined(WIN32)</tt></p></blockquote>
+
+<br>&nbsp;
+<table width=3D"600" cols=3D"4" border=3D"1">
+<caption><b>Timings for different N Queens programs on a 800 MHz PC</b>
+<br>(Times are in Hours:Minutes:Seconds)</caption>
+
+<tbody><tr>
+<td>Board size</td>
+
+<td>My program</td>
+
+<td>&quot;World Record&quot; Program</td>
+
+<td>Dr. Timothy Rolfe&#x27;s Program</td>
+</tr>
+
+<tr>
+<td>14 x 14</td>
+
+<td>00:00:01</td>
+
+<td>00:00:01</td>
+
+<td>00:00:05</td>
+</tr>
+
+<tr>
+<td>15 x 15</td>
+
+<td>00:00:03</td>
+
+<td>00:00:06</td>
+
+<td>00:00:36</td>
+</tr>
+
+<tr>
+<td>16 x 16</td>
+
+<td>00:00:23</td>
+
+<td>00:00:43</td>
+
+<td>00:03:58</td>
+</tr>
+
+<tr>
+<td>17 x 17</td>
+
+<td>00:02:38</td>
+
+<td>00:05:12</td>
+
+<td>00:29:14</td>
+</tr>
+
+<tr>
+<td>18 x 18</td>
+
+<td>00:19:26</td>
+
+<td>00:37:56</td>
+
+<td>03:25:05</td>
+</tr>
+
+<tr>
+<td>19 x 19</td>
+
+<td>02:31:24</td>
+
+<td>04:57:38</td>
+
+<td>28:24:52</td>
+</tr>
+</tbody></table>
+
+<br>&nbsp;
+<br>&nbsp;
+<table width=3D"600" cols=3D"3" border=3D"1">
+<caption><b>Timings for my N Queens program for different sized boards
+on a 800 MHz PC</b></caption>
+
+<tbody><tr>
+<td>Board Size
+<br>(length of one side of N x N
+<br>chessboard)</td>
+
+<td>Number of Solutions to N Queens Problem</td>
+
+<td>Time to calculate on 800 MHz PC
+<br>(Hours:Mins:Secs)</td>
+</tr>
+
+<tr>
+<td>1</td>
+
+<td>1</td>
+
+<td>n/a</td>
+</tr>
+
+<tr>
+<td>2</td>
+
+<td>0</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>3</td>
+
+<td>0</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>4</td>
+
+<td>2</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>5</td>
+
+<td>10</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>6</td>
+
+<td>4</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>7</td>
+
+<td>40</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>8</td>
+
+<td>92</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>9</td>
+
+<td>352</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>10</td>
+
+<td>724</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>11</td>
+
+<td>2680</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>12</td>
+
+<td>14200</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>13</td>
+
+<td>73712</td>
+
+<td>&lt; 0 seconds</td>
+</tr>
+
+<tr>
+<td>14</td>
+
+<td>365596</td>
+
+<td>00:00:01</td>
+</tr>
+
+<tr>
+<td>15</td>
+
+<td>2279184</td>
+
+<td>00:00:04</td>
+</tr>
+
+<tr>
+<td>16</td>
+
+<td>14772512</td>
+
+<td>00:00:23</td>
+</tr>
+
+<tr>
+<td>17</td>
+
+<td>95815104</td>
+
+<td>00:02:38</td>
+</tr>
+
+<tr>
+<td>18</td>
+
+<td>666090624</td>
+
+<td>00:19:26</td>
+</tr>
+
+<tr>
+<td>19</td>
+
+<td>4968057848</td>
+
+<td>02:31:24</td>
+</tr>
+
+<tr>
+<td>20</td>
+
+<td>39029188884</td>
+
+<td>20:35:06</td>
+</tr>
+
+<tr>
+<td>21</td>
+
+<td>314666222712</td>
+
+<td>174:53:45</td>
+</tr>
+
+<tr>
+<td>22</td>
+
+<td>2691008701644</td>
+
+<td>?</td>
+</tr>
+
+<tr>
+<td>23</td>
+
+<td>24233937684440</td>
+
+<td>?</td>
+</tr>
+
+<tr>
+<td>24</td>
+
+<td>?</td>
+
+<td>?</td>
+</tr>
+</tbody></table>
+      <p><b>Why is this important?</b> </p>
+ In and of itself, the N queens problem is not important. &nbsp;However,
+the problem works as an interesting optimization testbed -- there are many,
+many solutions to this problem on the web, but few of them are fast. Also,
+techniques used to speed up this code can be used in other areas, such as
+a chess-playing program or a unit path-finding algorithm for a game.<br>
+      <br>
+
+<p><b>History and Algorithm</b>
+</p><p>The 8 queens problem was studied by Gauss in the mid-1800&#x27;s.&nb=
+sp; It
+is often described in many undergraduate programming texts, since solving
+it requires students to understand how to program a backtracking algorithm.
+</p><p><i>The backtracking algorithm used to solve this problem</i>
+<br>We place a queen in the top row, then note the column and diagonals
+it occupies.&nbsp; We then place a queen in the next row down, taking care
+not to place it in the same column or diagonal.&nbsp; We then keep track
+of the occupied columns and diagonals and move on to the next row.&nbsp;
+If no position is open in the next row, we back track to the previous row
+and move the queen over to the next available spot in its row and the proce=
+ss
+starts over again.
+</p><p>I became interested in this problem when I was considering taking an
+Artificial Intelligence course which used LISP as its programming language.=
+&nbsp;
+I downloaded a LISP compiler and a sample program which found <i>one</i>
+solution for the 8 queens problem.&nbsp; This program was s....l....o....w.=
+&nbsp;
+I figured I could write a program in C which found <i>all</i> solutions
+to the 8 queens problem faster than this LISP program could find <i>one</i>
+solution.&nbsp; I was right.&nbsp; Inspired by the <a href=3D"http://gpbb.d=
+k.eu.org:81/">writings</a>
+of <a href=3D"http://www.gamasutra.com/features/20010117/abrash_01.htm">Mic=
+hael
+Abrash</a>, I&#x27;ve been trying to optimize that program ever since.
+</p><p>Postscript:&nbsp; To be fair, the LISP program was not compiled, and
+since then I&#x27;ve taken that A.I. course and learned to appreciate LISP&=
+#x27;s
+strengths.
+</p><p><b>Further ideas</b>
+</p><ul>
+<li>
+I tried caching partial results in order to speed up the program.&nbsp;
+A great idea, however it just made things slower.</li>
+
+<li>
+Assume we know the results for an N x N board.&nbsp; Can we somehow leverage
+that to find the results for an (N + 1) x (N + 1) board?&nbsp; There doesn&=
+#x27;t
+seem to be a away to apply the results of a previous search to the next-gre=
+ater-board-size
+search.</li>
+
+<li>
+Consider the N Rooks problem.&nbsp; There&#x27;s no need to write a program
+to figure out the solutions, since the number of solutions for a N x N
+board is <b>n!</b>.&nbsp; Is there a similar formula for the N Queens probl=
+em?</li>
+</ul>
+
+<p><br><b>For More Information</b>
+</p><p>Home page of Sylvain Pion, who co-wrote the &quot;world record&quot;=
+ N queens
+code:
+<br><a href=3D"http://www-sop.inria.fr/prisme/personnel/pion/index_eng">htt=
+p://www-sop.inria.fr/prisme/personnel/pion/index_eng</a>
+</p><p>Home page of Timothy Rolfe, Ph.D.:
+<br><a href=3D"http://penguin.ewu.edu/~trolfe/">http://penguin.ewu.edu/~tro=
+lfe/</a>
+</p><p>Eric Weisstein&#x27;s World of Mathematics:
+<br><a href=3D"http://mathworld.wolfram.com/QueensProblem.html">http://math=
+world.wolfram.com/QueensProblem.html</a>
+</p><p>Information on the <i>n</i> Queens problem:
+<br><a href=3D"http://www.schoolnet.ca/vp-pv/amof/e_queeI.htm">http://www.s=
+choolnet.ca/vp-pv/amof/e_queeI.htm</a>
+</p><p>Interesting chess problem page which appears to be in Czech:
+<br><a href=3D"http://web.iol.cz/vaclav.kotesovec/math.htm">http://web.iol.=
+cz/vaclav.kotesovec/math.htm</a>
+<br>&nbsp;
+</p><p><a href=3D"../index.html">return to my programming demos page.</a>
+<br><br>You are visitor number &nbsp;<img src=3D"http://cgibin.rcn.com/cgi-=
+bin/Count.cgi?df=3Dliusomers&amp;ft=3D0&amp;tr=3DN&amp;dd=3DC&amp;md=3D6">
+<br>&nbsp;</p></td>
+</tr>
+</tbody></table></center>
+<font face=3D"Verdana,Geneva,Arial,Helvetica,sans-serif"></font>
+</body></html>
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://jsomers.com/background.gif
+
+R0lGODlhogCiAPf/AP///7W1tcbGxs7OztbW1t7e3ufn5+/v7/f39wAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAogCiAEAI/wARAEBw
+4ACCgwYBADhgwKBAhQcREBgokKBDhwMLIIyIEYGBAQY1UizIkGREghVNIixIgEBDgw1RbuSIMeHA
+hDIPFIh5cuRBihaBOnw48KXBiz9RFkT4cuVLAwgHMIUq06JJA1CfUrVYdWnJlTNpkkR6EOvFAwt5
+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
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://jsomers.com/nqueen_demo/4queensolution.gif
+
+R0lGODdhGwIVAfcAAAAAAAAAQAAAgAAA/wAgAAAgQAAggAAg/wBAAABAQABAgABA/wBgAABgQABg
+gABg/wCAAACAQACAgACA/wCgAACgQACggACg/wDAAADAQADAgADA/wD/AAD/QAD/gAD//yAAACAA
+QCAAgCAA/yAgACAgQCAggCAg/yBAACBAQCBAgCBA/yBgACBgQCBggCBg/yCAACCAQCCAgCCA/yCg
+ACCgQCCggCCg/yDAACDAQCDAgCDA/yD/ACD/QCD/gCD//0AAAEAAQEAAgEAA/0AgAEAgQEAggEAg
+/0BAAEBAQEBAgEBA/0BgAEBgQEBggEBg/0CAAECAQECAgECA/0CgAECgQECggECg/0DAAEDAQEDA
+gEDA/0D/AED/QED/gED//2AAAGAAQGAAgGAA/2AgAGAgQGAggGAg/2BAAGBAQGBAgGBA/2BgAGBg
+QGBggGBg/2CAAGCAQGCAgGCA/2CgAGCgQGCggGCg/2DAAGDAQGDAgGDA/2D/AGD/QGD/gGD//4AA
+AIAAQIAAgIAA/4AgAIAgQIAggIAg/4BAAIBAQIBAgIBA/4BgAIBgQIBggIBg/4CAAICAQICAgICA
+/4CgAICgQICggICg/4DAAIDAQIDAgIDA/4D/AID/QID/gID//6AAAKAAQKAAgKAA/6AgAKAgQKAg
+gKAg/6BAAKBAQKBAgKBA/6BgAKBgQKBggKBg/6CAAKCAQKCAgKCA/6CgAKCgQKCggKCg/6DAAKDA
+QKDAgKDA/6D/AKD/QKD/gKD//8AAAMAAQMAAgMAA/8AgAMAgQMAggMAg/8BAAMBAQMBAgMBA/8Bg
+AMBgQMBggMBg/8CAAMCAQMCAgMCA/8CgAMCgQMCggMCg/8DAAMDAQMDAgMDA/8D/AMD/QMD/gMD/
+//8AAP8AQP8AgP8A//8gAP8gQP8ggP8g//9AAP9AQP9AgP9A//9gAP9gQP9ggP9g//+AAP+AQP+A
+gP+A//+gAP+gQP+ggP+g///AAP/AQP/AgP/A////AP//QP//gP///yH5BAAAAAAALAAAAAAbAhUB
+AAj/AJMAGEiwoMGDBW0hXDhQIcOHBx06hEixosWLGDNq3Mixo8ePIEOKHEmypMmTHQWifDjxo8SV
+MGPKnEmzps2bOHPqHKhyp8+fFlvmtEVUaFGhQJMqXcq06cWeTqPiRGqTKgCrUrNq3cq1pECjFI92
+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
+bJIZjGQWvMG5ERAAOw==
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://jsomers.com/nqueen_demo/green.gif
+
+R0lGODlhHgAeAIAAAHeZdwAAACwAAAAAHgAeAAACHISPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+awEAOw==
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://jsomers.com/nqueen_demo/wQueenR.gif
+
+R0lGODlhHgAeAIQAAMy7u6aIiPn397+qqtPExJl3d+zm5q2Rkcazs6CAgPPu7qyRkebd3f///8Cq
+qtnMzPLu7rOZmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAA
+HgAeAAAF/mAhjmRpnig6DGmbMozbBlF5EGUUyCLQlAwWqQHgFQIGYIxk2BmXIxjQKAqSpKMBtLRg
+LJTXLda0UNSuzSgUuS0QRZHi9V2IQCBnXxsfBdJ9fw1bBAdoTgUMDQ8JBYBFCQ+CI0glA3SIDQ01
+jnWZSwGJJg0KX5iajZlFEZ5wmaKupj+cmZJusEOZLImus6yWtyO0Ag67ggqZCsUMDgKZCCarmQ8G
+tNXWBpGZZyTR1t7f2tDg49bbI2UNAjDrDxHuEQ/rMM2kJz4A+Pnx+AwP+fmXSiBJ4K4aKXS03CVI
+g4JADIcw2r2LBwMHAxwtIPwDkE3aRgguCJADh7GhvJMoCNeVpMKypZEQADs=
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://jsomers.com/nqueen_demo/red.gif
+
+R0lGODlhHgAeAIAAAJl3dwAAACwAAAAAHgAeAAACHISPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+awEAOw==
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://jsomers.com/nqueen_demo/wQueen.gif
+
+R0lGODlhHgAeAIQAAJmzmZGtkXeZd+7y7ubs5t3m3bvMu7PGs6rAqpGskYimiICggP////f59+7z
+7szZzMTTxKq/qgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAA
+HgAeAAAF/qAgjmRpnigaRWmbFoXbKkAZQCWgyKLBlAUWiWHgCRQEYIxE2BmXIxjQKAqSpKMItJQo
+JJTXLdaUcNSuzSgUuRUQRYDi9S0ADAZnXxsfBdJ9fwxbEAFoTgIFDA8LAoBFCw+CI0glEXSIDAw1
+jnWZSwqJJgwOX5iajZlFAJ5wmaKupj+cmZJusEOZLImus6yWtyO0DQi7gg6ZDsUFCA2ZByarmQ8E
+tNXWBJGZZyTR1t7f2tDg49bbI2UMDTDrDwDuAA/rMM2kJz4G+Pnx+AUP+fmXSiBZ4K4aKXS03C1I
+gwJCDIcw2r2LBwNHARwtBvwzkE3axgEuIJADh7GhvJMoCNeVpMKypZEQADs=
+------=_NextPart_000_0000_66CD4011.E65C468A
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://cgibin.rcn.com/cgi-bin/Count.cgi?df=liusomers&ft=0&tr=N&dd=C&md=6
+
+R0lGODlhWgAUAPQAAAAAABAQECAgIDAwMEBAQFBQUGBgYHBwcICAgI+Pj5+fn6+vr7+/v8/Pz9/f
+3+/v7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH+aUNv
+dW50LmNnaSAyLjUsKEFwci0wOC0yMDAxLTEpCkJ5IE11aGFtbWFkIEEgTXVxdWl0Cmh0dHA6Ly93
+d3cubXVxdWl0LmNvbS9tdXF1aXQvc29mdHdhcmUvQ291bnQvQ291bnQuaHRtbAAsAAAAAFoAFAAA
+Bf4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAQEAAAAAAAAAAAAAAAAAAMEAAAAAAAAAAAABAQEBAQEBAQCAAAAAAAAAAAAAAAAIEAAgYIA
+AAAAAAAAAAAAAAgQAAAAAAAAAAAAAECAAAECBP4IECAgAAAAAAAAAAAwYAEECBAeJAgAAAAAAAAA
+ACjgAAIECBASBAAAAAAAAAogQIAAAQIECBAcAAAAAAAABRAgQIAAAQIECBAIAAAAAAAAAAMWQIAA
+4UGCAAAAAAAAQAEECBAgQIAAAYIDAAAAAAAAwAAECA0QJHAAoQEAAAAAAACgAAIEBggSPIDAAAAA
+AAAAMICgAAECBAkgQDgAAAAAAAAgQGDAgAEDBg8gMAAAAAAAAAAMQIDQAEECBxAaAAAAAAAABhAU
+IECAIAEECAcAAAAAAEABCBAMAAAAIEADCAgAAAAA4ACEBgMAAAAQwAEEBAAAAAAADUBAAAAAAP6w
+AAQKAAAAAAAAAAAEEAQAAAAABPAABAIAAAAAAABQAAQQGAAAAAAE0AAECAAAAAAANAABAQAAAMAC
+ECgAAAAAAABAAA9AcAAAAAAAAAAFQMAAAAAAAMADEAwAAAAAAAAAAxAwAAAAAADAwAMCAACAAhA0
+EAAAAAAAAAAAMLAAAAAAAAACECgAAAAAAABAAA9AcAAAAAAAAAAFQMAAAAAAAAADDwgAAAAKQNBA
+AAAAAAAAABgAgQMAAAAAAAAAAAAEEAAAAAADQNAAAAAAAAAAATgAAQMAAAAAAAAAAAAABkAAQQMK
+DAAAAAAAAAAAAAAAAAABPADBAAAAAAAAAP4YAIEDAAAAAAAAAAAABBAAAAAAAAAAAAAAGAABBA0o
+MAAAAAAAAAMQIAAAAAAAAAAAAEAAAQAAAEAABA0AAAAAABDQAAQQPAAAAAAAAAAAAzAAAQQQQADB
+AwMAAAAAAAAAAAAAAIAABAwAAAAAAAAAAAMQIAAAAAAAAAAAAEAAAQAAAAAAAAAMwAAEEEAAAQQP
+DAAAAAA8AEEAAAAAAAAAABAABA4AAAAAADgAwQIEGKAABBAoAAEEAAAAAAAAAHAABA4gQAABC0Dg
+AAAAAAAAAAAAAEAAD0BAAAAAAAAAAAA8AEEAAAAAAAAAABAABA4AAAAAAAAAwAEQOIAAAf4ELACB
+AwAAEAAEDwAAAAAAAAAAAAVAsAAAAAAAwAAOQAABBBA4UAABEDQAAAAAAAAAAAAQAAAAAAAAwAMQ
+DAAAAAAAAAAAACAAAQMAAAAAAAAAEAAEDwAAAAAAAAAAAAVAsAAAAAAAAAAAAEAAAAAAAAAAD0Aw
+AAAEgAADAAAAAAAAAAAAgAIgcAAAAAAAAAAAAAiAgAMMAAAAMAAEFAAAAAAAAAAAAAAAAAAAAAAA
+AGAABAgAAAAAAAAAAEAAHgABAgAAAAAAAAAAQAAIMAAAAAAAAAAAAAAoAAIHAAAAAAAAAAAAAAAA
+AAAAAAAAMAACBAAAASDAAAAAAAAAAP4AAAYAgQcEAAAAAMAAEhAAAAAAAAAAAAAcAAEDAAAAAADA
+AQoAAAAAAAAAAAAAHAABAAAAAAAAAAAAcAAINAAAAAAAAAAAAAAQAAIMAAAAAAAAAABgABB4QAAA
+AAAAAOAABQAAAAAAAAAAAAAOgAAAAEAACDgAAAAAAAAAEIAGQAABAAAAAACwAAggAAAAAAAAAIAA
+CDgAAAAAAAAMAAEHAAAAAAAAAACgAAgsAAAAAAAAAAAAADgAAgYAAAAAAAAAAAAABICAAwAAAAAA
+AAABaAAEEAAAAAAAAAaAgAMAAAAAAAAAAFAABBYAAAAA4AEQIAAAAAAAAjgAAg0AAP4AAAAAABgA
+AgwAAAAAAIAEQAACBAAAAAAAgAJAoAEAAAAAACAABUAAAgMAAAAAAAAAAMAAEHAAAAAAAAAAAAAA
+AAAAHgABAgAAAAAggAMg0AAAAAAAAABAASDQAAAAAAAAEIACIACBAQAAAABAAAQgkAAENAACEGBA
+AAAAAAAAAAAAaAAEGICABDgAAhAwAAAAAAAAACAAD4BAAxCgAAZAAAIPGAAAAAAAAAAAAABgAAQO
+AAAAAAAAAAAAAAAAAARAAAIJQEADIAABBgQAAAAAAAAAEIAHQKABCFAAAyAAgQcMAAAAAAAAAICA
+B0AAAhBgQAEAAAAAAAAAAAAAAP4CsAAIQAACEFiAAAAAAAAAAAAAAMAAGgABCEAAAg5AQAAAAAAA
+AAAAAAAAABwAgQAAAAAAAAAAAAAAAAAAAAh4AAQgAAEGFAAAAAAAAAAAAAAAYAANgAAEIAABByAg
+AAAAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAAAAQYAAAAAAAAAAAAAAAAAAAAAAAEgAAC
+AAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAAAAAA
+AAJAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANoAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAQA7
+------=_NextPart_000_0000_66CD4011.E65C468A--

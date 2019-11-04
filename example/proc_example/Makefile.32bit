@@ -1,0 +1,14 @@
+ifeq ($(OS),Windows_NT)
+  OS := Windows_NT
+else
+  OS := $(shell uname -s)
+endif
+
+all: unix
+Windows_NT:
+	@gcc example.c -o example.exe -O2 -Wall
+unix:
+	@/opt/oracle/product/11.2.0.4.CL_32/bin/proc code=ansi sqlcheck=semantic userid=usr1/usr1pass@server80 release_cursor=NO hold_cursor=YES sys_include=/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include include=/usr/include include=/opt/oracle/product/11.2.0.4.CL_32/precomp/public include=/opt/mqm/inc  char_map=varchar2 iname=example.pc ltype=none  oname=example.c
+	@gcc example.c -o example.exe -O2 -Wall -lm
+clean:
+	rm example.exe

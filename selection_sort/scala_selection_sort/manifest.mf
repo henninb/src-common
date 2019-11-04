@@ -1,0 +1,2 @@
+Main-Class: selection_sort
+Class-Path: selection_sort.jar

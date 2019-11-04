@@ -1,0 +1,48 @@
+buildscript {
+  ext {
+    //springBootVersion = '1.5.8.RELEASE'
+    targetName = 'Luhn.LuhnKt'
+    ext.kotlin_version = '1.2.0'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    //classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  //provided group: 'org.jetbrains.kotlin', name: 'kotlin-maven-plugin', version: '1.2.0'
+  //compile group: 'org.jetbrains.kotlin', name: 'kotlin-maven-plugin', version: '1.2.0'
+  compile 'org.jetbrains.kotlin:kotlin-stdlib:1.2.0'
+}
+
+sourceSets {
+  //main.kotlin.srcDirs = ['src/kotlin']
+  main.kotlin.srcDirs = ['.']
+  //main.resouces.srcDirs = ['.']
+  //rootProject.libsDirName = '..'
+}
+
+mainClassName = 'Luhn.LuhnKt'
+
+task standalone(type: Jar) {
+  manifest {
+    attributes 'Main-Class': targetName
+  }
+  baseName = 'Luhn'
+  //rootProject.libsDirName = '..'
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+  with jar
+}

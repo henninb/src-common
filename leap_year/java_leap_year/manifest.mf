@@ -1,0 +1,2 @@
+Main-Class: LeapYear
+Class-Path: LeapYear.jar

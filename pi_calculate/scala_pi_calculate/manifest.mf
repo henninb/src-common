@@ -1,0 +1,2 @@
+Main-Class: pi_calculate
+Class-Path: pi_calculate.jar

@@ -1,0 +1,2 @@
+Main-Class: CollectionModel
+Class-Path: CollectionModel.jar

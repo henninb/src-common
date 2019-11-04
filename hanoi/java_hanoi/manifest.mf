@@ -1,0 +1,2 @@
+Main-Class: Hanoi
+Class-Path: Hanoi.jar

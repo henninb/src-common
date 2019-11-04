@@ -1,0 +1,24 @@
+ifeq ($(OS),win32)
+  OS := win32
+else
+  OS := $(shell uname -s)
+endif
+
+all: unix
+win32:
+	@javac PostgresqlConnect.java
+	@jar cmf manifest.mf PostgresqlConnect1.jar PostgresqlConnect.class
+	@del PostgresqlConnect.class
+	@gradle -q fatjar
+unix:
+	@javac PostgresqlConnect.java
+	@jar cmf manifest.mf PostgresqlConnect.jar PostgresqlConnect.class
+#	-@if exist rm PostgresqlConnect.class
+	@rm PostgresqlConnect.class
+gcj:
+	@gcj -c PostgresqlConnect.java
+	@gcj PostgresqlConnect.java --main=PostgresqlConnect
+gradle:
+	@gradle build
+clean:
+	@rm PostgresqlConnect.jar

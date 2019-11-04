@@ -1,0 +1,2 @@
+Main-Class: Roman
+Class-Path: Roman.jar

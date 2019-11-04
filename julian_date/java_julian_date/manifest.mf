@@ -1,0 +1,2 @@
+Main-Class: JulianDate
+Class-Path: JulianDate.jar

@@ -1,0 +1,2 @@
+Main-Class: euler_phi
+Class-Path: euler_phi.jar

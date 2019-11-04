@@ -1,0 +1,212 @@
+<html>
+
+<head>
+<title>Clocks</title>
+</head>
+
+<body marginheight=0 marginwidth=0 onload="saveCookieLong()">
+
+<h2 align="center"><font face="Arial" color="#000080">Small Clocks Display</font></h2>
+<p align="center"><font face="Arial" color="#808080" size="1">by<br>
+<a href="index.htm">back to Java for Astronomy</a></font></p>
+<hr width="70%" color="#0000a0">
+<p>&nbsp;</p>
+<script language=javascript>
+
+function formatdigits(num)
+ {
+ if (num < 10) 
+    return "0" + num 
+  else  
+    return num; 
+ }
+
+function trunc(x) 
+  {
+  if (x >= 0)
+    return Math.floor(x);
+  else
+    return Math.ceil(x); 
+  }
+
+function getCookie(Name, Value)
+  {
+  var search = Name + "=";
+  var search2 = Value + "=";
+  if (document.cookie.length > 0)  // if there are any cookies
+    {
+    offset = document.cookie.indexOf(search); 
+    if (offset != -1)  // if cookie exists 
+      {
+      offset += search.length;   // set index of beginning of value
+      end = document.cookie.indexOf(";", offset);  // set index of end of cookie value
+      if (end == -1) 
+        end = document.cookie.length; 
+      var rawstring = unescape(document.cookie.substring(offset, end));
+      if (rawstring.length > 0)
+        {
+        offset = rawstring.indexOf(search2); 
+        if (offset != -1)  // if value exists 
+          {
+          offset += search2.length;   // set index of beginning of value
+          end = rawstring.indexOf("&", offset);  // set index of end of cookie value
+          if (end == -1) 
+            end = rawstring.length;
+          return rawstring.substring(offset, end);
+          } 
+        }
+      } 
+    }
+  }
+
+</script>
+
+<script language="JavaScript">
+
+<!-- Matt Oltersdorf 2002 08 30 09:00 UTC
+
+var tid = null;
+var global_long;
+
+function saveCookieLong()
+  {
+  global_long = getCookie("UserData", "Longitude");
+  updateClock();
+  }
+
+function updateClock()
+  {
+  var now = new Date();
+
+  var hrs = now.getHours();
+  var mins = now.getMinutes();
+  var secs = now.getSeconds();
+
+  var hrs_str = formatdigits(hrs);
+  var mins_str = formatdigits(mins);
+  var secs_str = formatdigits(secs);
+
+  var utcyear = now.getUTCFullYear();
+  var utcmonth = now.getUTCMonth();
+  var utcdate = now.getUTCDate();
+  var utchrs = now.getUTCHours();
+  var utcmins = now.getUTCMinutes();
+  var utcsecs = now.getUTCSeconds();
+
+  var utchrs_str = formatdigits(utchrs);
+  var utcmins_str = formatdigits(utcmins);
+  var utcsecs_str = formatdigits(utcsecs);
+
+  utc_dec = (((utcsecs / 60) + utcmins) / 60) + utchrs;
+
+  dj = (Date.UTC(utcyear, utcmonth, utcdate, 0, 0, 0) / (24*60*60*1000)) + 25567.5;
+  T = (dj / 36525.0) - 1.0;
+  R1 = 6.697374558 + (2400.0 * (T - ((utcyear - 2000) / 100)));
+  R0 = (0.0513366 * T) + (0.00002586222 * T * T) - (0.000000001722 * T * T * T);
+  t0 = R0 + R1;
+  
+  while (t0 < 0) 
+    t0 = t0 + 24.0;
+
+  while (t0 > 24.0)
+    t0 = t0 - 24.0;
+  
+  gst_dec = (utc_dec * 1.002737935) + t0;
+  
+  while (gst_dec < 0) 
+    gst_dec = gst_dec + 24.0;
+
+  while (gst_dec > 24.0)
+    gst_dec = gst_dec - 24.0;
+  
+  gsthrs = trunc(gst_dec);
+  gstmins = trunc(60 * (gst_dec - gsthrs));
+  gstsecs = trunc(60 * ((60 * (gst_dec - gsthrs)) - gstmins));
+
+  var gsthrs_str = formatdigits(gsthrs);
+  var gstmins_str = formatdigits(gstmins);
+  var gstsecs_str = formatdigits(gstsecs);
+
+  var lst_dec = gst_dec + (-81.8333 / 15.0);
+  
+  while (lst_dec < 0) 
+    lst_dec = lst_dec + 24.0;
+
+  while (lst_dec > 24.0)
+    lst_dec = lst_dec - 24.0;
+  
+  lsthrs = trunc(lst_dec);
+  lstmins = trunc(60 * (lst_dec - lsthrs));
+  lstsecs = trunc(60 * ((60 * (lst_dec - lsthrs)) - lstmins));
+
+  var lsthrs_str = formatdigits(lsthrs);
+  var lstmins_str = formatdigits(lstmins);
+  var lstsecs_str = formatdigits(lstsecs);
+
+  document.clocks.LocalTime.value = " " + hrs_str + ":" + mins_str + ":" + secs_str;
+  document.clocks.UTCTime.value = " " + utchrs_str + ":" + utcmins_str + ":" + utcsecs_str;
+  document.clocks.GSTTime.value = " " + gsthrs_str + ":" + gstmins_str + ":" + gstsecs_str;
+  document.clocks.LSTTime.value = " " + lsthrs_str + ":" + lstmins_str + ":" + lstsecs_str;
+
+  tid=setTimeout("updateClock()", 1000);
+  }
+// --></script>
+
+<div align="center">
+  <center>
+
+<table border="0" cellspacing="0" cellpadding="0" width="271">
+
+  <td valign='top' width="275" align="center">
+
+    <div align="center">
+      <center>
+
+    <table border="0" cellpadding="6" cellspacing="1" width="72%">
+      <tr>
+        <td valign=top width="100%" align="center">
+
+<form method="POST" name="clocks">
+<div align="center">
+  <center>
+<table border="1" cellpadding="3" width="221" bordercolor="#C0C0C0" bgcolor="#C0C0C0" cellspacing="3" height="1">
+  <tr>
+    <td width="149" align="right" valign="top" height="4"><span class=yellow><b><font size="1" color="#FFFFFF" face="Arial">Local Time</font></b></span></td>
+    <td width="53" class=clocktext height="4"><font color="#C0C0C0"><input type="text" name="LocalTime" size="8" style="font-size: 8pt"></font></td>
+  </tr>
+  <tr>
+    <td width="149" align="right" valign="top" height="1"><span class=yellow><b><font size="1" color="#FFFFFF" face="Arial">Coordinated Universal Time (UTC)</font></b></span></td>
+    <td width="53" class=clocktext height="1"><input type="text" name="UTCTime" size="8" style="font-size: 8pt"></td>
+  </tr>
+  <tr>
+    <td width="149" align="right" valign="top" height="1"><span class=yellow><b><font size="1" color="#FFFFFF" face="Arial">Greenwich Sidereal Time (GST)</font></b></span></td>
+    <td width="53" class=clocktext height="1"><input type="text" name="GSTTime" size="8" style="font-size: 8pt; float: left">
+    </td>
+  </tr>
+  <tr>
+    <td width="149" align="right" valign="top" height="2"><span class=yellow><b><font size="1" color="#FFFFFF" face="Arial">Local Sidereal Time (LST)</font></b></span></td>
+    <td width="53" class=clocktext height="2"><input type="text" name="LSTTime" size="8" style="font-size: 8pt"></td>
+  </tr>
+</table>
+  </center>
+</div>
+</form>
+
+        </td>
+      </tr>
+    </table>      
+      </center>
+    </div>
+  </td>
+</table>
+  </center>
+</div>
+<P align="center"><font face="Arial" size="1" color="#808080">Last Modified:
+<SCRIPT language=JavaScript>
+a=new Array('January','February','March','April','May','June','July','August','September','October','November','December');
+dat=new Date(document.lastModified);year=dat.getYear(); if (year<1900) year=year+1900;
+document.write(a[dat.getMonth()] + " " + dat.getDate() + ", " + year + " by")
+</SCRIPT>
+ </FONT>
+
+</html>

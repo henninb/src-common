@@ -1,0 +1,2 @@
+Main-Class: magic_squares
+Class-Path: magic_squares.jar

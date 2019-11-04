@@ -1,0 +1,2 @@
+Main-Class: sidereal_time
+Class-Path: sidereal_time.jar

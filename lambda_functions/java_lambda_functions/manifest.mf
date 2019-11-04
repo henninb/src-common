@@ -1,0 +1,2 @@
+Main-Class: LambdaFunctions
+Class-Path: LambdaFunctions.jar

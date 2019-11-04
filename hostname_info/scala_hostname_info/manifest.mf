@@ -1,0 +1,2 @@
+Main-Class: hostname_info
+Class-Path: hostname_info.jar

@@ -1,0 +1,23 @@
+ifeq ($(OS),win32)
+  OS := win32
+else
+  OS := $(shell uname -s)
+endif
+
+all: unix
+win32:
+	@javac -cp jackson-core-2.8.10.jar;jackson-databind-2.8.10.jar JsonWrite.java
+	@jar cmf manifest.mf JsonWrite.jar JsonWrite.class Inner.class
+	@del JsonWrite.class
+unix:
+	@javac -cp jackson-core-2.8.10.jar:jackson-databind-2.8.10.jar JsonWrite.java
+	@jar cmf manifest.mf JsonWrite.jar JsonWrite.class Inner.class
+#	-@if exist rm JsonWrite.class
+	@rm JsonWrite.class
+gcj:
+	@gcj -c JsonWrite.java
+	@gcj JsonWrite.java --main=JsonWrite
+gradle:
+	@gradle build
+clean:
+	@rm JsonWrite.jar

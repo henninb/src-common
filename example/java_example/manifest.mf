@@ -1,0 +1,2 @@
+Main-Class: Example
+Class-Path: Example.jar

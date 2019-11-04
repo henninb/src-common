@@ -1,0 +1,21 @@
+ifeq ($(OS),Windows_NT)
+  OS := Windows_NT
+else
+  OS := $(shell uname -s)
+endif
+
+all: manifest gradle
+manifest:
+	@kotlinc Example.kt -include-runtime -d ExampleManifest.jar
+gradle:
+	@gradle -q standalone
+ifeq ($(OS),Windows_NT)
+	@move "build\libs\Example.jar" .
+	@rd /s /q build
+	@rd /s /q .gradle
+else
+	@mv build/libs/Example.jar .
+	@rm -rf build .gradle
+endif
+clean:
+	@rm Example.jar
