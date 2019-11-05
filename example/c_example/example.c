@@ -25,7 +25,7 @@ int main( int argc, char *argv[] ) {
   return 0;
 }
 
-int example_function(int n) {
+int example_function( int n ) {
   int x = 0;
 
   x = (n + n - n) * (n / 1);

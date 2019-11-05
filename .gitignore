@@ -4,3 +4,7 @@
 *.beam
 uberjar/
 default/
+META-INF/
+build/
+.gradle/
+target/
