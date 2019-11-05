@@ -55,7 +55,7 @@ begin
   Put_line ("Day_In_Year :" & Day_In_Year(Now)'Img);
   put_line ("Week_In_Year :" & Week_In_Year(Now)'Img);
 
-  gnat.calendar.time_io.put_time(ada.calendar.clock, "Date: %Y/%m/%d Time: %H:%M:%S");
+  gnat.calendar.time_io.put_time(ada.calendar.clock, "datetime Local - %Y-%m-%d Time: %H:%M:%S");
   put_line("");
-  put_line(Ada.Calendar.Formatting.Image(now));
+  put_line("datetime UTC - " & Ada.Calendar.Formatting.Image(now));
 end  date_dow;
