@@ -1,5 +1,6 @@
 *.exe
 *.jar
 *.dll
+*.beam
 uberjar/
 default/
