@@ -1,0 +1,5 @@
+*.exe
+*.jar
+*.dll
+uberjar/
+default/
