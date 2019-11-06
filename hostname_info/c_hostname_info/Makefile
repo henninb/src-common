@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc hostname_info.c -o hostname_info.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST hostname_info.c hostname_info_test.c -o hostname_info_test.exe -O2 -Wall -lm -lcunit
 	@gcc hostname_info.c -o hostname_info.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc hostname_info.c -o hostname_info.exe -O2 -Wall

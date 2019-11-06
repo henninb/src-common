@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc network_tcp_client_server.c -o network_tcp_client_server.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST network_tcp_client_server.c network_tcp_client_server_test.c -o network_tcp_client_server_test.exe -O2 -Wall -lm -lcunit
 	@gcc network_tcp_client_server.c -o network_tcp_client_server.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc network_tcp_client_server.c -o network_tcp_client_server.exe -O2 -Wall

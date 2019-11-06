@@ -98,7 +98,7 @@ int dateMonth() {
 
   now = time(NULL);
   tm_ptr = localtime(&now);
-  
+
   return tm_ptr->tm_mon + 1;
 }
 
@@ -108,6 +108,6 @@ int dateDay() {
 
   now = time(NULL);
   tm_ptr = localtime(&now);
-  
+
   return tm_ptr->tm_mday;
 }

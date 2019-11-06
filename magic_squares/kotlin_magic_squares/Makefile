@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc MagicSquares.kt -include-runtime -d MagicSquaresManifest.jar
+	@kotlinc MagicSquares.kt -include-runtime -d MagicSquares.jar
+	@rm -rf MagicSquares
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

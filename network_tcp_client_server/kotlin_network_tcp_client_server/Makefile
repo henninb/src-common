@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc NetworkTcpClientServer.kt -include-runtime -d NetworkTcpClientServerManifest.jar
+	@kotlinc NetworkTcpClientServer.kt -include-runtime -d NetworkTcpClientServer.jar
+	@rm -rf NetworkTcpClientServer
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

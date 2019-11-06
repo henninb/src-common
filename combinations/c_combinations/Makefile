@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc combinations.c -o combinations.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST combinations.c combinations_test.c -o combinations_test.exe -O2 -Wall -lm -lcunit
 	@gcc combinations.c -o combinations.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc combinations.c -o combinations.exe -O2 -Wall

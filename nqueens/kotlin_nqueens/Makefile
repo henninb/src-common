@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Nqueens.kt -include-runtime -d NqueensManifest.jar
+	@kotlinc Nqueens.kt -include-runtime -d Nqueens.jar
+	@rm -rf Nqueens
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

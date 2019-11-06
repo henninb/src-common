@@ -29,7 +29,7 @@ int main( int argc, char *argv[] ) {
   list.arr[7] = 7;
   list.arr[8] = 3;
   list.arr[9] = 9;
-  
+
   list.len = sizeof(list.arr) / sizeof(int);
 
   print_int_array(&list);
@@ -78,7 +78,7 @@ static void swap( int *a, int *b ) {
 void bubble_sort( struct List *list ) {
   int idx_i = 0;
   int idx_j = 0;
-  
+
   for( idx_i = 0 ; idx_i < list->len - 1; idx_i++ ) {
     for( idx_j = 0 ; idx_j < list->len - idx_i - 1; idx_j++ ) {
       if (list->arr[idx_j] > list->arr[idx_j + 1]) {

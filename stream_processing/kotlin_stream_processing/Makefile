@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc StreamProcessing.kt -include-runtime -d StreamProcessingManifest.jar
+	@kotlinc StreamProcessing.kt -include-runtime -d StreamProcessing.jar
+	@rm -rf StreamProcessing
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

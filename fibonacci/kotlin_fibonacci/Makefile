@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Fibonacci.kt -include-runtime -d FibonacciManifest.jar
+	@kotlinc Fibonacci.kt -include-runtime -d Fibonacci.jar
+	@rm -rf Fibonacci
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

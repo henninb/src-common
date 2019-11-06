@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc linked_list.c -o linked_list.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST linked_list.c linked_list_test.c -o linked_list_test.exe -O2 -Wall -lm -lcunit
 	@gcc linked_list.c -o linked_list.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc linked_list.c -o linked_list.exe -O2 -Wall

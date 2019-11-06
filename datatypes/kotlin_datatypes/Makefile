@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Datatypes.kt -include-runtime -d DatatypesManifest.jar
+	@kotlinc Datatypes.kt -include-runtime -d Datatypes.jar
+	@rm -rf Datatypes
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

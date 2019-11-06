@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc EntryPoint.kt -include-runtime -d EntryPointManifest.jar
+	@kotlinc EntryPoint.kt -include-runtime -d EntryPoint.jar
+	@rm -rf EntryPoint
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc quadratic.c -o quadratic.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST quadratic.c quadratic_test.c -o quadratic_test.exe -O2 -Wall -lm -lcunit
 	@gcc quadratic.c -o quadratic.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc quadratic.c -o quadratic.exe -O2 -Wall

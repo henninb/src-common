@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc roman.c -o roman.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST roman.c roman_test.c -o roman_test.exe -O2 -Wall -lm -lcunit
 	@gcc roman.c -o roman.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc roman.c -o roman.exe -O2 -Wall

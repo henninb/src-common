@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc easter_calculator.c -o easter_calculator.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST easter_calculator.c easter_calculator_test.c -o easter_calculator_test.exe -O2 -Wall -lm -lcunit
 	@gcc easter_calculator.c -o easter_calculator.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc easter_calculator.c -o easter_calculator.exe -O2 -Wall

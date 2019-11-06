@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc pi_calculate.c -o pi_calculate.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST pi_calculate.c pi_calculate_test.c -o pi_calculate_test.exe -O2 -Wall -lm -lcunit
 	@gcc pi_calculate.c -o pi_calculate.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc pi_calculate.c -o pi_calculate.exe -O2 -Wall

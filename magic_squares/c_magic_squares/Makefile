@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc magic_squares.c -o magic_squares.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST magic_squares.c magic_squares_test.c -o magic_squares_test.exe -O2 -Wall -lm -lcunit
 	@gcc magic_squares.c -o magic_squares.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc magic_squares.c -o magic_squares.exe -O2 -Wall

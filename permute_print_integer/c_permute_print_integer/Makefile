@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc permute_print_integer.c -o permute_print_integer.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST permute_print_integer.c permute_print_integer_test.c -o permute_print_integer_test.exe -O2 -Wall -lm -lcunit
 	@gcc permute_print_integer.c -o permute_print_integer.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc permute_print_integer.c -o permute_print_integer.exe -O2 -Wall

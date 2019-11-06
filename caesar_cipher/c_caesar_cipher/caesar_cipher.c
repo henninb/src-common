@@ -16,7 +16,7 @@ int main( int argc, char *argv[] ) {
     fprintf(stderr, "Usage: %s <noargs>\n", argv[0]);
     exit(1);
   }
-  
+
   printf("Original: %s\n", str);
   caesar(str);
   printf("Encrypted: %s\n", str);

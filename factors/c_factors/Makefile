@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc factors.c -o factors.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST factors.c factors_test.c -o factors_test.exe -O2 -Wall -lm -lcunit
 	@gcc factors.c -o factors.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc factors.c -o factors.exe -O2 -Wall

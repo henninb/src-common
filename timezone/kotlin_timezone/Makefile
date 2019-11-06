@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Timezone.kt -include-runtime -d TimezoneManifest.jar
+	@kotlinc Timezone.kt -include-runtime -d Timezone.jar
+	@rm -rf Timezone
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc postgresql_connect.c -o postgresql_connect.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST postgresql_connect.c postgresql_connect_test.c -o postgresql_connect_test.exe -O2 -Wall -lm -lcunit
 	@gcc postgresql_connect.c -o postgresql_connect.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc postgresql_connect.c -o postgresql_connect.exe -O2 -Wall

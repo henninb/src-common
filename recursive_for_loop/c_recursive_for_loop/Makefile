@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc recursive_for_loop.c -o recursive_for_loop.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST recursive_for_loop.c recursive_for_loop_test.c -o recursive_for_loop_test.exe -O2 -Wall -lm -lcunit
 	@gcc recursive_for_loop.c -o recursive_for_loop.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc recursive_for_loop.c -o recursive_for_loop.exe -O2 -Wall

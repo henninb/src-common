@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc DegreesToRadians.kt -include-runtime -d DegreesToRadiansManifest.jar
+	@kotlinc DegreesToRadians.kt -include-runtime -d DegreesToRadians.jar
+	@rm -rf DegreesToRadians
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

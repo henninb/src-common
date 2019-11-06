@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Base64Encode.kt -include-runtime -d Base64EncodeManifest.jar
+	@kotlinc Base64Encode.kt -include-runtime -d Base64Encode.jar
+	@rm -rf Base64Encode
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Roman.kt -include-runtime -d RomanManifest.jar
+	@kotlinc Roman.kt -include-runtime -d Roman.jar
+	@rm -rf Roman
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

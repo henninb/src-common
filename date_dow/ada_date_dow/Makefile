@@ -18,7 +18,7 @@ Windows_NT:
 	@del date_dow.ali
 unix:
 ifeq ($(DISTRO),LinuxMint)
-	@gnat make date_dow.adb 2> /dev/null
+	@gnat make date_dow.adb
 	@mv date_dow date_dow.exe
 	@rm date_dow.o
 	@rm date_dow.ali

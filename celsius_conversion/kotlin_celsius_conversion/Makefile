@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc CelsiusConversion.kt -include-runtime -d CelsiusConversionManifest.jar
+	@kotlinc CelsiusConversion.kt -include-runtime -d CelsiusConversion.jar
+	@rm -rf CelsiusConversion
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

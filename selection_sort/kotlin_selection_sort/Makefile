@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc SelectionSort.kt -include-runtime -d SelectionSortManifest.jar
+	@kotlinc SelectionSort.kt -include-runtime -d SelectionSort.jar
+	@rm -rf SelectionSort
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

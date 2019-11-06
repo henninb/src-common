@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc LinearCombination.kt -include-runtime -d LinearCombinationManifest.jar
+	@kotlinc LinearCombination.kt -include-runtime -d LinearCombination.jar
+	@rm -rf LinearCombination
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

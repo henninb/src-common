@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc SiderealTime.kt -include-runtime -d SiderealTimeManifest.jar
+	@kotlinc SiderealTime.kt -include-runtime -d SiderealTime.jar
+	@rm -rf SiderealTime
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

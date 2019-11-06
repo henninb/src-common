@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc EnvVariable.kt -include-runtime -d EnvVariableManifest.jar
+	@kotlinc EnvVariable.kt -include-runtime -d EnvVariable.jar
+	@rm -rf EnvVariable
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

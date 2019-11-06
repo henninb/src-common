@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc PiCalculate.kt -include-runtime -d PiCalculateManifest.jar
+	@kotlinc PiCalculate.kt -include-runtime -d PiCalculate.jar
+	@rm -rf PiCalculate
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

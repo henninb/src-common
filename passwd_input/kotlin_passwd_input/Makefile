@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc PasswdInput.kt -include-runtime -d PasswdInputManifest.jar
+	@kotlinc PasswdInput.kt -include-runtime -d PasswdInput.jar
+	@rm -rf PasswdInput
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

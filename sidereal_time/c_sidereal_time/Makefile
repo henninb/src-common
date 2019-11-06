@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc sidereal_time.c -o sidereal_time.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST sidereal_time.c sidereal_time_test.c -o sidereal_time_test.exe -O2 -Wall -lm -lcunit
 	@gcc sidereal_time.c -o sidereal_time.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc sidereal_time.c -o sidereal_time.exe -O2 -Wall

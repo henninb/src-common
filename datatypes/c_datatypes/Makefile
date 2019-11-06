@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc datatypes.c -o datatypes.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST datatypes.c datatypes_test.c -o datatypes_test.exe -O2 -Wall -lm -lcunit
 	@gcc datatypes.c -o datatypes.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc datatypes.c -o datatypes.exe -O2 -Wall

@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc HostnameInfo.kt -include-runtime -d HostnameInfoManifest.jar
+	@kotlinc HostnameInfo.kt -include-runtime -d HostnameInfo.jar
+	@rm -rf HostnameInfo
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

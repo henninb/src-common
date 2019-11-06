@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc euler_phi.c -o euler_phi.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST euler_phi.c euler_phi_test.c -o euler_phi_test.exe -O2 -Wall -lm -lcunit
 	@gcc euler_phi.c -o euler_phi.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc euler_phi.c -o euler_phi.exe -O2 -Wall

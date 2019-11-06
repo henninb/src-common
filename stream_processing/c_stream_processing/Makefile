@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc stream_processing.c -o stream_processing.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST stream_processing.c stream_processing_test.c -o stream_processing_test.exe -O2 -Wall -lm -lcunit
 	@gcc stream_processing.c -o stream_processing.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc stream_processing.c -o stream_processing.exe -O2 -Wall

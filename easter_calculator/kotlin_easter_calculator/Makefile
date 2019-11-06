@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc EasterCalculator.kt -include-runtime -d EasterCalculatorManifest.jar
+	@kotlinc EasterCalculator.kt -include-runtime -d EasterCalculator.jar
+	@rm -rf EasterCalculator
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

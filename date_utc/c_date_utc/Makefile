@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc date_utc.c -o date_utc.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST date_utc.c date_utc_test.c -o date_utc_test.exe -O2 -Wall -lm -lcunit
 	@gcc date_utc.c -o date_utc.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc date_utc.c -o date_utc.exe -O2 -Wall

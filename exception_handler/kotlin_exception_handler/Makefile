@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc ExceptionHandler.kt -include-runtime -d ExceptionHandlerManifest.jar
+	@kotlinc ExceptionHandler.kt -include-runtime -d ExceptionHandler.jar
+	@rm -rf ExceptionHandler
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

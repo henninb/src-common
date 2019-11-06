@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Anagram.kt -include-runtime -d AnagramManifest.jar
+	@kotlinc Anagram.kt -include-runtime -d Anagram.jar
+	@rm -rf Anagram
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

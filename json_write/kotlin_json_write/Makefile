@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc JsonWrite.kt -include-runtime -d JsonWriteManifest.jar
+	@kotlinc JsonWrite.kt -include-runtime -d JsonWrite.jar
+	@rm -rf JsonWrite
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc leap_year.c -o leap_year.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST leap_year.c leap_year_test.c -o leap_year_test.exe -O2 -Wall -lm -lcunit
 	@gcc leap_year.c -o leap_year.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc leap_year.c -o leap_year.exe -O2 -Wall

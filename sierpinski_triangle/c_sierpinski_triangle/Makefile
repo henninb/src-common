@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc sierpinski_triangle.c -o sierpinski_triangle.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST sierpinski_triangle.c sierpinski_triangle_test.c -o sierpinski_triangle_test.exe -O2 -Wall -lm -lcunit
 	@gcc sierpinski_triangle.c -o sierpinski_triangle.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc sierpinski_triangle.c -o sierpinski_triangle.exe -O2 -Wall

@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc Sleep.kt -include-runtime -d SleepManifest.jar
+	@kotlinc Sleep.kt -include-runtime -d Sleep.jar
+	@rm -rf Sleep
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

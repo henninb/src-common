@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc LinkedList.kt -include-runtime -d LinkedListManifest.jar
+	@kotlinc LinkedList.kt -include-runtime -d LinkedList.jar
+	@rm -rf LinkedList
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

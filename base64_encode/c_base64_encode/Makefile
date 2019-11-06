@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc base64_encode.c -o base64_encode.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST base64_encode.c base64_encode_test.c -o base64_encode_test.exe -O2 -Wall -lm -lcunit
 	@gcc base64_encode.c -o base64_encode.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc base64_encode.c -o base64_encode.exe -O2 -Wall

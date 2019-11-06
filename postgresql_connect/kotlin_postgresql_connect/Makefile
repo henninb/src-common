@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc PostgresqlConnect.kt -include-runtime -d PostgresqlConnectManifest.jar
+	@kotlinc PostgresqlConnect.kt -include-runtime -d PostgresqlConnect.jar
+	@rm -rf PostgresqlConnect
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

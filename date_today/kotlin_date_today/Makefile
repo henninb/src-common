@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc DateToday.kt -include-runtime -d DateTodayManifest.jar
+	@kotlinc DateToday.kt -include-runtime -d DateToday.jar
+	@rm -rf DateToday
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

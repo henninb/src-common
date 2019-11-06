@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc RecursiveForLoop.kt -include-runtime -d RecursiveForLoopManifest.jar
+	@kotlinc RecursiveForLoop.kt -include-runtime -d RecursiveForLoop.jar
+	@rm -rf RecursiveForLoop
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

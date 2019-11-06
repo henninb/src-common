@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc BubbleSort.kt -include-runtime -d BubbleSortManifest.jar
+	@kotlinc BubbleSort.kt -include-runtime -d BubbleSort.jar
+	@rm -rf BubbleSort
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

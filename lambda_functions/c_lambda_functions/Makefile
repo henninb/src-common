@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc lambda_functions.c -o lambda_functions.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST lambda_functions.c lambda_functions_test.c -o lambda_functions_test.exe -O2 -Wall -lm -lcunit
 	@gcc lambda_functions.c -o lambda_functions.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc lambda_functions.c -o lambda_functions.exe -O2 -Wall

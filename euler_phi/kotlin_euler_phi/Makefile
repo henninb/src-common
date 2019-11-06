@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc EulerPhi.kt -include-runtime -d EulerPhiManifest.jar
+	@kotlinc EulerPhi.kt -include-runtime -d EulerPhi.jar
+	@rm -rf EulerPhi
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

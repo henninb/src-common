@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc PermutePrintInteger.kt -include-runtime -d PermutePrintIntegerManifest.jar
+	@kotlinc PermutePrintInteger.kt -include-runtime -d PermutePrintInteger.jar
+	@rm -rf PermutePrintInteger
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

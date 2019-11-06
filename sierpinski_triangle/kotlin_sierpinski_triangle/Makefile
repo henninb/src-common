@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc SierpinskiTriangle.kt -include-runtime -d SierpinskiTriangleManifest.jar
+	@kotlinc SierpinskiTriangle.kt -include-runtime -d SierpinskiTriangle.jar
+	@rm -rf SierpinskiTriangle
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)

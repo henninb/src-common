@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc luhn.c -o luhn.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST luhn.c luhn_test.c -o luhn_test.exe -O2 -Wall -lm -lcunit
 	@gcc luhn.c -o luhn.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc luhn.c -o luhn.exe -O2 -Wall

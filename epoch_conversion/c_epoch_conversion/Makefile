@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc epoch_conversion.c -o epoch_conversion.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST epoch_conversion.c epoch_conversion_test.c -o epoch_conversion_test.exe -O2 -Wall -lm -lcunit
 	@gcc epoch_conversion.c -o epoch_conversion.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc epoch_conversion.c -o epoch_conversion.exe -O2 -Wall

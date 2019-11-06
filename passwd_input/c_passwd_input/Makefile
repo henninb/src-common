@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc passwd_input.c -o passwd_input.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST passwd_input.c passwd_input_test.c -o passwd_input_test.exe -O2 -Wall -lm -lcunit
 	@gcc passwd_input.c -o passwd_input.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc passwd_input.c -o passwd_input.exe -O2 -Wall

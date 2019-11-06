@@ -4,10 +4,13 @@ else
   OS := $(shell uname -s)
 endif
 
+#CFLAGS += -D UNIT_TEST
+
 all: unix
 Windows_NT:
 	@gcc julian_date.c -o julian_date.exe -O2 -Wall
 unix:
+	@gcc -D UNIT_TEST julian_date.c julian_date_test.c -o julian_date_test.exe -O2 -Wall -lm -lcunit
 	@gcc julian_date.c -o julian_date.exe -O2 -Wall -lm
 mingw64:
 	@x86_64-w64-mingw32-gcc julian_date.c -o julian_date.exe -O2 -Wall

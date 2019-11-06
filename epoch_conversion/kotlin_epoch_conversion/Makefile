@@ -4,9 +4,10 @@ else
   OS := $(shell uname -s)
 endif
 
-all: manifest gradle
+all: manifest
 manifest:
-	@kotlinc EpochConversion.kt -include-runtime -d EpochConversionManifest.jar
+	@kotlinc EpochConversion.kt -include-runtime -d EpochConversion.jar
+	@rm -rf EpochConversion
 gradle:
 	@gradle -q standalone
 ifeq ($(OS),Windows_NT)
