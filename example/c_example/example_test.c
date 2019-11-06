@@ -11,7 +11,7 @@ int clean_suite1() {
 
 void test_example_function() {
   CU_ASSERT(81 == example_function(9));
-  //CU_ASSERT(8 == example_function(9));
+  CU_ASSERT(121 == example_function(11));
 }
 
 int example_function_test() {
