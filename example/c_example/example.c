@@ -9,20 +9,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-int example_function( int );
+#include "example.h"
+#ifdef UNIT_TEST
+#include "example_test.h"
+#endif
 
 int main( int argc, char *argv[] ) {
-  int idx_i;
 
   if( argc != 1 ) {
     fprintf(stderr, "Usage: %s <noargs>\n", argv[0]);
     exit(1);
   }
+#ifdef UNIT_TEST
+  example_function_test();
+#else
+  loop();
+#endif
+  return 0;
+}
+
+void loop() {
+  int idx_i = 0;
   for( idx_i = 1; idx_i < 10; idx_i++ ) {
     fprintf(stdout, "example_function(%d)=<%d>\n", idx_i, example_function(idx_i));
   }
-  return 0;
 }
 
 int example_function( int n ) {
