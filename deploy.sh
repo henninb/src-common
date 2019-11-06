@@ -19,8 +19,8 @@ RUNALL_MD5_SRC=$(md5sum run_all_master.sh | awk '{print $1;}')
 echo ${NORMALIZE_MD5_SRC}
 for ELEMENT in $(find . -mindepth 1 -maxdepth 1 -type d -print | sort); do
   echo "${ELEMENT}"
-  NORMALIZE_MD5_DEST=$(md5sum ${ELEMENT}/copy_programs_here.sh | awk '{print $1;}') 
-  RUNALL_MD5_DEST=$(md5sum ${ELEMENT}/run_all.sh | awk '{print $1;}') 
+  NORMALIZE_MD5_DEST=$(md5sum ${ELEMENT}/copy_programs_here.sh | awk '{print $1;}')
+  RUNALL_MD5_DEST=$(md5sum ${ELEMENT}/run_all.sh | awk '{print $1;}')
   if [ "$NORMALIZE_MD5_SRC" = "$NORMALIZE_MD5_DEST" ]; then
     echo "no action required for copy_programs_here.sh"
   else
