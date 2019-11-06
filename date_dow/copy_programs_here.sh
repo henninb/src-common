@@ -9,7 +9,7 @@ if [ "$(uname -s)" = "FreeBSD" ]; then
   exit 2
 fi
 
-echo "check for python"
+#echo "check for python"
 
 deployFile() {
   local LANGUAGE=$1
