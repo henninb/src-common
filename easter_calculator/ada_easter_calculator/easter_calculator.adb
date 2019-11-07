@@ -4,13 +4,6 @@ with ada.command_line;
 use ada.command_line;
 
 procedure easter_calculator is
-  package number_io is new integer_io(integer);
-  use number_io;
-  package float1_io is new float_io(float);
-  use float1_io;
-
-  --year : integer;
-
   procedure easterCalculator( year : integer) is
     A: integer;
     B: integer;
@@ -45,7 +38,7 @@ procedure easter_calculator is
       return;
     end if;
 
-    for idx_i in Integer range 2018 .. 2100 loop
+    for idx_i in Integer range 2019 .. 2100 loop
       easterCalculator(idx_i);
     end loop;
 end easter_calculator;
