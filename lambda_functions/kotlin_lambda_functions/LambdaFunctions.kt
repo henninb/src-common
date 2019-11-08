@@ -11,6 +11,7 @@ class LambdaFunctions {
   }
 
   val square = { number: Int -> number * number }
+  val array = arrayOf(1, 2, 3, 4, 5, 6)
 }
 
 fun main(args : Array<String>) {
@@ -24,5 +25,6 @@ fun main(args : Array<String>) {
     println("lambda_function(" + idx_i + ")=<" + lambda_functions.calculateGrade(idx_i) + ">")
     println("lambda_function(" + idx_i + ")=<" + lambda_functions.square(idx_i) + ">")
   }
+  lambda_functions.array.forEach { println(it * 4) }
 }
 
