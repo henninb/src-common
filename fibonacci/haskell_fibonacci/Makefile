@@ -10,7 +10,8 @@ Windows_NT:
 	@ghc fibonacci.hs -o fibonacci.exe
 	@del fibonacci.o fibonacci.hi
 unix:
-	@ghc fibonacci.hs -o fibonacci.exe # >&/dev/null
+	#@ghc fibonacci.hs -o fibonacci.exe # >&/dev/null
+	@stack ghc fibonacci.hs # >&/dev/null
 	@rm fibonacci.o fibonacci.hi
 clean:
 	@rm fibonacci.exe
