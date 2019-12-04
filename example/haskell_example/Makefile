@@ -10,7 +10,8 @@ Windows_NT:
 	@ghc example.hs -o example.exe
 	@del example.o example.hi
 unix:
-	@ghc example.hs -o example.exe # >&/dev/null
+#	@stack ghc example.hs -o example.exe # >&/dev/null
+	@stack ghc example.hs
 	@rm example.o example.hi
 clean:
 	@rm example.exe
