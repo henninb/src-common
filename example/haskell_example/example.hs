@@ -1,9 +1,9 @@
 --comment
 
-example_function :: Int -> Int
-example_function n = (n + n - n) * n
+exampleFunction :: Int -> Int
+exampleFunction n = (n + n - n) * n
 
-exampleList = unlines . map (show . example_function)
+exampleList = unlines . map (show . exampleFunction)
 
 main :: IO()
 main = putStrLn $ exampleList [1..10]
