@@ -9,12 +9,12 @@ import Data.Char
 --import Time
 import Data.Time
 
-example_function n = n
+exampleFunction n = n
 
 main =
    let
      idx_i = 1
      y = 1
    in do
-   putStrLn("example_function(" ++ show(idx_i) ++ ")=" ++ show(example_function(idx_i)))
-   putStrLn("example_function(" ++ show(idx_i) ++ ")=" ++ show(example_function(idx_i)))
+   putStrLn("exampleFunction(" ++ show(idx_i) ++ ")=" ++ show(exampleFunction(idx_i)))
+   putStrLn("exampleFunction(" ++ show(idx_i) ++ ")=" ++ show(exampleFunction(idx_i)))
