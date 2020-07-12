@@ -4,8 +4,7 @@ gcd x y = gcd_ (abs x) (abs y)
     gcd_ a 0 = a
     gcd_ a b = gcd_ b (a `rem` b)
 
-main = do
-  putStrLn "i7"
+main = putStrLn "i7"
   --args <- getArgs
   --    --let upper_bound = args !! 0
   --       repeatNTimes(10)
