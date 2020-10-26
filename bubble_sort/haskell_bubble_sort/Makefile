@@ -10,7 +10,7 @@ Windows_NT:
 	@ghc bubble_sort.hs -o bubble_sort.exe
 	@del bubble_sort.o bubble_sort.hi
 unix:
-	@ghc bubble_sort.hs -o bubble_sort.exe # >&/dev/null
+	@stack ghc -- --make bubble_sort.hs -o bubble_sort.exe # >&/dev/null
 	@rm bubble_sort.o bubble_sort.hi
 clean:
 	@rm bubble_sort.exe

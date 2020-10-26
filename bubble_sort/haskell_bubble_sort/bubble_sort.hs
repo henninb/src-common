@@ -1,10 +1,12 @@
 main :: IO ()
-main = putStrLn "Hello World"
+main = do
+  let sortedList = bubbleSort [4,7,8,1,3,11,9]
+  print sortedList
 
-bsort :: Ord a => [a] -> [a]
-bsort s = case _bsort s of
+bubbleSort :: Ord a => [a] -> [a]
+bubbleSort s = case _bubbleSort s of
                t | t == s    -> t
-                 | otherwise -> bsort t
-  where _bsort (x:x2:xs) | x > x2    = x2: _bsort (x:xs)
-                         | otherwise = x: _bsort (x2:xs)
-        _bsort s = s
+                 | otherwise -> bubbleSort t
+  where _bubbleSort (x:x2:xs) | x > x2    = x2: _bubbleSort (x:xs)
+                         | otherwise = x: _bubbleSort (x2:xs)
+        _bubbleSort s = s
