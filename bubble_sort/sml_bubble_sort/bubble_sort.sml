@@ -1,4 +1,7 @@
-fun printList(list1) = if list1 = nil then () else (print(Int.toString(hd(list1)) ^ ", ");printList(tl(list1)));
+
+  (* fix to handle the last item *)
+fun printLst [] = (print "\n")
+  | printLst l  = (print(Int.toString(hd(l)) ^ ", ");printLst(tl(l)));
 
 fun bubble R [] = []
   | bubble R [h] = [h]
@@ -36,11 +39,9 @@ fun main() =
       let
       val newlist = bubble_sort (op <) mlist;
       in
-       printList(newlist);
-       print("\n")
+       printLst(newlist)
       end
     )
   end;
 
 val _ = main();
-

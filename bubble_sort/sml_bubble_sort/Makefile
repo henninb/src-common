@@ -4,7 +4,7 @@ else
   OS := $(shell uname -s)
 endif
 
-all: mosml
+all: mlton
 mosml:
 	@mosmlc -P full bubble_sort.sml -o bubble_sort.exe
 	@rm bubble_sort.ui
