@@ -4,7 +4,7 @@ else
   OS := $(shell uname -s)
 endif
 
-all: mosml
+all: mlton
 mosml:
 	@mosmlc -P full factorial.sml -o factorial.exe
 	@rm factorial.ui

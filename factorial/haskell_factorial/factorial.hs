@@ -1,4 +1,3 @@
---comment
 --factorial n = if n == 0 then 1 else n * factorial (n-1)
 factorial:: Int -> Int
 factorial 0 = 0
