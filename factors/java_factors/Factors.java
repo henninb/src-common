@@ -10,10 +10,10 @@ public class Factors {
       System.exit(1);
     }
 
-    factor(1150);
+    printFactor(1150);
   }
 
-  public static void factor( long n ) {
+  public static void printFactor( long n ) {
     System.out.println(1);
     for( long test = n - 1; test >= Math.sqrt(n); test-- ) {
       if( n % test == 0 ) {
