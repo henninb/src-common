@@ -44,6 +44,8 @@ engineerNumber = 6
 
 nextOncallDay :: Day -> Integer -> Day
 nextOncallDay prev eng = addDays ((eng -1)*3) prev
+  where
+    test = 1
 
 -- endOfYear :: Day -> Day
 -- endOfYear day =
