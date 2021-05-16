@@ -16,10 +16,12 @@ import Prelude
 -- data Month = January | February | March | April | May | June | July | August | September | October | November | December
 -- data Day = Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
 
+-- startDate = fromGregorian 2021 5 30
 startDate = fromGregorian 2021 5 12
+-- startDate = fromGregorian 2021 4 24
 
-b = addDays 1 startDate
-x = diffDays b startDate
+-- b = addDays 1 startDate
+-- x = diffDays b startDate
 
 endOfMonth :: Day -> Day
 endOfMonth day =
@@ -43,16 +45,18 @@ engineerNumber = 6
 nextOncallDay :: Day -> Integer -> Day
 nextOncallDay prevDay numOfPeople = addDays numOfPeople prevDay
   where
-    dayCount = (numOfPeople -1)*3
+    dayCount = numOfPeople * 3
+
+nextOncallDayNew :: Day -> Integer -> IO Day
+nextOncallDayNew prevDay numOfPeople = do
+  now <- currDay
+  let dayCount = numOfPeople * 3
+  let next = addDays numOfPeople prevDay
+  let x = if diffDays now next > dayCount then nextOncallDay next numOfPeople else next
+  return x
 
 currDay :: IO Day
 currDay = do localDay . zonedTimeToLocalTime <$> getZonedTime
-
--- local :: IO Day
--- local = do
---     now <- getZonedTime
---     return $ localDay (zonedTimeToLocalTime now)
---     return ()
 
 daysTo (year, month, day) = do
     now <- getZonedTime
@@ -60,10 +64,6 @@ daysTo (year, month, day) = do
         current = fromGregorian y m d
         prior = fromGregorian year month day
     return (diffDays prior current)
-
--- local = do
---     now <- getZonedTime
---     return ()
 
 -- endOfYear :: Day -> Day
 -- endOfYear day =
@@ -78,14 +78,10 @@ previousFriday d
     (_, _, wd) = toWeekDate d
 
 main = do
-  now <- getZonedTime
-  -- -- curr_time <- SYS.getClockTime
-  let today = localDay $ zonedTimeToLocalTime now
-  --curr_str <- fmap (formatTime defaultTimeLocale "%Y-%m-%d") getClockTime
-  -- print curr_time
-  -- tm <- localtime
-  -- putStrLn $ "Today is day " ++ show (SYS.ctYDay tm) ++ " of the current year"
-  print today
-  print (beginningOfCurrMonth today)
-  print (diffDays today startDate)
+  today <- currDay
+  next <- nextOncallDayNew startDate engineerNumber
+  -- print today
+  -- print (beginningOfCurrMonth today)
+  -- print (diffDays today startDate)
   print (nextOncallDay startDate engineerNumber)
+  print next
