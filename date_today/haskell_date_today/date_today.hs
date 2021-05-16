@@ -16,12 +16,7 @@ import Prelude
 -- data Month = January | February | March | April | May | June | July | August | September | October | November | December
 -- data Day = Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
 
--- startDate = fromGregorian 2021 5 30
---startDate = fromGregorian 2021 5 12
 startDate = fromGregorian 2021 4 24
-
--- b = addDays 1 startDate
--- x = diffDays b startDate
 
 endOfMonth :: Day -> Day
 endOfMonth day =
@@ -42,10 +37,10 @@ beginningOfPrev2Month = addGregorianMonthsClip (-2) . beginningOfCurrMonth
 engineerNumber :: Integer
 engineerNumber = 6
 
-nextOncallDay :: Day -> Integer -> Day
-nextOncallDay prevDay numOfPeople = addDays dayCount prevDay
-  where
-    dayCount = numOfPeople * 3
+-- nextOncallDay :: Day -> Integer -> Day
+-- nextOncallDay prevDay numOfPeople = addDays dayCount prevDay
+--   where
+--     dayCount = numOfPeople * 3
 
 nextOncallDayNew :: Day -> Integer -> IO Day
 nextOncallDayNew prevDay numOfPeople = do
@@ -84,7 +79,5 @@ main = do
   today <- currDay
   next <- nextOncallDayNew startDate engineerNumber
   print today
-  -- print (beginningOfCurrMonth today)
   print (diffDays next today)
-  -- print (nextOncallDay startDate engineerNumber)
   print next
