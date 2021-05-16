@@ -17,8 +17,8 @@ import Prelude
 -- data Day = Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
 
 -- startDate = fromGregorian 2021 5 30
-startDate = fromGregorian 2021 5 12
--- startDate = fromGregorian 2021 4 24
+--startDate = fromGregorian 2021 5 12
+startDate = fromGregorian 2021 4 24
 
 -- b = addDays 1 startDate
 -- x = diffDays b startDate
@@ -43,17 +43,20 @@ engineerNumber :: Integer
 engineerNumber = 6
 
 nextOncallDay :: Day -> Integer -> Day
-nextOncallDay prevDay numOfPeople = addDays numOfPeople prevDay
+nextOncallDay prevDay numOfPeople = addDays dayCount prevDay
   where
     dayCount = numOfPeople * 3
 
 nextOncallDayNew :: Day -> Integer -> IO Day
 nextOncallDayNew prevDay numOfPeople = do
   now <- currDay
-  let dayCount = numOfPeople * 3
-  let next = addDays numOfPeople prevDay
-  let x = if diffDays now next > dayCount then nextOncallDay next numOfPeople else next
-  return x
+  let diff = diffDays now startDate
+  let dayCountOne = numOfPeople * 3
+  let interval = div diff dayCountOne
+  let dayCount = (numOfPeople * 3) + (interval * dayCountOne)
+  let next = addDays dayCount prevDay
+  -- let x = if diffDays now next > dayCount then nextOncallDay next numOfPeople else next
+  return next
 
 currDay :: IO Day
 currDay = do localDay . zonedTimeToLocalTime <$> getZonedTime
@@ -80,8 +83,8 @@ previousFriday d
 main = do
   today <- currDay
   next <- nextOncallDayNew startDate engineerNumber
-  -- print today
+  print today
   -- print (beginningOfCurrMonth today)
-  -- print (diffDays today startDate)
-  print (nextOncallDay startDate engineerNumber)
+  print (diffDays next today)
+  -- print (nextOncallDay startDate engineerNumber)
   print next
