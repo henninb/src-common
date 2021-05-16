@@ -5,8 +5,9 @@ import Data.Time.Clock
 import Data.Time.LocalTime
 import Data.Time.Calendar.OrdinalDate
 import Data.Time.Calendar.WeekDate   (toWeekDate)
+-- import Control.Monad.IO.Class (MonadIO, liftIO)
 -- import Data.Time.TH (mkDay, mkUTCTime)
-import qualified System.Time as SYS
+-- import qualified System.Time as SYS
 --import System.Locale (defaultTimeLocale)
 -- import System.Locale
 import Prelude
@@ -14,9 +15,6 @@ import Prelude
 
 -- data Month = January | February | March | April | May | June | July | August | September | October | November | December
 -- data Day = Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
-
--- localtime :: IO SYS.CalendarTime
--- localtime = SYS.getClockTime >>= SYS.toCalendarTime
 
 startDate = fromGregorian 2021 5 12
 
@@ -43,9 +41,29 @@ engineerNumber :: Integer
 engineerNumber = 6
 
 nextOncallDay :: Day -> Integer -> Day
-nextOncallDay prev eng = addDays ((eng -1)*3) prev
+nextOncallDay prevDay numOfPeople = addDays numOfPeople prevDay
   where
-    test = 1
+    dayCount = (numOfPeople -1)*3
+
+currDay :: IO Day
+currDay = do localDay . zonedTimeToLocalTime <$> getZonedTime
+
+-- local :: IO Day
+-- local = do
+--     now <- getZonedTime
+--     return $ localDay (zonedTimeToLocalTime now)
+--     return ()
+
+daysTo (year, month, day) = do
+    now <- getZonedTime
+    let (y, m, d) = toGregorian (localDay (zonedTimeToLocalTime now))
+        current = fromGregorian y m d
+        prior = fromGregorian year month day
+    return (diffDays prior current)
+
+-- local = do
+--     now <- getZonedTime
+--     return ()
 
 -- endOfYear :: Day -> Day
 -- endOfYear day =
@@ -61,7 +79,7 @@ previousFriday d
 
 main = do
   now <- getZonedTime
-  -- curr_time <- SYS.getClockTime
+  -- -- curr_time <- SYS.getClockTime
   let today = localDay $ zonedTimeToLocalTime now
   --curr_str <- fmap (formatTime defaultTimeLocale "%Y-%m-%d") getClockTime
   -- print curr_time
