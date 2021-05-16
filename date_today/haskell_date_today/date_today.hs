@@ -1,55 +1,71 @@
-import Time
---import Data.Time
-import System.Time
+-- import Time
+import Data.Time
+import Data.Time.Calendar
+import Data.Time.Clock
+import Data.Time.LocalTime
+import Data.Time.Calendar.OrdinalDate
+import Data.Time.Calendar.WeekDate   (toWeekDate)
+-- import Data.Time.TH (mkDay, mkUTCTime)
+import qualified System.Time as SYS
 --import System.Locale (defaultTimeLocale)
-import System.Locale
-
-{-
-timerClock      :: ClockTime -> ClockTime
-timerClock t    =  addToClockTime (TimeDiff 0 0 0 0 0 15 0) t
+-- import System.Locale
+import Prelude
 
 
-data CalendarTime = CalendarTime
-   {ctYear :: Int,         -- Year (post-Gregorian)
-    ctMonth :: Month,
-    ctDay :: Int,          -- Day of the month (1 to 31)
-    ctHour :: Int,         -- Hour of the day (0 to 23)
-    ctMin :: Int,          -- Minutes (0 to 59)
-    ctSec :: Int,          -- Seconds (0 to 61, allowing for leap seconds)
-    ctPicosec :: Integer,  -- Picoseconds
-    ctWDay :: Day,         -- Day of the week
-    ctYDay :: Int,         -- Day of the year (0 to 364 or 365)
-    ctTZName :: String,    -- Name of timezone
-    ctTZ :: Int,           -- Variation from UTC in seconds
-    ctIsDST :: Bool        -- True if Daylight Saving Time in effect
-   }
--}
-data Month = January | February | March | April | May | June | July | August | September | October | November | December
-data Day = Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
+-- data Month = January | February | March | April | May | June | July | August | September | October | November | December
+-- data Day = Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday
 
-localtime = getClockTime >>= toCalendarTime
+-- localtime :: IO SYS.CalendarTime
+-- localtime = SYS.getClockTime >>= SYS.toCalendarTime
 
-t = do
-  tm <- localtime
-  putStrLn $ "Today is day " ++ show (ctYDay tm) ++ " of the current year"
+startDate = fromGregorian 2021 5 12
 
---t2 = do
---  tm <- getCurrentTime
---  let (year, month, day) = toGregorian (utctDay tm)
-  --printf "The current date is %04d %02d %02d\n" year month day
+b = addDays 1 startDate
+x = diffDays b startDate
 
---t3 = do
---  tm <- getCurrentTime
---  return $ "The current date is " ++ show (utctDay tm)
--- The current date is 2008-04-18
+endOfMonth :: Day -> Day
+endOfMonth day =
+  let (y,m,_d) = toGregorian day
+  in fromGregorian y m (gregorianMonthLength y m)
 
---t4 = fmap (formatTime defaultTimeLocale "%Y-%m-%d") getCurrentTime
--- => 2008-04-18
+beginningOfCurrMonth :: Day -> Day
+beginningOfCurrMonth = fromGregorian' . f. toGregorian
+  where
+    f (y, m, _) = (y, m, 1)
+
+    fromGregorian' :: (Integer, Int, Int) -> Day
+    fromGregorian' (y, m, d) = fromGregorian y m d
+
+beginningOfPrev2Month :: Day -> Day
+beginningOfPrev2Month = addGregorianMonthsClip (-2) . beginningOfCurrMonth
+
+engineerNumber :: Integer
+engineerNumber = 6
+
+nextOncallDay :: Day -> Integer -> Day
+nextOncallDay prev eng = addDays ((eng -1)*3) prev
+
+-- endOfYear :: Day -> Day
+-- endOfYear day =
+-- 	let (y,_m,_d) = toGregorian day
+-- 	in endOfMonth (fromGregorian y maxmnum 1)
+
+previousFriday :: Day -> Day
+previousFriday d
+    | wd >= 6   = addDays (fromIntegral $ 5 - wd) d
+    | otherwise = addDays (fromIntegral $ -2 - wd) d
+  where
+    (_, _, wd) = toWeekDate d
 
 main = do
-  curr_time <- getClockTime
+  now <- getZonedTime
+  -- curr_time <- SYS.getClockTime
+  let today = localDay $ zonedTimeToLocalTime now
   --curr_str <- fmap (formatTime defaultTimeLocale "%Y-%m-%d") getClockTime
-  print curr_time
-  tm <- localtime
-  putStrLn $ "Today is day " ++ show (ctYDay tm) ++ " of the current year"
-  --print fmap (formatTime defaultTimeLocale "%Y-%m-%d") getCurrentTime
+  -- print curr_time
+  -- tm <- localtime
+  -- putStrLn $ "Today is day " ++ show (SYS.ctYDay tm) ++ " of the current year"
+  print today
+  print (beginningOfCurrMonth today)
+  print (diffDays today startDate)
+  print (nextOncallDay startDate engineerNumber)
