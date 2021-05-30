@@ -13,12 +13,13 @@ public class SiderealTime {
     calendar.setTime(new Date());
     double jd = julian_date_time(calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR), getGmtTime());
     System.out.println("jd = " + jd);
-    double LMST = LM_sidereal_time( jd, -93.263 );
+    double lmst = localMeanSiderealTime( jd, -93.263 );
     System.out.println("Minneapolis (Local Mean Sidereal Time) is: ");
-    PrintHoursMinutesSeconds(LMST);
-    double GMST = GM_sidereal_time(jd);
+    PrintHoursMinutesSeconds(lmst);
+    double gmst = greenwichMeanSiderealTime(jd);
+    System.out.println("lmst:" + lmst);
     System.out.println("Greenwich Mean Sidereal Time is: ");
-    PrintHoursMinutesSeconds(GMST);
+    PrintHoursMinutesSeconds(gmst);
 
   }
 
@@ -30,25 +31,29 @@ public class SiderealTime {
   }
 
   //Greenwich (Mean) Sidereal Time
-  public static double GM_sidereal_time( double jd ) {
+  public static double greenwichMeanSiderealTime( double jd ) {
     double t_eph;
     double ut;
-    double MJD0;
-    double MJD;
+    double mjd0;
+    double mjd;
 
-    MJD = jd - 2400000.5;
-    MJD0 = (double)(int)(MJD);
-    ut = (MJD - MJD0) * 24.0;
-    t_eph = (MJD0 - 51544.5) / 36525.0;
-    return 6.697374558 + 1.0027379093 * ut + (8640184.812866 + (0.093104 - 0.0000062 * t_eph) * t_eph) * t_eph / 3600.0;
+    mjd = jd - 2400000.5;
+    mjd0 = (double)(int)(mjd);
+    System.out.println("mjd:" + mjd);
+    System.out.println("mjd0:" + mjd0);
+    ut = (mjd - mjd0) * 24.0;
+    System.out.println("ut:" + ut);
+    t_eph = (mjd0 - 51544.5) / 36525.0;
+    System.out.println("t_eph:" + t_eph);
+    return 6.697374558 + (1.0027379093 * ut) + ((8640184.812866 + (0.093104 - 0.0000062 * t_eph) * t_eph) * t_eph) / 3600.0;
   }
 
-  public static double LM_sidereal_time( double jd, double longitude ) {
-    double GMST = GM_sidereal_time( jd );
-    double LMST = 24.0 * frac((GMST + longitude / 15.0) / 24.0 );
+  public static double localMeanSiderealTime( double jd, double longitude ) {
+    double gmst = greenwichMeanSiderealTime(jd);
+    double lmst = 24.0 * frac((gmst + longitude / 15.0) / 24.0 );
 
-    //PrintHoursMinutesSeconds( LMST );
-    return LMST;
+    //PrintHoursMinutesSeconds( lmst );
+    return lmst;
   }
 
   public static void PrintHoursMinutesSeconds( double time ) {

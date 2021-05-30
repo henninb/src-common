@@ -10,7 +10,7 @@ Windows_NT:
 	@ghc sidereal_time.hs -o sidereal_time.exe
 	@del sidereal_time.o sidereal_time.hi
 unix:
-	@ghc sidereal_time.hs -o sidereal_time.exe # >&/dev/null
+	@stack ghc -- --make sidereal_time.hs -o sidereal_time.exe
 	@rm sidereal_time.o sidereal_time.hi
 clean:
 	@rm sidereal_time.exe

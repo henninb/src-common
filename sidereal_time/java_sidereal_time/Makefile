@@ -16,7 +16,7 @@ else
 endif
 gradle:
 #	@gradle -q build
-	@gradle -q standalone
+	@./gradlew -q standalone
 ifeq ($(OS),Windows_NT)
 	@rd /s /q build
 	@rd /s /q .gradle
