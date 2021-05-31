@@ -6,12 +6,12 @@
 
 #include <unistd.h>
 
-double GM_sidereal_time( double );
-double LM_sidereal_time( double, double );
+double greenwichMeanSiderealTime( double );
+double localMeanSiderealTime( double, double );
 double JulianDate( int, int, int );
 double getGmtTime();
-double frac( double );
-void PrintHoursMinutesSeconds( double );
+double fractionalPart( double );
+void printHoursMinutesSeconds( double );
 double julian_date_time( int, int, int, double );
 int dateMonth();
 int dateYear();
@@ -19,8 +19,8 @@ int dateDay();
 
 int main( int argc, char *argv[] ) {
   double jd;
-  double LMST;
-  double GMST;
+  double lmst;
+  double gmst;
 
   if( argc != 1 ) {
     fprintf( stderr, "Usage: %s <noargs>\n", argv[0] );
@@ -29,19 +29,19 @@ int main( int argc, char *argv[] ) {
 
   while(1) {
     //"44.98/-93.26/-6 Minneapolis MN
-    //LM_sidereal_time(2454985.50, -93.26);
+    //localMeanSiderealTime(2454985.50, -93.26);
     jd = julian_date_time( dateDay(), dateMonth(), dateYear(), getGmtTime());
     printf( "jd=%f\n", jd );
-    LMST = LM_sidereal_time(jd, -93.263);
+    lmst = localMeanSiderealTime(jd, -93.263);
     printf("Minneapolis (Local Sidereal Time) is: ");
-    PrintHoursMinutesSeconds(LMST);
-    GMST = GM_sidereal_time(jd);
+    printHoursMinutesSeconds(lmst);
+    gmst = greenwichMeanSiderealTime(jd);
     printf("Greenwich (Mean) Sidereal Time is: ");
-    PrintHoursMinutesSeconds(GMST);
+    printHoursMinutesSeconds(gmst);
     sleep(1);
   }
-  //LMST - Local Mean Sidereal Time
-  //LMST = GMST + (observer's east longitude)
+  //lmst - Local Mean Sidereal Time
+  //lmst = gmst + (observer's east longitude)
 
   return 0;
 }
@@ -88,37 +88,36 @@ double getGmtTime() {
 }
 
 //Greenwich (Mean) Sidereal Time
-double GM_sidereal_time( double jd ) {
+double greenwichMeanSiderealTime( double jd ) {
   double t_eph;
   double ut;
-  double MJD0;
-  double MJD;
+  double mjd0;
+  double mjd;
 
-  MJD = jd - 2400000.5;
-  MJD0 = (double)(int)(MJD);
-  ut = (MJD - MJD0) * 24.0;
+  mjd = jd - 2400000.5;
+  mjd0 = (double)(int)(mjd);
+  ut = (mjd - mjd0) * 24.0;
   //printf("ut=%f\n", ut);
-  t_eph = (MJD0 - 51544.5) / 36525.0;
+  t_eph = (mjd0 - 51544.5) / 36525.0;
   return 6.697374558 + 1.0027379093 * ut + (8640184.812866 + (0.093104 - 0.0000062 * t_eph) * t_eph) * t_eph / 3600.0;
 }
 
-double LM_sidereal_time( double jd, double longitude ) {
-  double GMST = GM_sidereal_time( jd );
-  double LMST = 24.0 * frac((GMST + longitude / 15.0) / 24.0 );
+double localMeanSiderealTime( double jd, double longitude ) {
+  double gmst = greenwichMeanSiderealTime( jd );
+  double lmst = 24.0 * fractionalPart((gmst + longitude / 15.0) / 24.0 );
 
-  //PrintHoursMinutesSeconds( LMST );
-  return LMST;
+  return lmst;
 }
 
-void PrintHoursMinutesSeconds( double time ) {
+void printHoursMinutesSeconds( double time ) {
   int h = (int)time % 24;
-  int min = (int)(60.0 * frac( time ));
-  int secs = (int)(60.0 * (60.0 * frac( time ) - min));
+  int min = (int)(60.0 * fractionalPart( time ));
+  int secs = (int)(60.0 * (60.0 * fractionalPart( time ) - min));
 
   printf( "%02d:%02d:%02d\n", h, min, secs );
 }
 
-double frac( double X ) {
+double fractionalPart( double X ) {
   X = X - (double)(int)(X);
   if( X < 0 ) {
     X = X + 1.0;

@@ -4,6 +4,7 @@ import Data.Time.Clock
 import Data.Time.LocalTime
 import Data.Time.Calendar.OrdinalDate
 import Data.Time.Calendar.WeekDate   (toWeekDate)
+import Data.Astro.Time.JulianDate
 import Prelude
 
 fractionalPart :: Double -> Double
@@ -39,10 +40,17 @@ hourMinSec time = show hour ++ ":" ++ show min ++ ":" ++ show sec
    minToDouble = fromIntegral min
    sec = truncate (60.0 * (60.0 * fracTime - minToDouble)) :: Integer
 
-julianDateTime d m y u = year
-  where
-    year = if y > 1900 then y + 1900 else y
-    month = if m < 3 then m + 12 else m
+-- lctJD :: JulianDate
+-- lctJD = lctUniversalTime lct
+
+-- JD 2457929.895138889
+-- julianDateTime d m y u = calc
+--   where
+--     yearTemp = if y > 1900 then y + 1900 else y
+--     month = if m < 3 then m + 12 else m
+--     year = if m < 3 then yearTemp - 1 else yearTemp
+--       where
+--         calc = ((365.25 * fromIntegral (year + 4716))) + ((double)(int)(30.6001 * (month + 1))) + fromIntegral d - 13 - 1524.5 + u / 24.0
   -- public static double julian_date_time( int d, int m, int y, double u ) {
   --   if( y < 1900 ) {
   --     y = y + 1900;
