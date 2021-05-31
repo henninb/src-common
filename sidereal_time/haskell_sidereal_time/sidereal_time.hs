@@ -6,27 +6,38 @@ import Data.Time.Calendar.OrdinalDate
 import Data.Time.Calendar.WeekDate   (toWeekDate)
 import Prelude
 
-fractionalPart :: Fractional -> Fractional
-fractionalPart val = y
+fractionalPart :: Double -> Double
+fractionalPart val = if y < 0.0 then y + 1.0 else y
   where
     xInt = round val :: Int
     x = fromIntegral xInt
-    y = if x < 0.0 then x + 1.0 else x
+    y = val - x
 
-greenwichMeanSiderealTime :: Fractional -> Fractional
-greenwichMeanSiderealTime jd = 6.697374558 + (1.0027379093 * ut) + ((8640184.812866 + (0.093104 - 0.0000062 * t_eph) * t_eph) * t_eph) / 3600.0
+greenwichMeanSiderealTime :: Double -> Double
+greenwichMeanSiderealTime jd = 6.697374558 + 1.0027379093 * ut + (8640184.812866 + (0.093104 - 0.0000062 * t_eph) * t_eph) * t_eph / 3600.0
    where
     mjd = jd - 2400000.5
     mjdInt = truncate mjd :: Integer
-    mjd0 = fromIntegral mjdInt :: Fractional
+    mjd0 = fromIntegral mjdInt :: Double
     ut = (mjd - mjd0) * 24.0
     t_eph = (mjd0 - 51544.5) / 36525.0
 
-localMeanSiderealTime :: Fractional -> Fractional -> Fractional
+localMeanSiderealTime :: Double -> Double -> Double
 localMeanSiderealTime jd longitude = lmst
   where
     gmst = greenwichMeanSiderealTime jd
     lmst = 24 * fractionalPart((gmst + longitude / 15.0) / 24.0 )
+
+hourMinSec time = show hour ++ ":" ++ show min ++ ":" ++ show sec
+  where
+   timeInt = truncate time :: Integer
+   hour = timeInt `mod` 24;
+   fracTime = fractionalPart time
+   minDouble = 60.0 * fracTime
+   min = truncate minDouble :: Integer
+   sec = truncate (60.0 * (60.0 * fracTime - minDouble)) ::Integer
+   -- min = (int)(60.0 * fractionalPart( time ));
+   -- secs = (int)(60.0 * (60.0 * frac( time ) - min));
 
 julianDateTime d m y u = year
   where
@@ -45,7 +56,12 @@ julianDateTime d m y u = year
   -- }
 
 main :: IO()
-main = print gmst
-  where
-    lmst = localMeanSiderealTime 2459365.172048611 (-93.263)
-    gmst = greenwichMeanSiderealTime 2459365.172048611
+main =
+  -- print frac
+  print (hourMinSec gmst)
+  -- print eph
+   where
+    jd = 2459364.537569
+    lmst = localMeanSiderealTime jd (-93.263)
+    gmst = greenwichMeanSiderealTime jd
+    frac = fractionalPart gmst
