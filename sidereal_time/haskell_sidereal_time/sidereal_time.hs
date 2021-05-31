@@ -28,6 +28,7 @@ localMeanSiderealTime jd longitude = lmst
     gmst = greenwichMeanSiderealTime jd
     lmst = 24 * fractionalPart((gmst + longitude / 15.0) / 24.0 )
 
+hourMinSec :: Double -> [Char]
 hourMinSec time = show hour ++ ":" ++ show min ++ ":" ++ show sec
   where
    timeInt = truncate time :: Integer
@@ -35,9 +36,8 @@ hourMinSec time = show hour ++ ":" ++ show min ++ ":" ++ show sec
    fracTime = fractionalPart time
    minDouble = 60.0 * fracTime
    min = truncate minDouble :: Integer
-   sec = truncate (60.0 * (60.0 * fracTime - minDouble)) ::Integer
-   -- min = (int)(60.0 * fractionalPart( time ));
-   -- secs = (int)(60.0 * (60.0 * frac( time ) - min));
+   minToDouble = fromIntegral min
+   sec = truncate (60.0 * (60.0 * fracTime - minToDouble)) :: Integer
 
 julianDateTime d m y u = year
   where
@@ -56,12 +56,15 @@ julianDateTime d m y u = year
   -- }
 
 main :: IO()
-main =
-  -- print frac
+main = do
+  print jd
+  putStrLn "--- separated ---"
   print (hourMinSec gmst)
+  putStrLn "--- separated ---"
+  print (hourMinSec lmst)
+  -- putStrLn "--- separated ---"
   -- print eph
-   where
-    jd = 2459364.537569
-    lmst = localMeanSiderealTime jd (-93.263)
-    gmst = greenwichMeanSiderealTime jd
-    frac = fractionalPart gmst
+     where
+      jd = 2459365.961574
+      lmst = localMeanSiderealTime jd (-93.263)
+      gmst = greenwichMeanSiderealTime jd
