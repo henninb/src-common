@@ -12,6 +12,6 @@ function easterCalculator(year) {
 
 //console.info(easterCalculator(2018));
 
-for( idx_i = 2018; idx_i < 2100; idx_i++ ) {
+for( idx_i = 2022; idx_i < 2100; idx_i++ ) {
   console.info(easterCalculator(idx_i))
 }
